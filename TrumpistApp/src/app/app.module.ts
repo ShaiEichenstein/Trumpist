@@ -3,11 +3,15 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { TrampListComponent } from './tramp-list/tramp-list.component';
+import { TempItemComponent } from './temp-item/temp-item.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TrampListComponent,
+    TempItemComponent
   ],
   imports: [
     BrowserModule
