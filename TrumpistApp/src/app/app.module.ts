@@ -11,6 +11,7 @@ import { TrampItemComponent } from './tramp-item/tramp-item.component';
 import { TrampService } from './tramp.service';
 import { HomePageComponent } from './home-page/home-page.component';
 import { AlertModule } from 'ngx-bootstrap';
+import { TrampGradeComponent } from './tramp-grade/tramp-grade.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { AlertModule } from 'ngx-bootstrap';
     MainComponent,
     TrampListComponent,
     TrampItemComponent,
-    HomePageComponent
+    HomePageComponent,
+    TrampGradeComponent
   ],
   imports: [
     BrowserModule,

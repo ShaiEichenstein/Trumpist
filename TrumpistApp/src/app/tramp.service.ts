@@ -25,7 +25,8 @@ export const TrampsMockUp: Array<Tramp> = [
         street:"הרצל"
       },
     },
-    trampGrade: 75
+    trampGrade: 75,
+    color: '#588952'
   },
   <Tramp>{
     driverDetails: {
@@ -37,7 +38,8 @@ export const TrampsMockUp: Array<Tramp> = [
         street:"אלנבי"
       },
     },
-    trampGrade: 85
+    trampGrade: 85,
+    color: '#F3AD1A'
     },
   <Tramp>{
     driverDetails: {
@@ -49,6 +51,7 @@ export const TrampsMockUp: Array<Tramp> = [
         street:"הנביאים"
       },
     },
-    trampGrade: 40
+    trampGrade: 40,
+    color: '#BA69C8'
   }
 ];

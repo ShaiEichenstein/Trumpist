@@ -1,17 +1,17 @@
-<div class="card">
+<div class="card" [style.border-color]=tramp.color>
   <div class="row">
-    <div class="col-md-4">
-      <p> {{tramp.driverDetails.driverAddress.city}} </p>
-      <p> {{tramp.driverDetails.driverAddress.street}} </p>
-      <p> {{tramp.trampGrade}} </p>
+    <div class="col-md-4 tramp-col">
+      <p class="tramp-text tramp-grade" [style.color]=tramp.color> {{tramp.trampGrade}} </p>
+      <!-- <app-tramp-grade [grade]=tramp.trampGrade [color]=tramp.color></app-tramp-grade> -->
     </div>
 
-    <div class="col-md-4">
-      <p> {{tramp.driverDetails.driverFirstName}} </p>
-      <p> {{tramp.driverDetails.driverLastName}} </p>
-      <p> {{tramp.driverDetails.driverGender}} </p>
+    <div class="col-md-4 tramp-col">
+      <p class="tramp-text"> {{tramp.driverDetails.driverFirstName}} {{tramp.driverDetails.driverLastName}} </p>
+      <p class="tramp-text"> {{tramp.driverDetails.driverAddress.city}}, {{tramp.driverDetails.driverAddress.street}} </p>
+      <p class="tramp-text"> {{tramp.driverDetails.driverGender}} </p>
     </div>
 
-    <div class="tramp-icon col-md-4 glyphicon glyphicon-adjust"></div>
+    <!-- <div class="tramp-icon col-md-4 glyphicon glyphicon-user" [style.color]=tramp.color></div> -->
+    <div class="tramp-icon col-md-4 glyphicon glyphicon-user"></div>
   </div>
 </div>

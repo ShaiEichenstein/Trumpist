@@ -1,0 +1,9 @@
+.tramp-list-div {    
+    background: #535A74;
+    width: 100%;
+    padding: 20px;
+}
+
+.tramp-list-div > h3{    
+    color: white;
+}

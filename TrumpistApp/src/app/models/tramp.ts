@@ -3,6 +3,7 @@ export interface Tramp {
     entranceAvgTime: Date;
     leavingAvgTime: Date;
     trampGrade: number;
+    color: string;
 }
 
 export interface Driver {

@@ -1,3 +1,9 @@
 .navbar-brand {
     max-width: 50%;
 }
+
+.header-div {
+background: #333333;
+height:100px;
+width: 100%;
+}
