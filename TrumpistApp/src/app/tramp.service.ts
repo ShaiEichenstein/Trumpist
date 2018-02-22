@@ -19,21 +19,36 @@ export const TrampsMockUp: Array<Tramp> = [
     driverDetails: {
       driverLastName: "אייכנשטיין",
       driverFirstName: "שי",
-      driverGender: "זכר"
-    }
+      driverGender: "זכר",
+      driverAddress: {
+        city: "רמת גן",
+        street:"הרצל"
+      },
+    },
+    trampGrade: 75
   },
   <Tramp>{
     driverDetails: {
-      driverLastName: "אייכנשטיין",
-      driverFirstName: "2שי",
-      driverGender: "זכר"
-    }
-  },
+      driverLastName: "אפרגן",
+      driverFirstName: "דרור",
+      driverGender: "זכר",
+      driverAddress: {
+        city: "תל אביב",
+        street:"אלנבי"
+      },
+    },
+    trampGrade: 85
+    },
   <Tramp>{
     driverDetails: {
-      driverLastName: "אייכנשטיין",
-      driverFirstName: "3שי",
-      driverGender: "זכר"
-    }
+      driverLastName: "דפנה",
+      driverFirstName: "פאן",
+      driverGender: "נקבה",
+      driverAddress: {
+        city: "חיפה",
+        street:"הנביאים"
+      },
+    },
+    trampGrade: 40
   }
 ];
