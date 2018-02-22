@@ -9,14 +9,16 @@ import { TrampListComponent } from './tramp-list/tramp-list.component';
 import { TrampItemComponent } from './tramp-item/tramp-item.component';
 import { TrampService } from './tramp.service';
 import { HomePageComponent } from './home-page/home-page.component';
+import { AlertModule } from 'ngx-bootstrap';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    MainComponent
+    MainComponent,
     TrampListComponent,
+    TrampItemComponent,
     HomePageComponent
   ],
   imports: [
