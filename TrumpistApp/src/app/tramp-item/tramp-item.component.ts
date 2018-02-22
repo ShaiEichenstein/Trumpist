@@ -16,7 +16,7 @@ export class TrampItemComponent implements OnInit {
       naborhood: "zahala",
       street: "rotchild",
       buldingNumber: 2
-    }; 
+    };
     var driver = {
       driverFirstName : "avi",
       driverLastName : "levi",

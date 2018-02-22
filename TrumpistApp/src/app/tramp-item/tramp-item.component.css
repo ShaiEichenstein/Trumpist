@@ -1,0 +1,7 @@
+.tramp-item {
+    width: 150px;
+    height: 50px;
+    border: 2px solid gold;
+    box-shadow: 0 0 20px;
+    margin: 10px;
+}
