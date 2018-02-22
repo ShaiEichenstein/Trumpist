@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Tramp, Driver } from '../models/tramp';
+import { Tramp, Driver, Address } from '../models/tramp';
 
 @Component({
   selector: 'app-tramp-item',
@@ -9,7 +9,28 @@ import { Tramp, Driver } from '../models/tramp';
 export class TrampItemComponent implements OnInit {
 
   @Input() tramp:Tramp;
-  constructor() { }
+  
+  constructor() {
+    var address = {
+      city: "Tel Aviv",
+      naborhood: "zahala",
+      street: "rotchild",
+      buldingNumber: 2
+    }; 
+    var driver = {
+      driverFirstName : "avi",
+      driverLastName : "levi",
+      driverAddress : address,
+      driverGender : "male"
+    };
+
+    this.tramp = {
+     driverDetails: driver,
+     entranceAvgTime: new Date(),
+     leavingAvgTime: new Date(),
+     trampGrade: 10
+    }
+   }
 
   ngOnInit() {
   }
