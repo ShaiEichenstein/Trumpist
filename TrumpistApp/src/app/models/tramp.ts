@@ -1,20 +1,18 @@
-export class Tramp {
+export interface Tramp {
     driverDetails: Driver;
     entranceAvgTime: Date;
     leavingAvgTime: Date;
     trampGrade: number;
 }
 
-
-
-export class Driver {
+export interface Driver {
     driverFirstName: string;
     driverLastName: string;
     driverAddress: Address;
 }
 
 
-export class Address {
+export interface Address {
     city: string;
     naborhood: string;
     street: string;
