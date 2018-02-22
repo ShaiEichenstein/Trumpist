@@ -1,15 +1,6 @@
-<<<<<<< HEAD
-.tramp-item {
-    width: 150px;
-    height: 50px;
-    border: 2px solid gold;
-    box-shadow: 0 0 20px;
-    margin: 10px;
-=======
 .card{
          width: 1000px; 
         height: 155px;
         border: 5px solid skyblue;
         align-items: right; 
->>>>>>> 7bc508a2cd930c52e7e20788ca042c891fd63ac1
 }
