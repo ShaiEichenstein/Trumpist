@@ -1,0 +1,6 @@
+.card{
+         width: 1000px; 
+        height: 155px;
+        border: 5px solid skyblue;
+        align-items: right; 
+}
