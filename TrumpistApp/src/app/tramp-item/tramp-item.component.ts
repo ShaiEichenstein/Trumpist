@@ -20,7 +20,8 @@ export class TrampItemComponent implements OnInit {
     var driver = {
       driverFirstName : "avi",
       driverLastName : "levi",
-      driverAddress : address
+      driverAddress : address,
+      driverGender : "male"
     };
 
     this.tramp = {
