@@ -53,5 +53,31 @@ export const TrampsMockUp: Array<Tramp> = [
     },
     trampGrade: 40,
     color: '#BA69C8'
+  },
+  <Tramp>{
+    driverDetails: {
+      driverLastName: "אסף",
+      driverFirstName: "גאן",
+      driverGender: "זכר",
+      driverAddress: {
+        city: "חיפה",
+        street:"אלנבי"
+      },
+    },
+    trampGrade: 60,
+    color: '#F3AD1A'
+  },
+  <Tramp>{
+    driverDetails: {
+      driverLastName: "מירב",
+      driverFirstName: "בוכריס",
+      driverGender: "נקבה",
+      driverAddress: {
+        city: "אילת",
+        street:"הנביאים"
+      },
+    },
+    trampGrade: 67,
+    color: '#BA69C8'
   }
 ];

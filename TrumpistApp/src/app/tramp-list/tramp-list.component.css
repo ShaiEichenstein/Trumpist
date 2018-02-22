@@ -7,3 +7,15 @@
 .tramp-list-div > h3{    
     color: white;
 }
+
+.sort-button {
+    font-size: 20px;
+    margin-left: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    color:gold;
+}
+
+.sort-button:hover {
+    text-decoration: none;
+}
