@@ -8,7 +8,7 @@ import { Tramp, Driver, Address } from '../models/tramp';
 })
 export class TrampItemComponent implements OnInit {
 
-  @Input() tramp:Tramp;
+  @Input() tramp: Tramp;
   
   constructor() {
     var address = {
