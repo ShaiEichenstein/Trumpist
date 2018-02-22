@@ -5,12 +5,11 @@ export interface Tramp {
     trampGrade: number;
 }
 
-
-
 export interface Driver {
     driverFirstName: string;
     driverLastName: string;
     driverAddress: Address;
+    driverGender: string;
 }
 
 
