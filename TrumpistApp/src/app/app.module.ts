@@ -5,6 +5,10 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { MainComponent } from './main/main.component';
+import { TrampListComponent } from './tramp-list/tramp-list.component';
+import { TrampItemComponent } from './tramp-item/tramp-item.component';
+import { TrampService } from './tramp.service';
+import { HomePageComponent } from './home-page/home-page.component';
 
 
 @NgModule({
@@ -12,11 +16,15 @@ import { MainComponent } from './main/main.component';
     AppComponent,
     HeaderComponent,
     MainComponent
+    TrampListComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [
+    TrampService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
