@@ -16,8 +16,9 @@ import { HomePageComponent } from './home-page/home-page.component';
   declarations: [
     AppComponent,
     HeaderComponent,
-    MainComponent
+    MainComponent,
     TrampListComponent,
+    TrampItemComponent,
     HomePageComponent
   ],
   imports: [
