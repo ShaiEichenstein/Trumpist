@@ -1,12 +1,15 @@
 export interface Tramp {
     driverDetails: Driver;
-    entranceAvgTime: Date;
-    leavingAvgTime: Date;
+    entranceAvgTime: Time;
+    leavingAvgTime: Time;
     trampGrade: number;
     color: string;
+    trampRequstStatus: number;
+    trampRequestIcon: string;
 }
 
 export interface Driver {
+    driverEmpId: number;
     driverFirstName: string;
     driverLastName: string;
     driverAddress: Address;
@@ -19,4 +22,9 @@ export interface Address {
     naborhood: string;
     street: string;
     buldingNumber: number;
+}
+
+export interface Time{
+    hour: number;
+    minute: number;
 }
