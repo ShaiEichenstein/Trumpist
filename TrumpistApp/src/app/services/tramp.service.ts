@@ -1,7 +1,7 @@
 import { element } from 'protractor';
 import { TrampRequest } from "./models/trampRequest";
 import { Injectable } from "@angular/core";
-import { Tramp } from "./models/tramp";
+import { Tramp } from "./../models/tramp";
 
 @Injectable()
 export class TrampService {

@@ -1,4 +1,4 @@
-import { TrampService } from './../tramp.service';
+import { TrampService } from './../services/tramp.service';
 import { Component, OnInit } from '@angular/core';
 import { Tramp } from '../models/tramp';
 
