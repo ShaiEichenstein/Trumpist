@@ -10,7 +10,7 @@ async function start() {
   console.log("Compiling server")
   await spawn("node_modules\\.bin\\tsc", [
     "-p",
-    "tsconfig.json"
+    "src/server/tsconfig.json"
   ], {
       shell: true,
       stdio: "inherit",
@@ -23,7 +23,7 @@ async function start() {
   });
 
   console.log("Running client")
-  spawn("ng", ["serve", "--proxy-config", "proxy.conf.json", "--open"], {
+  spawn("ng", ["serve", "--proxy-config", "proxy.conf.json"], {
     shell: true,
     stdio: "inherit",
   });
@@ -31,7 +31,7 @@ async function start() {
   console.log("Watching server compilation")
   spawn("node_modules\\.bin\\tsc", [
     "-p",
-    "tsconfig.json",
+    "src/server/tsconfig.json",
     "-w"
   ], {
       shell: true,

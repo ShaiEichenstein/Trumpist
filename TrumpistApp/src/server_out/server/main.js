@@ -38,11 +38,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
 var dal = require("./dal");
 var app = express();
-app.get("/api/tremps", wrap(function () {
+app.get("/api/tramps", wrap(function () {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, dal.getAllTremps()];
+                case 0: return [4 /*yield*/, dal.getAllTramps()];
                 case 1: return [2 /*return*/, _a.sent()];
             }
         });
