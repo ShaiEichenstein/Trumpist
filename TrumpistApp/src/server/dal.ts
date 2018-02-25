@@ -13,7 +13,15 @@ export const TrampsMockUp: Array<Tramp> = [
         },
       },
       trampGrade: 75,
-      color: '#588952'
+      color: '#588952',
+      entranceAvgTime : {
+        hour: 8,
+        minute: 20
+      },
+      leavingAvgTime : {
+        hour: 19,
+        minute: 30
+      }
     },
     <Tramp>{
       driverDetails: {
@@ -26,7 +34,15 @@ export const TrampsMockUp: Array<Tramp> = [
         },
       },
       trampGrade: 85,
-      color: '#F3AD1A'
+      color: '#F3AD1A',
+      entranceAvgTime : {
+        hour: 8,
+        minute: 40
+      },
+      leavingAvgTime : {
+        hour: 16,
+        minute: 30
+      }
       },
     <Tramp>{
       driverDetails: {
@@ -39,7 +55,15 @@ export const TrampsMockUp: Array<Tramp> = [
         },
       },
       trampGrade: 40,
-      color: '#BA69C8'
+      color: '#BA69C8',
+      entranceAvgTime : {
+        hour: 9,
+        minute: 0
+      },
+      leavingAvgTime : {
+        hour: 18,
+        minute: 0
+      }
     },
     <Tramp>{
       driverDetails: {
@@ -52,7 +76,15 @@ export const TrampsMockUp: Array<Tramp> = [
         },
       },
       trampGrade: 60,
-      color: '#F3AD1A'
+      color: '#F3AD1A',
+      entranceAvgTime : {
+        hour: 7,
+        minute: 10
+      },
+      leavingAvgTime : {
+        hour: 17,
+        minute: 0
+      }
     },
     <Tramp>{
       driverDetails: {
@@ -65,11 +97,19 @@ export const TrampsMockUp: Array<Tramp> = [
         },
       },
       trampGrade: 67,
-      color: '#BA69C8'
+      color: '#BA69C8',
+      entranceAvgTime : {
+        hour: 6,
+        minute: 20
+      },
+      leavingAvgTime : {
+        hour: 15,
+        minute: 30
+      }
     }
   ];
 
-export async function getAllTremps() {
+export async function getAllTramps() {
     //await delay(1000);
 
     // throw new Error("DAL");

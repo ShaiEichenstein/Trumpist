@@ -4,8 +4,8 @@ import * as dal from "./dal";
 
 const app = express();
 
-app.get("/api/tremps", wrap(async function() {
-    return await dal.getAllTremps();
+app.get("/api/tramps", wrap(async function() {
+    return await dal.getAllTramps();
 }));
 
 function wrap(fn){
@@ -27,6 +27,6 @@ function wrap(fn){
     }
 }
 
-app.listen(3001, function(){
+app.listen(3000, function(){
     console.log("Server is running ABC");
 });
