@@ -19,3 +19,9 @@
 .sort-button:hover {
     text-decoration: none;
 }
+
+.active-sort {    
+    background: gold;
+    color:black;
+    padding: 2px;;
+}

@@ -63,7 +63,7 @@ exports.TrampsMockUp = [
                 street: "הרצל"
             },
         },
-        trampGrade: 111,
+        trampGrade: 75,
         color: '#588952',
         entranceAvgTime: {
             hour: 8,
@@ -72,7 +72,52 @@ exports.TrampsMockUp = [
         leavingAvgTime: {
             hour: 19,
             minute: 30
-        }
+        },
+        trampRequstStatus: 0
+    },
+    {
+        driverDetails: {
+            driverLastName: "אפרגן",
+            driverFirstName: "דרור",
+            driverGender: "זכר",
+            driverAddress: {
+                city: "תל אביב",
+                street: "אלנבי"
+            },
+        },
+        trampGrade: 85,
+        color: '#F3AD1A',
+        entranceAvgTime: {
+            hour: 8,
+            minute: 40
+        },
+        leavingAvgTime: {
+            hour: 16,
+            minute: 30
+        },
+        trampRequstStatus: 0
+    },
+    {
+        driverDetails: {
+            driverLastName: "דפנה",
+            driverFirstName: "פאן",
+            driverGender: "נקבה",
+            driverAddress: {
+                city: "חיפה",
+                street: "הנביאים"
+            },
+        },
+        trampGrade: 40,
+        color: '#BA69C8',
+        entranceAvgTime: {
+            hour: 9,
+            minute: 0
+        },
+        leavingAvgTime: {
+            hour: 18,
+            minute: 0
+        },
+        trampRequstStatus: 0,
     },
     {
         driverDetails: {
@@ -156,6 +201,58 @@ exports.TrampsMockUp = [
         leavingAvgTime: {
             hour: 15,
             minute: 30
+        },
+        trampRequstStatus: 0
+    },
+    {
+        driverDetails: {
+            driverLastName: "משה",
+            driverFirstName: "משה",
+            driverGender: "זכר",
+            driverAddress: {
+                city: "רמת גן",
+                street: "הרצל"
+            },
+        },
+        trampGrade: 75,
+        color: '#588952',
+        entranceAvgTime: {
+            hour: 8,
+            minute: 10
+        }
+    },
+    {
+        driverDetails: {
+            driverLastName: "לוי",
+            driverFirstName: "אבי",
+            driverGender: "זכר",
+            driverAddress: {
+                city: "רמת גן",
+                street: "הבורסה"
+            },
+        },
+        trampGrade: 75,
+        color: '#588952',
+        entranceAvgTime: {
+            hour: 7,
+            minute: 20
+        }
+    },
+    {
+        driverDetails: {
+            driverLastName: "אהרון",
+            driverFirstName: "מאיה",
+            driverGender: "נקבה",
+            driverAddress: {
+                city: "רמת גן",
+                street: "אורות"
+            },
+        },
+        trampGrade: 75,
+        color: '#588952',
+        entranceAvgTime: {
+            hour: 8,
+            minute: 20
         }
     }
 ];

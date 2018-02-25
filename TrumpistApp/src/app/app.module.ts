@@ -14,6 +14,7 @@ import { TrampService } from './services/tramp.service';
 import { HomePageComponent } from './home-page/home-page.component';
 import { AlertModule } from 'ngx-bootstrap';
 import { TrampGradeComponent } from './tramp-grade/tramp-grade.component';
+import { HttpService } from './services/http.service';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { TrampGradeComponent } from './tramp-grade/tramp-grade.component';
     HttpClientModule
   ],
   providers: [
-    TrampService
+    TrampService,
+    HttpService
   ],
   bootstrap: [AppComponent]
 })

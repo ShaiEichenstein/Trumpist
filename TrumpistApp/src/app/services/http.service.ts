@@ -1,16 +1,23 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable()
 export class HttpService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
+  async requestGetData<T>(url:string): Promise<T> { 
+      return await this.http.get<T>(url).toPromise();
+  }
 
-  async requestData(url:string)
-    { 
-      const tramps=await this.http.get(url).toPromise();
+//   async requestPostData<T>(url:string): Promise<T> { 
+//     return await this.http.post<T>(url).toPromise();
+//   }
 
+
+  // async requestPostData<T>(url:string): Promise<T> { 
+  //   const data = await this.http.post<T>(url).toPromise();
+  //   return data;
+  // }
     //   getHeader = () => {
     //     let headers = new Headers();
     //     headers.append("Content-Type", 'application/json');
@@ -31,6 +38,5 @@ export class HttpService {
     //                     .map((res:Response) => res.json());
     // }
 
-  }
-
+  
 }
