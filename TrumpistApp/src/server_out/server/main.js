@@ -36,13 +36,34 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
+var bodyParser = require("body-parser");
 var dal = require("./dal");
 var app = express();
+app.use(bodyParser.json());
+// app.configure(function() {
+// });
 app.get("/api/tramps", wrap(function () {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, dal.getAllTramps()];
+                case 0:
+                    console.log("test");
+                    return [4 /*yield*/, dal.getAllTramps()];
+                case 1: return [2 /*return*/, _a.sent()];
+            }
+        });
+    });
+}));
+// app.post('/', function(request, response) {
+//   console.log(request.body);
+// });
+app.post("/api/addTrampRequest", wrap(function (req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    console.log(req.body);
+                    return [4 /*yield*/, dal.addTrampRequest(req.body)];
                 case 1: return [2 /*return*/, _a.sent()];
             }
         });
@@ -51,7 +72,7 @@ app.get("/api/tramps", wrap(function () {
 function wrap(fn) {
     return function (req, res) {
         try {
-            var retVal = fn();
+            var retVal = fn(req, res);
             if (retVal && retVal.then) {
                 retVal
                     .then(function (data) {

@@ -35,19 +35,55 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+function getAllTramps() {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            //await delay(1000);
+            // throw new Error("DAL");
+            return [2 /*return*/, exports.TrampsMockUp];
+        });
+    });
+}
+exports.getAllTramps = getAllTramps;
+function addTrampRequest(trampRequst) {
+    return __awaiter(this, void 0, void 0, function () {
+        var tramp;
+        return __generator(this, function (_a) {
+            if (trampRequst != null) {
+                exports.TrampsRequestMockUp.push(trampRequst);
+                tramp = exports.TrampsMockUp.filter(function (t) { return t.driverDetails.driverEmpId === trampRequst.driverEmpId; })[0];
+                if (tramp != null) {
+                    console.log(tramp);
+                    tramp['trampRequstStatus'] = 1;
+                }
+                else {
+                    console.log("tramp is null");
+                }
+                return [2 /*return*/, tramp];
+            }
+            else {
+                console.log("trampRequst is null");
+            }
+            return [2 /*return*/];
+        });
+    });
+}
+exports.addTrampRequest = addTrampRequest;
+exports.TrampsRequestMockUp = new Array();
 exports.TrampsMockUp = [
     {
         driverDetails: {
+            driverEmpId: 1234,
             driverLastName: "אייכנשטיין",
             driverFirstName: "שי",
             driverGender: "זכר",
             driverAddress: {
                 city: "רמת גן",
                 street: "הרצל"
-            },
+            }
         },
         trampGrade: 75,
-        color: '#588952',
+        color: "#588952",
         entranceAvgTime: {
             hour: 8,
             minute: 20
@@ -60,16 +96,17 @@ exports.TrampsMockUp = [
     },
     {
         driverDetails: {
+            driverEmpId: 4321,
             driverLastName: "אפרגן",
             driverFirstName: "דרור",
             driverGender: "זכר",
             driverAddress: {
                 city: "תל אביב",
                 street: "אלנבי"
-            },
+            }
         },
         trampGrade: 85,
-        color: '#F3AD1A',
+        color: "#F3AD1A",
         entranceAvgTime: {
             hour: 8,
             minute: 40
@@ -82,16 +119,17 @@ exports.TrampsMockUp = [
     },
     {
         driverDetails: {
+            driverEmpId: 323,
             driverLastName: "דפנה",
             driverFirstName: "פאן",
             driverGender: "נקבה",
             driverAddress: {
                 city: "חיפה",
                 street: "הנביאים"
-            },
+            }
         },
         trampGrade: 40,
-        color: '#BA69C8',
+        color: "#BA69C8",
         entranceAvgTime: {
             hour: 9,
             minute: 0
@@ -104,16 +142,17 @@ exports.TrampsMockUp = [
     },
     {
         driverDetails: {
+            driverEmpId: 444,
             driverLastName: "אסף",
             driverFirstName: "גאן",
             driverGender: "זכר",
             driverAddress: {
                 city: "חיפה",
                 street: "אלנבי"
-            },
+            }
         },
         trampGrade: 60,
-        color: '#F3AD1A',
+        color: "#F3AD1A",
         entranceAvgTime: {
             hour: 7,
             minute: 10
@@ -126,16 +165,17 @@ exports.TrampsMockUp = [
     },
     {
         driverDetails: {
+            driverEmpId: 3232,
             driverLastName: "מירב",
             driverFirstName: "בוכריס",
             driverGender: "נקבה",
             driverAddress: {
                 city: "אילת",
                 street: "הנביאים"
-            },
+            }
         },
         trampGrade: 67,
-        color: '#BA69C8',
+        color: "#BA69C8",
         entranceAvgTime: {
             hour: 6,
             minute: 20
@@ -147,14 +187,4 @@ exports.TrampsMockUp = [
         trampRequstStatus: 0
     }
 ];
-function getAllTramps() {
-    return __awaiter(this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            //await delay(1000);
-            // throw new Error("DAL");
-            return [2 /*return*/, exports.TrampsMockUp];
-        });
-    });
-}
-exports.getAllTramps = getAllTramps;
 //# sourceMappingURL=dal.js.map
