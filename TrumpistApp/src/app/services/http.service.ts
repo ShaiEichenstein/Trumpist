@@ -8,9 +8,16 @@ export class HttpService {
   constructor(private http: HttpClient) { 
   }
 
-  async requestData<T>(url:string): Promise<T> { 
-      const tramps = await this.http.get<T>(url).toPromise();
-      return tramps;
+  async requestGetData<T>(url:string): Promise<T> { 
+      const data = await this.http.get<T>(url).toPromise();
+      return data;
+
+  }
+
+  // async requestPostData<T>(url:string): Promise<T> { 
+  //   const data = await this.http.post<T>(url).toPromise();
+  //   return data;
+  // }
     //   getHeader = () => {
     //     let headers = new Headers();
     //     headers.append("Content-Type", 'application/json');
@@ -31,6 +38,5 @@ export class HttpService {
     //                     .map((res:Response) => res.json());
     // }
 
-  }
-
+  
 }
