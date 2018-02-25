@@ -16,4 +16,7 @@ export class HomePageComponent implements OnInit {
     this.trampList = this.trampService.getTramps();
   }
 
+  showRequests() {
+    console.log(this.trampService.getRequests(1234));
+  }
 }
