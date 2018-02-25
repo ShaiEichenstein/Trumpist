@@ -14,6 +14,7 @@ export class TrampService {
   }
 
   async getTramps(): Promise<Tramp[]> {
+<<<<<<< HEAD
     // return this.trampList;
     let tramps = await this.httpService.requestData<Tramp[]>("api/tremps");
     console.log(tramps);
@@ -50,6 +51,13 @@ export class TrampService {
           break;
       }
     });
+=======
+    //return this.trampList;
+     let tramps = await this.httpService.requestGetData<Tramp[]>("api/tremps");
+     console.log(tramps);
+     return tramps;
+     //return this.trampList;
+>>>>>>> e6464cecb1b6467e0a378a3a4714ebab6dde3446
   }
 }
 
