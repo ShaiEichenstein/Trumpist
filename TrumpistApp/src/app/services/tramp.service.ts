@@ -1,9 +1,9 @@
 import { element } from "protractor";
-import { TrampRequest } from "./models/trampRequest";
 import { Injectable } from "@angular/core";
 import { Tramp } from "./../models/tramp";
 import { HttpService } from "./http.service";
 import { promise } from "protractor";
+import { TrampRequest } from "../models/trampRequest";
 
 @Injectable()
 export class TrampService {
@@ -14,10 +14,11 @@ export class TrampService {
   }
 
   async getTramps(): Promise<Tramp[]> {
-<<<<<<< HEAD
     // return this.trampList;
-    let tramps = await this.httpService.requestData<Tramp[]>("api/tremps");
+    const tramps = await this.httpService.requestGetData<Tramp[]>("api/tramps");
     console.log(tramps);
+    this.setRequestAdditionalData(tramps);
+    this.trampList = tramps;
     return tramps;
     // return this.trampList;
   }
@@ -30,14 +31,14 @@ export class TrampService {
       requestStatus: 1
     });
     tramp.trampRequstStatus = 1;
-    this.setRequestIcon(new Array<Tramp>(tramp));
+    this.setRequestAdditionalData(new Array<Tramp>(tramp));
   }
 
   getRequests(userId: number): Array<TrampRequest> {
     return TrampsRequestMockUp;
   }
 
-  setRequestIcon(tramps: Array<Tramp>) {
+  setRequestAdditionalData(tramps: Array<Tramp>) {
     tramps.forEach(tramp => {
       switch (tramp.trampRequstStatus) {
         case 0:
@@ -51,13 +52,6 @@ export class TrampService {
           break;
       }
     });
-=======
-    //return this.trampList;
-     let tramps = await this.httpService.requestGetData<Tramp[]>("api/tremps");
-     console.log(tramps);
-     return tramps;
-     //return this.trampList;
->>>>>>> e6464cecb1b6467e0a378a3a4714ebab6dde3446
   }
 }
 

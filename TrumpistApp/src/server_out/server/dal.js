@@ -55,7 +55,8 @@ exports.TrampsMockUp = [
         leavingAvgTime: {
             hour: 19,
             minute: 30
-        }
+        },
+        trampRequstStatus: 0
     },
     {
         driverDetails: {
@@ -76,7 +77,8 @@ exports.TrampsMockUp = [
         leavingAvgTime: {
             hour: 16,
             minute: 30
-        }
+        },
+        trampRequstStatus: 0
     },
     {
         driverDetails: {
@@ -97,7 +99,8 @@ exports.TrampsMockUp = [
         leavingAvgTime: {
             hour: 18,
             minute: 0
-        }
+        },
+        trampRequstStatus: 0
     },
     {
         driverDetails: {
@@ -118,7 +121,8 @@ exports.TrampsMockUp = [
         leavingAvgTime: {
             hour: 17,
             minute: 0
-        }
+        },
+        trampRequstStatus: 0
     },
     {
         driverDetails: {
@@ -139,7 +143,8 @@ exports.TrampsMockUp = [
         leavingAvgTime: {
             hour: 15,
             minute: 30
-        }
+        },
+        trampRequstStatus: 0
     }
 ];
 function getAllTramps() {

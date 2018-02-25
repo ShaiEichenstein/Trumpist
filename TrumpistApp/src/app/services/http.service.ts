@@ -34,10 +34,6 @@ export class HttpService {
     //     return this.http.request(new Request(requestOptions))
     //                     .map((res:Response) => res.json());
     // }
-<<<<<<< HEAD
-  }
-=======
 
   
->>>>>>> e6464cecb1b6467e0a378a3a4714ebab6dde3446
 }

@@ -21,7 +21,8 @@ export const TrampsMockUp: Array<Tramp> = [
       leavingAvgTime : {
         hour: 19,
         minute: 30
-      }
+      },
+      trampRequstStatus: 0
     },
     <Tramp>{
       driverDetails: {
@@ -42,7 +43,8 @@ export const TrampsMockUp: Array<Tramp> = [
       leavingAvgTime : {
         hour: 16,
         minute: 30
-      }
+      },
+      trampRequstStatus: 0
       },
     <Tramp>{
       driverDetails: {
@@ -63,7 +65,8 @@ export const TrampsMockUp: Array<Tramp> = [
       leavingAvgTime : {
         hour: 18,
         minute: 0
-      }
+      },
+      trampRequstStatus: 0
     },
     <Tramp>{
       driverDetails: {
@@ -84,7 +87,8 @@ export const TrampsMockUp: Array<Tramp> = [
       leavingAvgTime : {
         hour: 17,
         minute: 0
-      }
+      },
+      trampRequstStatus: 0
     },
     <Tramp>{
       driverDetails: {
@@ -105,7 +109,8 @@ export const TrampsMockUp: Array<Tramp> = [
       leavingAvgTime : {
         hour: 15,
         minute: 30
-      }
+      },
+      trampRequstStatus: 0
     }
   ];
 
