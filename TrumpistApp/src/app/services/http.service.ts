@@ -9,10 +9,13 @@ export class HttpService {
   }
 
   async requestGetData<T>(url:string): Promise<T> { 
-      const data = await this.http.get<T>(url).toPromise();
-      return data;
-
+      return await this.http.get<T>(url).toPromise();
   }
+
+//   async requestPostData<T>(url:string): Promise<T> { 
+//     return await this.http.post<T>(url).toPromise();
+//   }
+
 
   // async requestPostData<T>(url:string): Promise<T> { 
   //   const data = await this.http.post<T>(url).toPromise();
