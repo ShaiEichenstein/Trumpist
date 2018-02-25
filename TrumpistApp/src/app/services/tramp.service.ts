@@ -1,16 +1,24 @@
 import { Injectable } from "@angular/core";
 import { Tramp } from "./../models/tramp";
+import { HttpService } from "./http.service";
+import { promise } from "protractor";
+
 
 @Injectable()
 export class TrampService {
   trampList: Array<Tramp>;
 
-  constructor() {
+  constructor(private httpService:HttpService) {
     this.trampList = TrampsMockUp;
+    
   }
 
-  getTramps(): Array<Tramp> {
-    return this.trampList;
+  async getTramps(): Promise<Tramp[]> {
+    //return this.trampList;
+     let tramps = await this.httpService.requestData<Tramp[]>("api/tremps");
+     console.log(tramps);
+     return tramps;
+     //return this.trampList;
   }
 }
 
