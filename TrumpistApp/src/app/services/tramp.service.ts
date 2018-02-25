@@ -1,19 +1,24 @@
-import { element } from 'protractor';
+import { element } from "protractor";
 import { TrampRequest } from "./models/trampRequest";
 import { Injectable } from "@angular/core";
 import { Tramp } from "./../models/tramp";
+import { HttpService } from "./http.service";
+import { promise } from "protractor";
 
 @Injectable()
 export class TrampService {
   trampList: Array<Tramp>;
 
-  constructor() {
-    this.trampList = TrampsMockUp;
+  constructor(private httpService: HttpService) {
+    // this.trampList = TrampsMockUp;
   }
 
-  getTramps(): Array<Tramp> {
-    this.setRequestIcon(this.trampList);
-    return this.trampList;
+  async getTramps(): Promise<Tramp[]> {
+    // return this.trampList;
+    let tramps = await this.httpService.requestData<Tramp[]>("api/tremps");
+    console.log(tramps);
+    return tramps;
+    // return this.trampList;
   }
 
   sendTrampRequest(tramp: Tramp) {
@@ -35,18 +40,17 @@ export class TrampService {
     tramps.forEach(tramp => {
       switch (tramp.trampRequstStatus) {
         case 0:
-        tramp.trampRequestIcon = 'open';
-        break;
+          tramp.trampRequestIcon = "open";
+          break;
         case 1:
-        tramp.trampRequestIcon = 'send';
-        break;
+          tramp.trampRequestIcon = "send";
+          break;
         case 2:
-        tramp.trampRequestIcon = 'ok';
-        break;
+          tramp.trampRequestIcon = "ok";
+          break;
       }
     });
   }
-
 }
 
 export const TrampsMockUp: Array<Tramp> = [
@@ -63,7 +67,7 @@ export const TrampsMockUp: Array<Tramp> = [
     },
     trampGrade: 75,
     color: "#588952",
-    trampRequstStatus: 0,
+    trampRequstStatus: 0
   },
   <Tramp>{
     driverDetails: {

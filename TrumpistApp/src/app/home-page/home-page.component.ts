@@ -12,8 +12,8 @@ export class HomePageComponent implements OnInit {
   trampList: Array<Tramp>;
   constructor(private trampService: TrampService) { }
 
-  ngOnInit() {
-    this.trampList = this.trampService.getTramps();
+  async ngOnInit() {
+    this.trampList = await this.trampService.getTramps();
   }
 
   showRequests() {
