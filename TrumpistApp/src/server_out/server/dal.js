@@ -47,7 +47,15 @@ exports.TrampsMockUp = [
             },
         },
         trampGrade: 75,
-        color: '#588952'
+        color: '#588952',
+        entranceAvgTime: {
+            hour: 8,
+            minute: 20
+        },
+        leavingAvgTime: {
+            hour: 19,
+            minute: 30
+        }
     },
     {
         driverDetails: {
@@ -60,7 +68,15 @@ exports.TrampsMockUp = [
             },
         },
         trampGrade: 85,
-        color: '#F3AD1A'
+        color: '#F3AD1A',
+        entranceAvgTime: {
+            hour: 8,
+            minute: 40
+        },
+        leavingAvgTime: {
+            hour: 16,
+            minute: 30
+        }
     },
     {
         driverDetails: {
@@ -73,7 +89,15 @@ exports.TrampsMockUp = [
             },
         },
         trampGrade: 40,
-        color: '#BA69C8'
+        color: '#BA69C8',
+        entranceAvgTime: {
+            hour: 9,
+            minute: 0
+        },
+        leavingAvgTime: {
+            hour: 18,
+            minute: 0
+        }
     },
     {
         driverDetails: {
@@ -86,7 +110,15 @@ exports.TrampsMockUp = [
             },
         },
         trampGrade: 60,
-        color: '#F3AD1A'
+        color: '#F3AD1A',
+        entranceAvgTime: {
+            hour: 7,
+            minute: 10
+        },
+        leavingAvgTime: {
+            hour: 17,
+            minute: 0
+        }
     },
     {
         driverDetails: {
@@ -99,10 +131,18 @@ exports.TrampsMockUp = [
             },
         },
         trampGrade: 67,
-        color: '#BA69C8'
+        color: '#BA69C8',
+        entranceAvgTime: {
+            hour: 6,
+            minute: 20
+        },
+        leavingAvgTime: {
+            hour: 15,
+            minute: 30
+        }
     }
 ];
-function getAllTremps() {
+function getAllTramps() {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             //await delay(1000);
@@ -111,5 +151,5 @@ function getAllTremps() {
         });
     });
 }
-exports.getAllTremps = getAllTremps;
+exports.getAllTramps = getAllTramps;
 //# sourceMappingURL=dal.js.map
