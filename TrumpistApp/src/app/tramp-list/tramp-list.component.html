@@ -1,12 +1,10 @@
-<div>
-
-
-  <h3>
+<div class="container tramp-list-div">
+    <h3>
     רשימת טרמפים:
   </h3>
-<!-- <input [(ngModel)]="filterString"> -->
-
+  <span class="sort-button" style="color:black"> מיין לפי:</span>
+  <a class="sort-button" (click)="sort('byRank')">דירוג</a>
+  <a class="sort-button" (click)="sort('byName')">שם</a>
+  <a class="sort-button" (click)="sort('byGender')">מין</a>
   <app-tramp-item *ngFor="let tramp of trampList" [tramp]=tramp></app-tramp-item>
-
-
 </div>
