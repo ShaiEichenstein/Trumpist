@@ -1,16 +1,26 @@
 import { Injectable } from "@angular/core";
-import { Tramp } from "./models/tramp";
-
+import { Tramp, Driver } from "./models/tramp";
+import { TrampRequest } from "./models/trampRequst";
 @Injectable()
 export class TrampService {
   trampList: Array<Tramp>;
+  trampRequestList: Array<TrampRequest>;
 
   constructor() {
     this.trampList = TrampsMockUp;
+    this.trampRequestList = TrampRequestsMockUp;
   }
 
   getTramps(): Array<Tramp> {
     return this.trampList;
+  }
+
+  getTrampRequestList(): Array<TrampRequest> {
+    return this.trampRequestList;
+  }
+
+  getUserDetails(id): Driver{
+    return this.trampList[id].driverDetails;
   }
 }
 
@@ -79,5 +89,15 @@ export const TrampsMockUp: Array<Tramp> = [
     },
     trampGrade: 67,
     color: '#BA69C8'
+  }
+];
+
+export const TrampRequestsMockUp: Array<TrampRequest> = [
+  <TrampRequest>{
+    id:1,
+    driverEmpId: 1,
+    passangerEmpId: 2,
+    trampDate: "2012-04-23T18:25:43.511Z",
+    requestStatus: 75
   }
 ];

@@ -1,9 +1,11 @@
 <div class="container home-page-div">
 
   <div class="pull-right" style="direction: rtl; width: 100%; padding:20px;">
-
-    <app-tramp-list [trampList]=trampList></app-tramp-list>
-
+    
+    <div class="row">
+      <app-tramp-request-list class="col-md-6" [trampRequestList]=trampRequestList></app-tramp-request-list>
+      <app-tramp-list class="col-md-6" [trampList]=trampList></app-tramp-list>
+    </div>
 
     <button class="btn btn-primary pull-left">שלח בקשה</button>
 
