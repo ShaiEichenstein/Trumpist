@@ -28,12 +28,6 @@ function wrap(fn) {
   };
 }
 
-<<<<<<< HEAD
-app.listen(3001, function() {
-  console.log("Server is running ABC");
-});
-=======
 app.listen(3000, function(){
     console.log("Server is running ABC");
 });
->>>>>>> dded1914b5bee2d3a72d6025d50842195b3a5d60

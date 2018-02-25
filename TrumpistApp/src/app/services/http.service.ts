@@ -5,9 +5,9 @@ import { HttpClient } from "@angular/common/http";
 export class HttpService {
   constructor(private http: HttpClient) {}
 
-  async requestData(url: string) {
-    const tramps = await this.http.get(url).toPromise();
-
+  async requestData<T>(url:string): Promise<T> { 
+      const tramps = await this.http.get<T>(url).toPromise();
+      return tramps;
     //   getHeader = () => {
     //     let headers = new Headers();
     //     headers.append("Content-Type", 'application/json');

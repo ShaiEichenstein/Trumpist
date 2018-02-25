@@ -53,9 +53,11 @@ function wrap(fn) {
         try {
             var retVal = fn();
             if (retVal && retVal.then) {
-                retVal.then(function (data) {
+                retVal
+                    .then(function (data) {
                     res.json(data);
-                }).catch(function (err) {
+                })
+                    .catch(function (err) {
                     res.json({ error: err.message });
                 });
             }
