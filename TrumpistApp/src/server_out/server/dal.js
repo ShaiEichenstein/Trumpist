@@ -35,6 +35,23 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.passanger = {
+    driverDetails: {
+        driverLastName: "אייכנשטיין",
+        driverFirstName: "שי",
+        driverGender: "זכר",
+        driverAddress: {
+            city: "רמת גן",
+            street: "הרצל"
+        },
+    },
+    trampGrade: 75,
+    color: '#588952',
+    entranceAvgTime: {
+        hour: 8,
+        minute: 20
+    }
+};
 exports.TrampsMockUp = [
     {
         driverDetails: {
@@ -46,7 +63,7 @@ exports.TrampsMockUp = [
                 street: "הרצל"
             },
         },
-        trampGrade: 75,
+        trampGrade: 111,
         color: '#588952',
         entranceAvgTime: {
             hour: 8,
@@ -145,11 +162,28 @@ exports.TrampsMockUp = [
 function getAllTramps() {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            //await delay(1000);
-            // throw new Error("DAL");
+            calcGrades();
             return [2 /*return*/, exports.TrampsMockUp];
         });
     });
 }
 exports.getAllTramps = getAllTramps;
+function calcGrades() {
+    exports.TrampsMockUp.forEach(function (tramp) {
+        var grade = 0;
+        if (tramp.driverDetails.driverAddress.city == exports.passanger.driverDetails.driverAddress.city) {
+            grade += 10;
+            if (tramp.driverDetails.driverAddress.street == exports.passanger.driverDetails.driverAddress.street) {
+                grade += 5;
+            }
+            if (tramp.entranceAvgTime.hour == exports.passanger.entranceAvgTime.hour) {
+                grade += 9;
+                if (tramp.entranceAvgTime.minute == exports.passanger.entranceAvgTime.minute) {
+                    grade += 4;
+                }
+            }
+        }
+        tramp.trampGrade = grade;
+    });
+}
 //# sourceMappingURL=dal.js.map
