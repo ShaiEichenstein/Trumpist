@@ -17,7 +17,7 @@ export async function addTrampRequest(trampRequst: TrampRequest) {
     )[0];
     if (tramp != null) {
       console.log(tramp);
-      tramp["trampRequstStatus"] = 1;
+      tramp["trampRequestStatus"] = 1;
     } else {
       console.log("tramp is null");
     }
@@ -90,7 +90,7 @@ export const TrampsMockUp: Array<Tramp> = [
         minute: 30
       }
     },
-    trampGrade: 75
+    trampGrade: 75,
 
     trampRequestStatus: 0
   },
