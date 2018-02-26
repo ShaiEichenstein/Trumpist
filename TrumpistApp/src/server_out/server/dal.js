@@ -35,6 +35,36 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+// export async function getAllTramps() {
+//   //await delay(1000);
+//   // throw new Error("DAL");
+//   return TrampsMockUp;
+// }
+function addTrampRequest(trampRequst) {
+    return __awaiter(this, void 0, void 0, function () {
+        var tramp;
+        return __generator(this, function (_a) {
+            if (trampRequst != null) {
+                exports.TrampsRequestMockUp.push(trampRequst);
+                tramp = exports.TrampsMockUp.filter(function (t) { return t.driverDetails.driverEmpId === trampRequst.driverEmpId; })[0];
+                if (tramp != null) {
+                    console.log(tramp);
+                    tramp['trampRequstStatus'] = 1;
+                }
+                else {
+                    console.log("tramp is null");
+                }
+                return [2 /*return*/, tramp];
+            }
+            else {
+                console.log("trampRequst is null");
+            }
+            return [2 /*return*/];
+        });
+    });
+}
+exports.addTrampRequest = addTrampRequest;
+exports.TrampsRequestMockUp = new Array();
 exports.passanger = {
     driverDetails: {
         driverLastName: "אייכנשטיין",
@@ -55,6 +85,7 @@ exports.passanger = {
 exports.TrampsMockUp = [
     {
         driverDetails: {
+            driverEmpId: 12345,
             driverLastName: "אייכנשטיין",
             driverFirstName: "שי",
             driverGender: "זכר",
@@ -77,6 +108,7 @@ exports.TrampsMockUp = [
     },
     {
         driverDetails: {
+            driverEmpId: 222,
             driverLastName: "אפרגן",
             driverFirstName: "דרור",
             driverGender: "זכר",
@@ -99,6 +131,7 @@ exports.TrampsMockUp = [
     },
     {
         driverDetails: {
+            driverEmpId: 4444,
             driverLastName: "דפנה",
             driverFirstName: "פאן",
             driverGender: "נקבה",
@@ -121,48 +154,7 @@ exports.TrampsMockUp = [
     },
     {
         driverDetails: {
-            driverLastName: "אפרגן",
-            driverFirstName: "דרור",
-            driverGender: "זכר",
-            driverAddress: {
-                city: "תל אביב",
-                street: "אלנבי"
-            },
-        },
-        trampGrade: 85,
-        color: '#F3AD1A',
-        entranceAvgTime: {
-            hour: 8,
-            minute: 40
-        },
-        leavingAvgTime: {
-            hour: 16,
-            minute: 30
-        }
-    },
-    {
-        driverDetails: {
-            driverLastName: "דפנה",
-            driverFirstName: "פאן",
-            driverGender: "נקבה",
-            driverAddress: {
-                city: "חיפה",
-                street: "הנביאים"
-            },
-        },
-        trampGrade: 40,
-        color: '#BA69C8',
-        entranceAvgTime: {
-            hour: 9,
-            minute: 0
-        },
-        leavingAvgTime: {
-            hour: 18,
-            minute: 0
-        }
-    },
-    {
-        driverDetails: {
+            driverEmpId: 12312,
             driverLastName: "אסף",
             driverFirstName: "גאן",
             driverGender: "זכר",
@@ -180,10 +172,12 @@ exports.TrampsMockUp = [
         leavingAvgTime: {
             hour: 17,
             minute: 0
-        }
+        },
+        trampRequstStatus: 0
     },
     {
         driverDetails: {
+            driverEmpId: 555,
             driverLastName: "מירב",
             driverFirstName: "בוכריס",
             driverGender: "נקבה",
@@ -206,6 +200,7 @@ exports.TrampsMockUp = [
     },
     {
         driverDetails: {
+            driverEmpId: 4242,
             driverLastName: "משה",
             driverFirstName: "משה",
             driverGender: "זכר",
@@ -219,10 +214,12 @@ exports.TrampsMockUp = [
         entranceAvgTime: {
             hour: 8,
             minute: 10
-        }
+        },
+        trampRequstStatus: 0
     },
     {
         driverDetails: {
+            driverEmpId: 123155,
             driverLastName: "לוי",
             driverFirstName: "אבי",
             driverGender: "זכר",
@@ -236,10 +233,12 @@ exports.TrampsMockUp = [
         entranceAvgTime: {
             hour: 7,
             minute: 20
-        }
+        },
+        trampRequstStatus: 0
     },
     {
         driverDetails: {
+            driverEmpId: 856,
             driverLastName: "אהרון",
             driverFirstName: "מאיה",
             driverGender: "נקבה",
@@ -253,7 +252,8 @@ exports.TrampsMockUp = [
         entranceAvgTime: {
             hour: 8,
             minute: 20
-        }
+        },
+        trampRequstStatus: 0
     }
 ];
 function getAllTramps() {
@@ -269,14 +269,14 @@ function calcGrades() {
     exports.TrampsMockUp.forEach(function (tramp) {
         var grade = 0;
         if (tramp.driverDetails.driverAddress.city == exports.passanger.driverDetails.driverAddress.city) {
-            grade += 10;
+            grade += 40;
             if (tramp.driverDetails.driverAddress.street == exports.passanger.driverDetails.driverAddress.street) {
-                grade += 5;
+                grade += 20;
             }
             if (tramp.entranceAvgTime.hour == exports.passanger.entranceAvgTime.hour) {
-                grade += 9;
+                grade += 30;
                 if (tramp.entranceAvgTime.minute == exports.passanger.entranceAvgTime.minute) {
-                    grade += 4;
+                    grade += 10;
                 }
             }
         }

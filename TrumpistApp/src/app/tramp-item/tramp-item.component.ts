@@ -15,7 +15,6 @@ export class TrampItemComponent implements OnInit {
   ngOnInit() {}
 
   sendTrempRequest() {
-    alert(this.tramp.trampRequstStatus + ' ' + this.tramp.trampRequestIcon);
     this.sendRequest.emit(this.tramp);
   }
 }
