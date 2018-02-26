@@ -35,11 +35,44 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+//import * as mongodb from "mongodb";
+var mongodb_1 = require("mongodb");
 // export async function getAllTramps() {
 //   //await delay(1000);
 //   // throw new Error("DAL");
 //   return TrampsMockUp;
 // }
+var DbClient = /** @class */ (function () {
+    function DbClient() {
+    }
+    DbClient.prototype.connect = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var client, error_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!!this.db) return [3 /*break*/, 4];
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, mongodb_1.MongoClient.connect("mongodb://localhost:27017")];
+                    case 2:
+                        client = _a.sent();
+                        this.db = client.db("trampistdb");
+                        return [2 /*return*/, this.db];
+                    case 3:
+                        error_1 = _a.sent();
+                        console.log("unable to connect to db");
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/, this.db];
+                }
+            });
+        });
+    };
+    return DbClient;
+}());
+var dbClient = new DbClient();
+//DbClient.db.Cursor.prototype.toArrayAsync = promisify(mongodb.Cursor.prototype.toArray);
 function addTrampRequest(trampRequst) {
     return __awaiter(this, void 0, void 0, function () {
         var tramp;
@@ -281,15 +314,25 @@ exports.TrampsMockUp = [
 ];
 function getAllTramps() {
     return __awaiter(this, void 0, void 0, function () {
+        var db, trampRequests, trampsArr;
         return __generator(this, function (_a) {
-            calcGrades();
-            return [2 /*return*/, exports.TrampsMockUp];
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, dbClient.connect()];
+                case 1:
+                    db = _a.sent();
+                    trampRequests = db.collection("trampRequests");
+                    return [4 /*yield*/, trampRequests.find().toArray()];
+                case 2:
+                    trampsArr = _a.sent();
+                    console.log(trampsArr);
+                    return [2 /*return*/, trampsArr]; //calcGrades(trampsArr);
+            }
         });
     });
 }
 exports.getAllTramps = getAllTramps;
-function calcGrades() {
-    exports.TrampsMockUp.forEach(function (tramp) {
+function calcGrades(trampsArr) {
+    trampsArr.forEach(function (tramp) {
         var grade = 0;
         if (tramp.driverDetails.address.city == exports.passanger.driverDetails.address.city) {
             grade += 40;
@@ -308,5 +351,22 @@ function calcGrades() {
         }
         tramp.trampGrade = grade;
     });
+}
+function promisify(fn) {
+    return function () {
+        var args = Array.from(arguments);
+        var me = this;
+        return new Promise(function (resolve, reject) {
+            function callback(err, retVal) {
+                if (err) {
+                    reject(err);
+                    return;
+                }
+                resolve(retVal);
+            }
+            args.push(callback);
+            fn.apply(me, args);
+        });
+    };
 }
 //# sourceMappingURL=dal.js.map

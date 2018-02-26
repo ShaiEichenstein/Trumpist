@@ -1,6 +1,7 @@
 const child_process = require("child_process");
 const mongodb = require("mongodb");
-var fs = require('fs');
+const fs = require('fs');
+
 
 const connect = promisify(mongodb.MongoClient.connect);
 
@@ -108,7 +109,7 @@ async function loadMongo() {
     for (const tramp of trampsArr) {
       console.log(tramp);
     }
-  } else {  
+  } else {
     console.log("collection is empty");
     var jsonDataFile = JSON.parse(fs.readFileSync('src/server/json4UploadDB.json', 'utf8'));
     //console.log(jsonDataFile);
@@ -118,9 +119,8 @@ async function loadMongo() {
     });
   }
 
-
-  /*console.log("Closing");
-  client.close();*/
+  console.log("Closing");
+  client.close();
 
 }
 
