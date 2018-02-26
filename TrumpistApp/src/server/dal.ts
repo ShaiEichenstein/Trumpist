@@ -2,12 +2,12 @@ import { delay } from "./helpers";
 import { Tramp } from "../app/models/tramp";
 import { TrampRequest } from "../app/models/trampRequest";
 
-export async function getAllTramps() {
-  //await delay(1000);
+// export async function getAllTramps() {
+//   //await delay(1000);
 
-  // throw new Error("DAL");
-  return TrampsMockUp;
-}
+//   // throw new Error("DAL");
+//   return TrampsMockUp;
+// }
 
 export async function addTrampRequest(trampRequst: TrampRequest) {
   if (trampRequst != null) {
@@ -46,6 +46,7 @@ export const passanger: Tramp = <Tramp>{
 export const TrampsMockUp: Array<Tramp> = [
   <Tramp>{
     driverDetails: {
+      driverEmpId: 12345,
       driverLastName: "אייכנשטיין",
       driverFirstName: "שי",
       driverGender: "זכר",
@@ -68,6 +69,7 @@ export const TrampsMockUp: Array<Tramp> = [
   },
   <Tramp>{
     driverDetails: {
+      driverEmpId: 222,
       driverLastName: "אפרגן",
       driverFirstName: "דרור",
       driverGender: "זכר",
@@ -90,6 +92,7 @@ export const TrampsMockUp: Array<Tramp> = [
   },
   <Tramp>{
     driverDetails: {
+      driverEmpId: 4444,
       driverLastName: "דפנה",
       driverFirstName: "פאן",
       driverGender: "נקבה",
@@ -112,48 +115,7 @@ export const TrampsMockUp: Array<Tramp> = [
   },
   <Tramp>{
     driverDetails: {
-      driverLastName: "אפרגן",
-      driverFirstName: "דרור",
-      driverGender: "זכר",
-      driverAddress: {
-        city: "תל אביב",
-        street: "אלנבי"
-      },
-    },
-    trampGrade: 85,
-    color: '#F3AD1A',
-    entranceAvgTime: {
-      hour: 8,
-      minute: 40
-    },
-    leavingAvgTime: {
-      hour: 16,
-      minute: 30
-    }
-  },
-  <Tramp>{
-    driverDetails: {
-      driverLastName: "דפנה",
-      driverFirstName: "פאן",
-      driverGender: "נקבה",
-      driverAddress: {
-        city: "חיפה",
-        street: "הנביאים"
-      },
-    },
-    trampGrade: 40,
-    color: '#BA69C8',
-    entranceAvgTime: {
-      hour: 9,
-      minute: 0
-    },
-    leavingAvgTime: {
-      hour: 18,
-      minute: 0
-    }
-  },
-  <Tramp>{
-    driverDetails: {
+      driverEmpId: 12312,
       driverLastName: "אסף",
       driverFirstName: "גאן",
       driverGender: "זכר",
@@ -171,10 +133,12 @@ export const TrampsMockUp: Array<Tramp> = [
     leavingAvgTime: {
       hour: 17,
       minute: 0
-    }
+    },
+    trampRequstStatus: 0
   },
   <Tramp>{
     driverDetails: {
+      driverEmpId: 555,
       driverLastName: "מירב",
       driverFirstName: "בוכריס",
       driverGender: "נקבה",
@@ -197,6 +161,7 @@ export const TrampsMockUp: Array<Tramp> = [
   },
   <Tramp>{
     driverDetails: {
+      driverEmpId: 4242,
       driverLastName: "משה",
       driverFirstName: "משה",
       driverGender: "זכר",
@@ -210,10 +175,12 @@ export const TrampsMockUp: Array<Tramp> = [
     entranceAvgTime: {
       hour: 8,
       minute: 10
-    }
+    },
+    trampRequstStatus: 0
   },
   <Tramp>{
     driverDetails: {
+      driverEmpId: 123155,
       driverLastName: "לוי",
       driverFirstName: "אבי",
       driverGender: "זכר",
@@ -227,10 +194,12 @@ export const TrampsMockUp: Array<Tramp> = [
     entranceAvgTime: {
       hour: 7,
       minute: 20
-    }
+    },
+    trampRequstStatus: 0
   },
   <Tramp>{
     driverDetails: {
+      driverEmpId: 856,
       driverLastName: "אהרון",
       driverFirstName: "מאיה",
       driverGender: "נקבה",
@@ -244,7 +213,8 @@ export const TrampsMockUp: Array<Tramp> = [
     entranceAvgTime: {
       hour: 8,
       minute: 20
-    }
+    },
+    trampRequstStatus: 0
   }
 ];
 

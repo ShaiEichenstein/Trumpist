@@ -35,16 +35,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-function getAllTramps() {
-    return __awaiter(this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            //await delay(1000);
-            // throw new Error("DAL");
-            return [2 /*return*/, exports.TrampsMockUp];
-        });
-    });
-}
-exports.getAllTramps = getAllTramps;
+// export async function getAllTramps() {
+//   //await delay(1000);
+//   // throw new Error("DAL");
+//   return TrampsMockUp;
+// }
 function addTrampRequest(trampRequst) {
     return __awaiter(this, void 0, void 0, function () {
         var tramp;
@@ -90,6 +85,7 @@ exports.passanger = {
 exports.TrampsMockUp = [
     {
         driverDetails: {
+            driverEmpId: 12345,
             driverLastName: "אייכנשטיין",
             driverFirstName: "שי",
             driverGender: "זכר",
@@ -112,6 +108,7 @@ exports.TrampsMockUp = [
     },
     {
         driverDetails: {
+            driverEmpId: 222,
             driverLastName: "אפרגן",
             driverFirstName: "דרור",
             driverGender: "זכר",
@@ -134,6 +131,7 @@ exports.TrampsMockUp = [
     },
     {
         driverDetails: {
+            driverEmpId: 4444,
             driverLastName: "דפנה",
             driverFirstName: "פאן",
             driverGender: "נקבה",
@@ -156,48 +154,7 @@ exports.TrampsMockUp = [
     },
     {
         driverDetails: {
-            driverLastName: "אפרגן",
-            driverFirstName: "דרור",
-            driverGender: "זכר",
-            driverAddress: {
-                city: "תל אביב",
-                street: "אלנבי"
-            },
-        },
-        trampGrade: 85,
-        color: '#F3AD1A',
-        entranceAvgTime: {
-            hour: 8,
-            minute: 40
-        },
-        leavingAvgTime: {
-            hour: 16,
-            minute: 30
-        }
-    },
-    {
-        driverDetails: {
-            driverLastName: "דפנה",
-            driverFirstName: "פאן",
-            driverGender: "נקבה",
-            driverAddress: {
-                city: "חיפה",
-                street: "הנביאים"
-            },
-        },
-        trampGrade: 40,
-        color: '#BA69C8',
-        entranceAvgTime: {
-            hour: 9,
-            minute: 0
-        },
-        leavingAvgTime: {
-            hour: 18,
-            minute: 0
-        }
-    },
-    {
-        driverDetails: {
+            driverEmpId: 12312,
             driverLastName: "אסף",
             driverFirstName: "גאן",
             driverGender: "זכר",
@@ -215,10 +172,12 @@ exports.TrampsMockUp = [
         leavingAvgTime: {
             hour: 17,
             minute: 0
-        }
+        },
+        trampRequstStatus: 0
     },
     {
         driverDetails: {
+            driverEmpId: 555,
             driverLastName: "מירב",
             driverFirstName: "בוכריס",
             driverGender: "נקבה",
@@ -241,6 +200,7 @@ exports.TrampsMockUp = [
     },
     {
         driverDetails: {
+            driverEmpId: 4242,
             driverLastName: "משה",
             driverFirstName: "משה",
             driverGender: "זכר",
@@ -254,10 +214,12 @@ exports.TrampsMockUp = [
         entranceAvgTime: {
             hour: 8,
             minute: 10
-        }
+        },
+        trampRequstStatus: 0
     },
     {
         driverDetails: {
+            driverEmpId: 123155,
             driverLastName: "לוי",
             driverFirstName: "אבי",
             driverGender: "זכר",
@@ -271,10 +233,12 @@ exports.TrampsMockUp = [
         entranceAvgTime: {
             hour: 7,
             minute: 20
-        }
+        },
+        trampRequstStatus: 0
     },
     {
         driverDetails: {
+            driverEmpId: 856,
             driverLastName: "אהרון",
             driverFirstName: "מאיה",
             driverGender: "נקבה",
@@ -288,7 +252,8 @@ exports.TrampsMockUp = [
         entranceAvgTime: {
             hour: 8,
             minute: 20
-        }
+        },
+        trampRequstStatus: 0
     }
 ];
 function getAllTramps() {
