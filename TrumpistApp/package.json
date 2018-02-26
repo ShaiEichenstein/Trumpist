@@ -21,7 +21,11 @@
     "@angular/platform-browser": "^5.2.0",
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
+<<<<<<< HEAD
+    "@types/mongodb": "^3.0.5",
+=======
     "@ng-bootstrap/ng-bootstrap": "^1.0.0",
+>>>>>>> d545ba9efa931d7812c46e2e86b172f7524890b5
     "awesome": "0.0.7",
     "awsome": "^0.3.0",
     "body-parser": "^1.18.2",

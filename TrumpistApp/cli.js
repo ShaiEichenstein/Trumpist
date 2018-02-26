@@ -80,7 +80,7 @@ async function loadMongo() {
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir);
   }
-
+  
   spawn(mongoPath + "\\bin\\mongod.exe", [
     "-dbpath",
     "src/data"
