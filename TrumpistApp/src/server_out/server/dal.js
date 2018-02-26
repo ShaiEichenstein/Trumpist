@@ -73,6 +73,7 @@ var DbClient = /** @class */ (function () {
 }());
 var dbClient = new DbClient();
 //DbClient.db.Cursor.prototype.toArrayAsync = promisify(mongodb.Cursor.prototype.toArray);
+var usersArr;
 function addTrampRequest(trampRequst) {
     return __awaiter(this, void 0, void 0, function () {
         var tramp;
@@ -314,25 +315,45 @@ exports.TrampsMockUp = [
 ];
 function getAllTramps() {
     return __awaiter(this, void 0, void 0, function () {
-        var db, trampRequests, trampsArr;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var db, users1, _a;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0: return [4 /*yield*/, dbClient.connect()];
                 case 1:
-                    db = _a.sent();
-                    trampRequests = db.collection("users");
-                    return [4 /*yield*/, trampRequests.find().toArray()];
+                    db = _b.sent();
+                    users1 = db.collection("users");
+                    _a = this;
+                    return [4 /*yield*/, users1.find().toArray()];
                 case 2:
-                    trampsArr = _a.sent();
-                    console.log(trampsArr);
-                    return [2 /*return*/, trampsArr]; //calcGrades(trampsArr);
+                    _a.usersArr = _b.sent();
+                    console.log(this.usersArr);
+                    this.usersArr.forEach(function (tramp) {
+                        var grade = 0;
+                        if (tramp.driverDetails.address.city == exports.passanger.driverDetails.address.city) {
+                            grade += 40;
+                            if (tramp.driverDetails.address.street ==
+                                exports.passanger.driverDetails.address.street) {
+                                grade += 20;
+                            }
+                            if (tramp.driverDetails.entranceAvgTime.hour ==
+                                exports.passanger.driverDetails.entranceAvgTime.hour) {
+                                grade += 30;
+                                if (tramp.driverDetails.entranceAvgTime.minute ==
+                                    exports.passanger.driverDetails.entranceAvgTime.minute) {
+                                    grade += 10;
+                                }
+                            }
+                        }
+                        tramp.trampGrade = grade;
+                    });
+                    return [2 /*return*/, this.usersArr]; //calcGrades();
             }
         });
     });
 }
 exports.getAllTramps = getAllTramps;
-function calcGrades(trampsArr) {
-    trampsArr.forEach(function (tramp) {
+function calcGrades() {
+    this.usersArr.forEach(function (tramp) {
         var grade = 0;
         if (tramp.driverDetails.address.city == exports.passanger.driverDetails.address.city) {
             grade += 40;

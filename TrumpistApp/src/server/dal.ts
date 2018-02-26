@@ -30,6 +30,8 @@ class DbClient{
 
 const dbClient = new DbClient();
 //DbClient.db.Cursor.prototype.toArrayAsync = promisify(mongodb.Cursor.prototype.toArray);
+var usersArr;
+
 export async function addTrampRequest(trampRequst: TrampRequest) {
   if (trampRequst != null) {
     TrampsRequestMockUp.push(trampRequst);
@@ -261,15 +263,44 @@ export const TrampsMockUp: Array<Tramp> = [
 
 export async function getAllTramps() {
   let db = await dbClient.connect();
-  const trampRequests = db.collection("users");
-  const trampsArr = await trampRequests.find().toArray();
-  console.log (trampsArr);
-  return trampsArr;//calcGrades(trampsArr);
+  const users1 = db.collection("users");
+  this.usersArr = await users1.find().toArray();
+  console.log (this.usersArr);
+
+  this.usersArr.forEach(tramp => {
+    let grade = 0;
+    if (
+      tramp.driverDetails.address.city == passanger.driverDetails.address.city
+    ) {
+      grade += 40;
+      if (
+        tramp.driverDetails.address.street ==
+        passanger.driverDetails.address.street
+      ) {
+        grade += 20;
+      }
+      if (
+        tramp.driverDetails.entranceAvgTime.hour ==
+        passanger.driverDetails.entranceAvgTime.hour
+      ) {
+        grade += 30;
+        if (
+          tramp.driverDetails.entranceAvgTime.minute ==
+          passanger.driverDetails.entranceAvgTime.minute
+        ) {
+          grade += 10;
+        }
+      }
+    }
+    tramp.trampGrade = grade;
+  });
+  
+  return this.usersArr //calcGrades();
   
 }
 
-function calcGrades(trampsArr) {
-  trampsArr.forEach(tramp => {
+function calcGrades() {
+  this.usersArr.forEach(tramp => {
     let grade = 0;
     if (
       tramp.driverDetails.address.city == passanger.driverDetails.address.city
