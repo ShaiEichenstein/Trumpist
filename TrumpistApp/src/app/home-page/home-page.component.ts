@@ -1,8 +1,8 @@
 import { TrampService } from "./../services/tramp.service";
 import { Component, OnInit } from "@angular/core";
 import { Tramp } from "../models/tramp";
-import { TrampRequest } from "../models/trampRequest";
 import { User } from "../models/tramp";
+import { TrampRequest, TrampRequestForDisplay } from "../models/trampRequest";
 
 @Component({
   selector: "app-home-page",
@@ -12,14 +12,18 @@ import { User } from "../models/tramp";
 export class HomePageComponent implements OnInit {
   currentUser: User;
   trampList: Array<Tramp>;
-  trampRequestList: Array<TrampRequest>;
+  trampRequestList: Array<TrampRequestForDisplay>;
   constructor(private trampService: TrampService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
-
+  
   async ngOnInit() {
     this.trampList = await this.trampService.getTramps();
-    this.trampRequestList = this.trampService.getTrampRequestList();
+    this.trampRequestList = await this.trampService.getTrampRequestList();
+    if(this.trampRequestList != null){
+      console.log("trampRequestList: ");
+      console.log(this.trampRequestList[0]);
+    }
     
     if (this.trampList != null) {
       this.trampList.sort((n1, n2) => n2.trampGrade - n1.trampGrade);

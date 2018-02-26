@@ -16,6 +16,10 @@ app.get("/api/tramps", wrap(async function() {
     return await dal.getAllTramps();
 }));
 
+app.get("/api/trampsRequests", wrap(async function() {
+  return await dal.getAllTrampsRequests();
+}));
+
 // app.post('/', function(request, response) {
 //   console.log(request.body);
 // });

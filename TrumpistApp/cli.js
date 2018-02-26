@@ -80,15 +80,13 @@ async function loadMongo() {
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir);
   }
-
-  console.log("start mongo 2");
-  // await spawn(mongoPath + "\\bin\\mongod.exe", [
-  //   "-dbpath",
-  //   "src/data"
-  // ], {
-  //     shell: true,
-  //     stdio: "inherit",
-  //   });
+  spawn(mongoPath + "\\bin\\mongod.exe", [
+    "-dbpath",
+    "src/data"
+  ], {
+      shell: true,
+      stdio: "inherit",
+    });
 
   console.log("Connecting to mongo ");
   const client = await connect("mongodb://localhost:27017");

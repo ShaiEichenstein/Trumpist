@@ -418,27 +418,67 @@ function getAllTramps() {
     });
 }
 exports.getAllTramps = getAllTramps;
-function calcGrades() {
-    this.usersArr.forEach(function (tramp) {
-        var grade = 0;
-        if (tramp.driverDetails.address.city == exports.passanger.driverDetails.address.city) {
-            grade += 40;
-            if (tramp.driverDetails.address.street ==
-                exports.passanger.driverDetails.address.street) {
-                grade += 20;
-            }
-            if (tramp.driverDetails.entranceAvgTime.hour ==
-                exports.passanger.driverDetails.entranceAvgTime.hour) {
-                grade += 30;
-                if (tramp.driverDetails.entranceAvgTime.minute ==
-                    exports.passanger.driverDetails.entranceAvgTime.minute) {
-                    grade += 10;
+function getAllTrampsRequests() {
+    return __awaiter(this, void 0, void 0, function () {
+        var TrampsRequestMockUp2, TrampRequestForDisplayMockUp;
+        return __generator(this, function (_a) {
+            TrampsRequestMockUp2 = [
+                {
+                    id: 1,
+                    driverUserID: 12345,
+                    passangerUserID: 555,
+                    requestStatus: 0,
+                    trampDate: new Date()
                 }
-            }
-        }
-        tramp.trampGrade = grade;
+            ];
+            TrampRequestForDisplayMockUp = [
+                {
+                    id: 1,
+                    driverUser: getUserById(TrampsRequestMockUp2[0].driverUserID),
+                    passangerUser: getUserById(TrampsRequestMockUp2[0].passangerUserID),
+                    requestStatus: 0,
+                    trampDate: new Date()
+                }
+            ];
+            return [2 /*return*/, TrampRequestForDisplayMockUp];
+        });
     });
 }
+exports.getAllTrampsRequests = getAllTrampsRequests;
+function getUserById(id) {
+    return exports.TrampsMockUp.find(function (element) {
+        return element.driverDetails.userId == id;
+    }).driverDetails;
+}
+/*function calcGrades() {
+  this.usersArr.forEach(tramp => {
+    let grade = 0;
+    if (
+      tramp.driverDetails.address.city == passanger.driverDetails.address.city
+    ) {
+      grade += 40;
+      if (
+        tramp.driverDetails.address.street ==
+        passanger.driverDetails.address.street
+      ) {
+        grade += 20;
+      }
+      if (
+        tramp.driverDetails.entranceAvgTime.hour ==
+        passanger.driverDetails.entranceAvgTime.hour
+      ) {
+        grade += 30;
+        if (
+          tramp.driverDetails.entranceAvgTime.minute ==
+          passanger.driverDetails.entranceAvgTime.minute
+        ) {
+          grade += 10;
+        }
+      }
+    }
+    tramp.trampGrade = grade;
+  });
+}*/
 function promisify(fn) {
     return function () {
         var args = Array.from(arguments);
