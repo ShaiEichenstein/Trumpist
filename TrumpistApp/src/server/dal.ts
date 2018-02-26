@@ -1,6 +1,6 @@
 import { delay } from "./helpers";
-import { Tramp } from "../app/models/tramp";
-import { TrampRequest } from "../app/models/trampRequest";
+import { Tramp, User } from "../app/models/tramp";
+import { TrampRequest, TrampRequestForDisplay } from "../app/models/trampRequest";
 
 // export async function getAllTramps() {
 //   //await delay(1000);
@@ -241,6 +241,36 @@ export const TrampsMockUp: Array<Tramp> = [
 export async function getAllTramps() {
   calcGrades();
   return TrampsMockUp;
+}
+
+export async function getAllTrampsRequests() {
+  const TrampsRequestMockUp2: Array<TrampRequest> = [
+    <TrampRequest>{
+      id: 1,
+      driverUserID: 12345,
+      passangerUserID: 555,
+      requestStatus:0,
+      trampDate: new Date()
+    }
+  ]
+
+  const TrampRequestForDisplayMockUp: Array<TrampRequestForDisplay> = [
+    <TrampRequestForDisplay>{
+      id: 1,
+      driverUser: getUserById(TrampsRequestMockUp2[0].driverUserID),
+      passangerUser: getUserById(TrampsRequestMockUp2[0].passangerUserID),
+      requestStatus:0,
+      trampDate: new Date()
+    }
+  ]
+
+  return TrampRequestForDisplayMockUp;
+}
+
+function getUserById (id) {
+  return TrampsMockUp.find(function(element) {
+    return element.driverDetails.userId == id;
+  }).driverDetails;
 }
 
 function calcGrades() {

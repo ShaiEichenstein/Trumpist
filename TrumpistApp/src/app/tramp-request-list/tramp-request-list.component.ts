@@ -1,4 +1,4 @@
-import { TrampRequest } from "./../models/trampRequest";
+import { TrampRequest, TrampRequestForDisplay } from "./../models/trampRequest";
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./tramp-request-list.component.css']
 })
 export class TrampRequestListComponent implements OnInit {
-  @Input() trampRequestList: Array<TrampRequest>;
+  @Input() trampRequestList: Array<TrampRequestForDisplay>;
 
   constructor() { }
 
