@@ -1,6 +1,7 @@
 export interface TrampRequest {
-    driverEmpId: number;
-    passangerEmpId: number;
+    id: number;
+    driverUserID: number;
+    passangerUserID: number;
     trampDate: Date;
     requestStatus: number;
 }
