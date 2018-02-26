@@ -35,10 +35,9 @@ export class TrampService {
         trampDate: new Date(),
         requestStatus: 1
       };
-    const updatedTramp = await this.httpService.addTrampRequest<Tramp>('api/addTrampRequest', trampReq);
-    console.log(updatedTramp);
-    const existingUpdatedTramp = this.trampList.filter(t => t.driverDetails.userId === updatedTramp.driverDetails.userId)[0];
-    existingUpdatedTramp.trampRequestStatus = updatedTramp.trampRequestStatus;
+    const updatedTrampRequest = await this.httpService.postTrampRequest<TrampRequest>('api/addTrampRequest', trampReq);
+    const existingUpdatedTramp = this.trampList.filter(t => t.driverDetails.userId === updatedTrampRequest.driverUserID)[0];
+    existingUpdatedTramp.trampRequestStatus = updatedTrampRequest.requestStatus;
     this.setRequestAdditionalData(new Array<Tramp>(existingUpdatedTramp));
   }
 
@@ -49,7 +48,7 @@ export class TrampService {
         trampDate: new Date(),
         requestStatus: requestStatus
       };
-    const updatedTrampRequest = await this.httpService.addTrampRequest<TrampRequest>('api/updateTrampRequest', trampReq);
+    const updatedTrampRequest = await this.httpService.postTrampRequest<TrampRequest>('api/updateTrampRequest', trampReq);
     console.log(updatedTrampRequest);
     const existingUpdatedTramp = this.trampList.filter(t => t.driverDetails.userId === updatedTrampRequest.driverUserID)[0];
     existingUpdatedTramp.trampRequestStatus = updatedTrampRequest.requestStatus;

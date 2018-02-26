@@ -42,45 +42,75 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // }
 function addTrampRequest(trampRequst) {
     return __awaiter(this, void 0, void 0, function () {
-        var tramp;
+        var dbTrampreq;
         return __generator(this, function (_a) {
+            console.log("addTrampRequest");
+            dbTrampreq = null;
             if (trampRequst != null) {
-                exports.TrampsRequestMockUp.push(trampRequst);
-                tramp = exports.TrampsMockUp.filter(function (t) { return t.driverDetails.userId === trampRequst.driverUserID; })[0];
-                if (tramp != null) {
-                    console.log(tramp);
-                    tramp["trampRequestStatus"] = 1;
+                // checks if the request alredy exists
+                dbTrampreq = getExistingRequest(trampRequst);
+                if (dbTrampreq === null) {
+                    exports.TrampsRequestMockUp.push(trampRequst);
                 }
                 else {
-                    console.log("tramp is null");
+                    console.log("update existing request");
+                    dbTrampreq.requestStatus = trampRequst.requestStatus;
                 }
-                return [2 /*return*/, tramp];
             }
             else {
                 console.log("trampRequst is null");
             }
-            return [2 /*return*/];
+            // TODO get the new document from db and return it
+            return [2 /*return*/, trampRequst];
         });
     });
 }
 exports.addTrampRequest = addTrampRequest;
+function getExistingRequest(trampRequst) {
+    var dbTrampreq = null;
+    if (trampRequst != null) {
+        if (trampRequst.id != null) {
+            dbTrampreq = exports.TrampsRequestMockUp.filter(function (req) { return req.id === trampRequst.id; });
+        }
+        else {
+            dbTrampreq = exports.TrampsRequestMockUp.filter(function (req) {
+                return req.driverUserID === trampRequst.driverUserID &&
+                    req.passangerUserID === trampRequst.passangerUserID;
+            }
+            // &&  req.trampDate === trampRequst.trampDate
+            );
+        }
+        if (dbTrampreq != null && dbTrampreq.length > 0) {
+            return dbTrampreq[0];
+        }
+        else {
+            return null;
+        }
+    }
+}
 function updateTrampRequest(trampRequst) {
     return __awaiter(this, void 0, void 0, function () {
         var dbTrampreq;
         return __generator(this, function (_a) {
             console.log("updateTrampRequest");
+            dbTrampreq = null;
             if (trampRequst != null) {
-                dbTrampreq = exports.TrampsRequestMockUp.filter(function (req) {
-                    return req.driverUserID === trampRequst.driverUserID &&
-                        req.passangerUserID === trampRequst.passangerUserID;
+                if (trampRequst.id != null) {
+                    dbTrampreq = exports.TrampsRequestMockUp.filter(function (req) { return req.id === trampRequst.id; });
                 }
-                // &&  req.trampDate === trampRequst.trampDate
-                );
+                else {
+                    dbTrampreq = exports.TrampsRequestMockUp.filter(function (req) {
+                        return req.driverUserID === trampRequst.driverUserID &&
+                            req.passangerUserID === trampRequst.passangerUserID;
+                    }
+                    // &&  req.trampDate === trampRequst.trampDate
+                    );
+                }
                 // const tramp = TrampsMockUp.filter(
                 //   t => t.driverDetails.driverEmpId === trampRequst.driverEmpId
                 // );
                 if (dbTrampreq != null && dbTrampreq.length > 0) {
-                    console.log(dbTrampreq);
+                    // console.log(dbTrampreq);
                     dbTrampreq[0].requestStatus = trampRequst.requestStatus;
                 }
                 else {
