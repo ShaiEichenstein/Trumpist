@@ -269,14 +269,14 @@ function calcGrades() {
     exports.TrampsMockUp.forEach(function (tramp) {
         var grade = 0;
         if (tramp.driverDetails.driverAddress.city == exports.passanger.driverDetails.driverAddress.city) {
-            grade += 10;
+            grade += 40;
             if (tramp.driverDetails.driverAddress.street == exports.passanger.driverDetails.driverAddress.street) {
-                grade += 5;
+                grade += 20;
             }
             if (tramp.entranceAvgTime.hour == exports.passanger.entranceAvgTime.hour) {
-                grade += 9;
+                grade += 30;
                 if (tramp.entranceAvgTime.minute == exports.passanger.entranceAvgTime.minute) {
-                    grade += 4;
+                    grade += 10;
                 }
             }
         }

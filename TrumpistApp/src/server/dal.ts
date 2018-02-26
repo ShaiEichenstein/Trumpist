@@ -227,14 +227,14 @@ function calcGrades() {
   TrampsMockUp.forEach(tramp => {
     let grade = 0;
     if (tramp.driverDetails.driverAddress.city == passanger.driverDetails.driverAddress.city) {
-      grade += 10;
+      grade += 40;
       if (tramp.driverDetails.driverAddress.street == passanger.driverDetails.driverAddress.street) {
-        grade += 5;
+        grade += 20;
       }
       if (tramp.entranceAvgTime.hour == passanger.entranceAvgTime.hour) {
-        grade += 9;
+        grade += 30;
         if (tramp.entranceAvgTime.minute == passanger.entranceAvgTime.minute) {
-          grade += 4;
+          grade += 10;
         }
       }
     }
