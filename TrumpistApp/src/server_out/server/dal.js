@@ -37,11 +37,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 //import * as mongodb from "mongodb";
 var mongodb_1 = require("mongodb");
+//const mongodb = require("mongodb");
 // export async function getAllTramps() {
 //   //await delay(1000);
 //   // throw new Error("DAL");
 //   return TrampsMockUp;
 // }
+// mongodb.Cursor.prototype.findAndModifyAsync = promisify(
+//   mongodb.Cursor.prototype.findAndModify
+// );
 var DbClient = /** @class */ (function () {
     function DbClient() {
     }
@@ -76,6 +80,124 @@ var dbClient = new DbClient();
 var usersArr;
 function addTrampRequest(trampRequst) {
     return __awaiter(this, void 0, void 0, function () {
+        var db, trampReq, trampReqArr, query;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    console.log("addTrampRequest");
+                    if (!(trampRequst != null)) return [3 /*break*/, 3];
+                    return [4 /*yield*/, dbClient.connect()];
+                case 1:
+                    db = _a.sent();
+                    trampReq = db.collection("tramp_request");
+                    return [4 /*yield*/, trampReq
+                            .find({
+                            driverUserID: trampRequst.driverUserID,
+                            passangerUserID: trampRequst.passangerUserID
+                        })
+                            .toArray()];
+                case 2:
+                    trampReqArr = _a.sent();
+                    console.log(trampReqArr);
+                    if (trampReqArr == null || trampReqArr.length === 0) {
+                        trampReq.insert(trampRequst, function (err, res) {
+                            if (err) {
+                                throw err;
+                            }
+                            console.log(res);
+                            console.log("request added!!!!");
+                        });
+                    }
+                    else {
+                        query = {
+                            driverUserID: trampRequst.driverUserID,
+                            passangerUserID: trampRequst.passangerUserID
+                        };
+                        // if the request already exists in the db update the request status back to sent
+                        trampReq.findAndModify(query, // query
+                        [["_id", "asc"]], // sort order
+                        { $set: { requestStatus: trampRequst.requestStatus } }, // replacement, replaces only the field "hi"
+                        {}, // options
+                        function (err, res) {
+                            if (err) {
+                                console.warn("addRequest updated error" + err.message); // returns error if no matching object found
+                            }
+                            else {
+                                console.log("addRequest res:");
+                                console.log(res);
+                                console.log("addRequest updated!!!!");
+                            }
+                        });
+                    }
+                    return [3 /*break*/, 4];
+                case 3:
+                    console.log("trampRequest is null");
+                    _a.label = 4;
+                case 4: return [2 /*return*/, trampRequst];
+            }
+        });
+    });
+}
+exports.addTrampRequest = addTrampRequest;
+function updateTrampRequest(trampRequst) {
+    return __awaiter(this, void 0, void 0, function () {
+        var db, trampReq, query;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    console.log("updateTrampRequest");
+                    if (!(trampRequst != null)) return [3 /*break*/, 2];
+                    return [4 /*yield*/, dbClient.connect()];
+                case 1:
+                    db = _a.sent();
+                    trampReq = db.collection("tramp_request");
+                    query = null;
+                    if (trampRequst.id != null) {
+                        console.log("by id");
+                        query = {
+                            id: trampRequst.id
+                        };
+                    }
+                    else {
+                        console.log("by params");
+                        query = {
+                            driverUserID: trampRequst.driverUserID,
+                            passangerUserID: trampRequst.passangerUserID
+                        };
+                    }
+                    try {
+                        trampReq.findAndModify(query, // query
+                        [["_id", "asc"]], // sort order
+                        { $set: { requestStatus: trampRequst.requestStatus } }, // replacement, replaces only the field "hi"
+                        {}, // options
+                        function (err, res) {
+                            if (err) {
+                                console.warn("updateTrampRequest2 updated error" + err.message); // returns error if no matching object found
+                            }
+                            else {
+                                // console.log("updateTrampRequest2 res:");
+                                // console.log(res);
+                                console.log("updateTrampRequest2 updated!!!!");
+                            }
+                        });
+                    }
+                    catch (e) {
+                        console.log(e);
+                    }
+                    return [3 /*break*/, 3];
+                case 2:
+                    console.log("trampRequest is null");
+                    _a.label = 3;
+                case 3:
+                    console.log("return update");
+                    return [2 /*return*/, trampRequst];
+            }
+        });
+    });
+}
+exports.updateTrampRequest = updateTrampRequest;
+function addTrampRequestOLD(trampRequst) {
+    return __awaiter(this, void 0, void 0, function () {
         var dbTrampreq;
         return __generator(this, function (_a) {
             console.log("addTrampRequest");
@@ -99,8 +221,8 @@ function addTrampRequest(trampRequst) {
         });
     });
 }
-exports.addTrampRequest = addTrampRequest;
-function getExistingRequest(trampRequst) {
+exports.addTrampRequestOLD = addTrampRequestOLD;
+function getExistingRequestOLD(trampRequst) {
     var dbTrampreq = null;
     if (trampRequst != null) {
         if (trampRequst.id != null) {
@@ -122,7 +244,7 @@ function getExistingRequest(trampRequst) {
         }
     }
 }
-function updateTrampRequest(trampRequst) {
+function updateTrampRequest_OLD(trampRequst) {
     return __awaiter(this, void 0, void 0, function () {
         var dbTrampreq;
         return __generator(this, function (_a) {
@@ -159,7 +281,147 @@ function updateTrampRequest(trampRequst) {
         });
     });
 }
-exports.updateTrampRequest = updateTrampRequest;
+exports.updateTrampRequest_OLD = updateTrampRequest_OLD;
+function getExistingRequest(trampRequst) {
+    return __awaiter(this, void 0, void 0, function () {
+        var dbTrampreq, db, trampReq, _a;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    dbTrampreq = null;
+                    return [4 /*yield*/, dbClient.connect()];
+                case 1:
+                    db = _b.sent();
+                    trampReq = db.collection("tramp-request");
+                    _a = this;
+                    return [4 /*yield*/, trampReq
+                            .find({
+                            driverUserID: trampRequst.driverUserID,
+                            passangerUserID: trampRequst.passangerUserID
+                        })
+                            .toArray()];
+                case 2:
+                    _a.trampReqArr = _b.sent();
+                    console.log(this.trampReqArr);
+                    if (trampRequst != null) {
+                        if (trampRequst.id != null) {
+                            dbTrampreq = exports.TrampsRequestMockUp.filter(function (req) { return req.id === trampRequst.id; });
+                        }
+                        else {
+                            dbTrampreq = exports.TrampsRequestMockUp.filter(function (req) {
+                                return req.driverUserID === trampRequst.driverUserID &&
+                                    req.passangerUserID === trampRequst.passangerUserID;
+                            }
+                            // &&  req.trampDate === trampRequst.trampDate
+                            );
+                        }
+                        if (dbTrampreq != null && dbTrampreq.length > 0) {
+                            return [2 /*return*/, dbTrampreq[0]];
+                        }
+                        else {
+                            return [2 /*return*/, null];
+                        }
+                    }
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function getAllTramps() {
+    return __awaiter(this, void 0, void 0, function () {
+        var db, users1, _a, trampReq, trampReqArr;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0: return [4 /*yield*/, dbClient.connect()];
+                case 1:
+                    db = _b.sent();
+                    users1 = db.collection("users");
+                    _a = this;
+                    return [4 /*yield*/, users1.find().toArray()];
+                case 2:
+                    _a.usersArr = _b.sent();
+                    trampReq = db.collection("tramp_request");
+                    return [4 /*yield*/, trampReq
+                            .find({
+                            passangerUserID: 37897
+                        })
+                            .toArray()];
+                case 3:
+                    trampReqArr = _b.sent();
+                    console.log(trampReqArr);
+                    this.usersArr.forEach(function (tramp) {
+                        var grade = 0;
+                        if (tramp.driverDetails.address.city == exports.passanger.driverDetails.address.city) {
+                            grade += 40;
+                            if (tramp.driverDetails.address.street ==
+                                exports.passanger.driverDetails.address.street) {
+                                grade += 20;
+                            }
+                            if (tramp.driverDetails.entranceAvgTime.hour ==
+                                exports.passanger.driverDetails.entranceAvgTime.hour) {
+                                grade += 30;
+                                if (tramp.driverDetails.entranceAvgTime.minute ==
+                                    exports.passanger.driverDetails.entranceAvgTime.minute) {
+                                    grade += 10;
+                                }
+                            }
+                        }
+                        tramp.trampGrade = grade;
+                        tramp.trampRequestStatus = 0;
+                        // set the tramp status according to the users requests
+                        trampReqArr.forEach(function (req) {
+                            if (req != null) {
+                                if (req.driverUserID === tramp.driverDetails.userId) {
+                                    console.log("reqStatus: " + req.requestStatus);
+                                    tramp.trampRequestStatus = req.requestStatus;
+                                }
+                            }
+                        });
+                    });
+                    return [2 /*return*/, this.usersArr]; //calcGrades();
+            }
+        });
+    });
+}
+exports.getAllTramps = getAllTramps;
+function calcGrades() {
+    this.usersArr.forEach(function (tramp) {
+        var grade = 0;
+        if (tramp.driverDetails.address.city == exports.passanger.driverDetails.address.city) {
+            grade += 40;
+            if (tramp.driverDetails.address.street ==
+                exports.passanger.driverDetails.address.street) {
+                grade += 20;
+            }
+            if (tramp.driverDetails.entranceAvgTime.hour ==
+                exports.passanger.driverDetails.entranceAvgTime.hour) {
+                grade += 30;
+                if (tramp.driverDetails.entranceAvgTime.minute ==
+                    exports.passanger.driverDetails.entranceAvgTime.minute) {
+                    grade += 10;
+                }
+            }
+        }
+        tramp.trampGrade = grade;
+    });
+}
+function promisify(fn) {
+    return function () {
+        var args = Array.from(arguments);
+        var me = this;
+        return new Promise(function (resolve, reject) {
+            function callback(err, retVal) {
+                if (err) {
+                    reject(err);
+                    return;
+                }
+                resolve(retVal);
+            }
+            args.push(callback);
+            fn.apply(me, args);
+        });
+    };
+}
 exports.TrampsRequestMockUp = new Array();
 exports.passanger = {
     driverDetails: {
@@ -343,81 +605,4 @@ exports.TrampsMockUp = [
         trampRequestStatus: 0
     }
 ];
-function getAllTramps() {
-    return __awaiter(this, void 0, void 0, function () {
-        var db, users1, _a;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
-                case 0: return [4 /*yield*/, dbClient.connect()];
-                case 1:
-                    db = _b.sent();
-                    users1 = db.collection("users");
-                    _a = this;
-                    return [4 /*yield*/, users1.find().toArray()];
-                case 2:
-                    _a.usersArr = _b.sent();
-                    console.log(this.usersArr);
-                    this.usersArr.forEach(function (tramp) {
-                        var grade = 0;
-                        if (tramp.driverDetails.address.city == exports.passanger.driverDetails.address.city) {
-                            grade += 40;
-                            if (tramp.driverDetails.address.street ==
-                                exports.passanger.driverDetails.address.street) {
-                                grade += 20;
-                            }
-                            if (tramp.driverDetails.entranceAvgTime.hour ==
-                                exports.passanger.driverDetails.entranceAvgTime.hour) {
-                                grade += 30;
-                                if (tramp.driverDetails.entranceAvgTime.minute ==
-                                    exports.passanger.driverDetails.entranceAvgTime.minute) {
-                                    grade += 10;
-                                }
-                            }
-                        }
-                        tramp.trampGrade = grade;
-                    });
-                    return [2 /*return*/, this.usersArr]; //calcGrades();
-            }
-        });
-    });
-}
-exports.getAllTramps = getAllTramps;
-function calcGrades() {
-    this.usersArr.forEach(function (tramp) {
-        var grade = 0;
-        if (tramp.driverDetails.address.city == exports.passanger.driverDetails.address.city) {
-            grade += 40;
-            if (tramp.driverDetails.address.street ==
-                exports.passanger.driverDetails.address.street) {
-                grade += 20;
-            }
-            if (tramp.driverDetails.entranceAvgTime.hour ==
-                exports.passanger.driverDetails.entranceAvgTime.hour) {
-                grade += 30;
-                if (tramp.driverDetails.entranceAvgTime.minute ==
-                    exports.passanger.driverDetails.entranceAvgTime.minute) {
-                    grade += 10;
-                }
-            }
-        }
-        tramp.trampGrade = grade;
-    });
-}
-function promisify(fn) {
-    return function () {
-        var args = Array.from(arguments);
-        var me = this;
-        return new Promise(function (resolve, reject) {
-            function callback(err, retVal) {
-                if (err) {
-                    reject(err);
-                    return;
-                }
-                resolve(retVal);
-            }
-            args.push(callback);
-            fn.apply(me, args);
-        });
-    };
-}
 //# sourceMappingURL=dal.js.map

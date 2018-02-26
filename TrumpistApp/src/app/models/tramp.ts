@@ -17,7 +17,6 @@ export interface User {
     leavingAvgTime: Time;
 }
 
-
 export interface Address {
     city: string;
     naborhood: string;
