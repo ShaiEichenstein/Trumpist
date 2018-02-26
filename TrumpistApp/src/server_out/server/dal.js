@@ -49,7 +49,7 @@ function addTrampRequest(trampRequst) {
                 tramp = exports.TrampsMockUp.filter(function (t) { return t.driverDetails.userId === trampRequst.driverUserID; })[0];
                 if (tramp != null) {
                     console.log(tramp);
-                    tramp['trampRequestStatus'] = 1;
+                    tramp["trampRequestStatus"] = 1;
                 }
                 else {
                     console.log("tramp is null");
@@ -64,23 +64,54 @@ function addTrampRequest(trampRequst) {
     });
 }
 exports.addTrampRequest = addTrampRequest;
+function updateTrampRequest(trampRequst) {
+    return __awaiter(this, void 0, void 0, function () {
+        var dbTrampreq;
+        return __generator(this, function (_a) {
+            console.log("updateTrampRequest");
+            if (trampRequst != null) {
+                dbTrampreq = exports.TrampsRequestMockUp.filter(function (req) {
+                    return req.driverUserID === trampRequst.driverUserID &&
+                        req.passangerUserID === trampRequst.passangerUserID;
+                }
+                // &&  req.trampDate === trampRequst.trampDate
+                );
+                // const tramp = TrampsMockUp.filter(
+                //   t => t.driverDetails.driverEmpId === trampRequst.driverEmpId
+                // );
+                if (dbTrampreq != null && dbTrampreq.length > 0) {
+                    console.log(dbTrampreq);
+                    dbTrampreq[0].requestStatus = trampRequst.requestStatus;
+                }
+                else {
+                    console.log("trampRequst is null");
+                }
+                return [2 /*return*/, dbTrampreq[0]];
+            }
+            else {
+                console.log("trampRequst is null");
+            }
+            return [2 /*return*/];
+        });
+    });
+}
+exports.updateTrampRequest = updateTrampRequest;
 exports.TrampsRequestMockUp = new Array();
 exports.passanger = {
     driverDetails: {
         lastName: "אייכנשטיין",
         firstName: "שי",
-        Gender: "זכר",
-        Address: {
+        gender: "זכר",
+        address: {
             city: "רמת גן",
             street: "הרצל"
         },
         entranceAvgTime: {
             hour: 8,
             minute: 20
-        },
+        }
     },
-    trampGrade: 75,
-    color: '#588952',
+    trampGrade: 75
 };
 exports.TrampsMockUp = [
     {
@@ -88,8 +119,8 @@ exports.TrampsMockUp = [
             userId: 12345,
             lastName: "אייכנשטיין",
             firstName: "שי",
-            Gender: "זכר",
-            Address: {
+            gender: "זכר",
+            address: {
                 city: "רמת גן",
                 street: "הרצל"
             },
@@ -100,10 +131,9 @@ exports.TrampsMockUp = [
             leavingAvgTime: {
                 hour: 19,
                 minute: 30
-            },
+            }
         },
         trampGrade: 75,
-        color: '#588952',
         trampRequestStatus: 0
     },
     {
@@ -111,8 +141,8 @@ exports.TrampsMockUp = [
             userId: 222,
             lastName: "אפרגן",
             firstName: "דרור",
-            Gender: "זכר",
-            Address: {
+            gender: "זכר",
+            address: {
                 city: "תל אביב",
                 street: "אלנבי"
             },
@@ -123,10 +153,9 @@ exports.TrampsMockUp = [
             leavingAvgTime: {
                 hour: 16,
                 minute: 30
-            },
+            }
         },
         trampGrade: 85,
-        color: '#F3AD1A',
         trampRequestStatus: 0
     },
     {
@@ -134,8 +163,8 @@ exports.TrampsMockUp = [
             userId: 4444,
             lastName: "דפנה",
             firstName: "פאן",
-            Gender: "נקבה",
-            Address: {
+            gender: "נקבה",
+            address: {
                 city: "חיפה",
                 street: "הנביאים"
             },
@@ -146,19 +175,18 @@ exports.TrampsMockUp = [
             leavingAvgTime: {
                 hour: 18,
                 minute: 0
-            },
+            }
         },
         trampGrade: 40,
-        color: '#BA69C8',
-        trampRequestStatus: 0,
+        trampRequestStatus: 0
     },
     {
         driverDetails: {
             userId: 12312,
             lastName: "אסף",
             firstName: "גאן",
-            Gender: "זכר",
-            Address: {
+            gender: "זכר",
+            address: {
                 city: "חיפה",
                 street: "אלנבי"
             },
@@ -169,10 +197,9 @@ exports.TrampsMockUp = [
             leavingAvgTime: {
                 hour: 17,
                 minute: 0
-            },
+            }
         },
         trampGrade: 60,
-        color: '#F3AD1A',
         trampRequestStatus: 0
     },
     {
@@ -180,8 +207,8 @@ exports.TrampsMockUp = [
             userId: 555,
             lastName: "מירב",
             firstName: "בוכריס",
-            Gender: "נקבה",
-            Address: {
+            gender: "נקבה",
+            address: {
                 city: "אילת",
                 street: "הנביאים"
             },
@@ -192,48 +219,45 @@ exports.TrampsMockUp = [
             leavingAvgTime: {
                 hour: 15,
                 minute: 30
-            },
+            }
         },
         trampGrade: 67,
-        color: '#BA69C8',
-        trampRequestStatus: 0
+        trampRequestStatus: 2
     },
     {
         driverDetails: {
             userId: 4242,
             lastName: "משה",
             firstName: "משה",
-            Gender: "זכר",
-            Address: {
+            gender: "זכר",
+            address: {
                 city: "רמת גן",
                 street: "הרצל"
             },
             entranceAvgTime: {
                 hour: 8,
                 minute: 10
-            },
+            }
         },
         trampGrade: 75,
-        color: '#588952',
-        trampRequestStatus: 0
+        trampRequestStatus: 2
     },
     {
         driverDetails: {
             userId: 123155,
             lastName: "לוי",
             firstName: "אבי",
-            Gender: "זכר",
-            Address: {
+            gender: "זכר",
+            address: {
                 city: "רמת גן",
                 street: "הבורסה"
             },
             entranceAvgTime: {
                 hour: 7,
                 minute: 20
-            },
+            }
         },
         trampGrade: 75,
-        color: '#588952',
         trampRequestStatus: 0
     },
     {
@@ -241,18 +265,17 @@ exports.TrampsMockUp = [
             userId: 856,
             lastName: "אהרון",
             firstName: "מאיה",
-            Gender: "נקבה",
-            Address: {
+            gender: "נקבה",
+            address: {
                 city: "רמת גן",
                 street: "אורות"
             },
             entranceAvgTime: {
                 hour: 8,
                 minute: 20
-            },
+            }
         },
         trampGrade: 75,
-        color: '#588952',
         trampRequestStatus: 0
     }
 ];
@@ -268,14 +291,17 @@ exports.getAllTramps = getAllTramps;
 function calcGrades() {
     exports.TrampsMockUp.forEach(function (tramp) {
         var grade = 0;
-        if (tramp.driverDetails.Address.city == exports.passanger.driverDetails.Address.city) {
+        if (tramp.driverDetails.address.city == exports.passanger.driverDetails.address.city) {
             grade += 40;
-            if (tramp.driverDetails.Address.street == exports.passanger.driverDetails.Address.street) {
+            if (tramp.driverDetails.address.street ==
+                exports.passanger.driverDetails.address.street) {
                 grade += 20;
             }
-            if (tramp.driverDetails.entranceAvgTime.hour == exports.passanger.driverDetails.entranceAvgTime.hour) {
+            if (tramp.driverDetails.entranceAvgTime.hour ==
+                exports.passanger.driverDetails.entranceAvgTime.hour) {
                 grade += 30;
-                if (tramp.driverDetails.entranceAvgTime.minute == exports.passanger.driverDetails.entranceAvgTime.minute) {
+                if (tramp.driverDetails.entranceAvgTime.minute ==
+                    exports.passanger.driverDetails.entranceAvgTime.minute) {
                     grade += 10;
                 }
             }

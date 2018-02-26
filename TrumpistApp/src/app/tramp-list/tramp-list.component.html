@@ -1,10 +1,13 @@
 <div class="container tramp-list-div">
-    <h3>
+  <h3>
     רשימת טרמפים:
   </h3>
   <span class="sort-button" style="color:black"> מיין לפי:</span>
-  <a class="sort-button" (click)="sort('byRank')" [class.active-sort]="activeSortBy=='byRank'" >דירוג</a>
+  <a class="sort-button" (click)="sort('byRank')" [class.active-sort]="activeSortBy=='byRank'">דירוג</a>
   <a class="sort-button" (click)="sort('byName')" [class.active-sort]="activeSortBy=='byName'">שם</a>
-  <a class="sort-button" (click)="sort('byGender')" [class.active-sort]="activeSortBy=='byGender'">מין</a>
-  <app-tramp-item *ngFor="let tramp of trampList" [tramp]=tramp (sendRequest)="sendTrampRequstHandler($event)"></app-tramp-item>
+  <a class="sort-button" (click)="sort('byStatus')" [class.active-sort]="activeSortBy=='byStatus'">סטטוס</a>
+  <div>
+    <app-tramp-item *ngFor="let tramp of trampList" [tramp]=tramp (sendRequest)="sendTrampRequstHandler($event)"
+    (cancelRequest)="cancelTrampRequstHandler($event)"></app-tramp-item>
+  </div>
 </div>

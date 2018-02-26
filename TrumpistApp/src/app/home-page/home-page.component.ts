@@ -15,7 +15,8 @@ export class HomePageComponent implements OnInit {
 
   async ngOnInit() {
     this.trampList = await this.trampService.getTramps();
-    //this.trampRequestList = this.trampService.getTrampRequestList();
+    this.trampRequestList = this.trampService.getTrampRequestList();
+    
     if (this.trampList != null) {
       this.trampList.sort((n1, n2) => n2.trampGrade - n1.trampGrade);
     }

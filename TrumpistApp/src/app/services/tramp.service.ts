@@ -4,6 +4,7 @@ import { Tramp } from "./../models/tramp";
 import { HttpService } from "./http.service";
 import { promise } from "protractor";
 import { TrampRequest } from "../models/trampRequest";
+import { User } from "../models/tramp";
 
 @Injectable()
 export class TrampService {
@@ -23,9 +24,12 @@ export class TrampService {
     // return this.trampList;
   }
 
+  getTrampRequestList(): Array<TrampRequest>{
+    return TrampsRequestMockUp;
+  }
+
   async sendTrampRequest(tramp: Tramp) {
     const trampReq = <TrampRequest>{
-        id: 1,
         driverUserID: tramp.driverDetails.userId,
         passangerUserID: 37897,
         trampDate: new Date(),
@@ -38,20 +42,37 @@ export class TrampService {
     this.setRequestAdditionalData(new Array<Tramp>(existingUpdatedTramp));
   }
 
-  sendTrampRequest_old(tramp: Tramp) {
-    TrampsRequestMockUp.push(<TrampRequest>{
-      id: 1,
-      driverUserID: tramp.driverDetails.userId,
-      passangerUserID: 37897,
-      trampDate: new Date(),
-      requestStatus: 1
-    });
-    tramp.trampRequestStatus = 1;
-    this.setRequestAdditionalData(new Array<Tramp>(tramp));
+  async updateTrampRequest(tramp: Tramp, requestStatus: number) {
+    const trampReq = <TrampRequest>{
+        driverUserID: tramp.driverDetails.userId,
+        passangerUserID: 37897,
+        trampDate: new Date(),
+        requestStatus: requestStatus
+      };
+    const updatedTrampRequest = await this.httpService.addTrampRequest<TrampRequest>('api/updateTrampRequest', trampReq);
+    console.log(updatedTrampRequest);
+    const existingUpdatedTramp = this.trampList.filter(t => t.driverDetails.userId === updatedTrampRequest.driverUserID)[0];
+    existingUpdatedTramp.trampRequestStatus = updatedTrampRequest.requestStatus;
+    this.setRequestAdditionalData(new Array<Tramp>(existingUpdatedTramp));
   }
+
+  // sendTrampRequest_old(tramp: Tramp) {
+  //   TrampsRequestMockUp.push(<TrampRequest>{
+  //     driverEmpId: tramp.driverDetails.driverEmpId,
+  //     passangerEmpId: 37897,
+  //     trampDate: new Date(),
+  //     requestStatus: 1
+  //   });
+  //   tramp.trampRequstStatus = 1;
+  //   this.setRequestAdditionalData(new Array<Tramp>(tramp));
+  // }
 
   getRequests(userId: number): Array<TrampRequest> {
     return TrampsRequestMockUp;
+  }
+  
+  getUserDetails(id): User{
+    return this.trampList[id].driverDetails;
   }
 
   setRequestAdditionalData(tramps: Array<Tramp>) {

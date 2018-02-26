@@ -1,7 +1,13 @@
 <div class="card" [style.border-color]=trampRequest.color>
   <div class="row">
     <div class="col-md-4 tramp-request-button-wrapper tramp-request-col">
-      <button class="tramp-request-button btn-primary" (click)=confirmTrampRequest()>אשר בקשה</button>
+      <!-- <button class="tramp-request-button btn-primary" (click)="confirmTrampRequest()" ng-style="{'visibility': isRequestConfirmed ? 'hidden' : 'visible'}"> -->
+      <button class="tramp-request-button btn-primary" (click)="confirmTrampRequest()">
+        אשר בקשה
+      </button>
+      <div class="glyphicon glyphicon-ok" style="visibility: collapse"></div>
+      <!-- <div class="glyphicon glyphicon-ok" [style.visibility]=isRequestConfirmed></div> -->
+      <!-- <div class="glyphicon glyphicon-ok" ng-style="{'visibility': isRequestConfirmed ? 'visible' : 'hidden'}"></div> -->
     </div> 
 
     <div class="col-md-5 tramp-request-col">
