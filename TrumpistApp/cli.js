@@ -75,6 +75,10 @@ async function loadMongo() {
   const mongoPath = process.env.MONGO_PATH;
   console.log("mongo path: " + mongoPath);
 
+  const dir = 'src/data';
+  if(!fs.existsSync(dir)){
+    fs.mkdirSync(dir);
+  }
 
   await spawn(mongoPath + "\\bin\\mongod.exe", [
     "-dbpath",
@@ -92,7 +96,7 @@ async function loadMongo() {
 
   const trampRequests = db.collection("trampRequests");
 
-  var myobj = {
+  /*var myobj = {
     driverLastName: "אייכנשטיין",
     driverFirstName: "שי",
     driverGender: "זכר",
@@ -100,17 +104,19 @@ async function loadMongo() {
   trampRequests.insertOne(myobj, function(err, res) {
     if (err) throw err;
     console.log("DONE!!!!");
+  });*/
+  console.log("**********************************");
+  var jsonDataFile = JSON.parse(fs.readFileSync('src/server/dataToLoad.json', 'utf8'));
+  //console.log(jsonDataFile);
+  trampRequests.insertMany(jsonDataFile, function(err, res) {
+    if (err) throw err;
+    console.log("DONE!!!!");
   });
-
   const trampsArr = await trampRequests.find({}).toArrayAsync();
 
   for (const tramp of trampsArr) {
     console.log(tramp);
   }
-
-
-  
-  //var jsonDataFile = JSON.parse(fs.readFileSync('json4UploadDB', 'utf8'));
 
   /*console.log("Closing");
   client.close();*/
