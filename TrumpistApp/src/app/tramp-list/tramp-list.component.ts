@@ -15,6 +15,7 @@ export class TrampListComponent implements OnInit {
   constructor(private trampService: TrampService) {}
 
   ngOnInit() {
+    this.activeSortBy = "byRank";
     if (this.trampList != null) {
       this.sort("byRank");
     }

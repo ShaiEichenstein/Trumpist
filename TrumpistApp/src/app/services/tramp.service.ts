@@ -58,12 +58,15 @@ export class TrampService {
       switch (tramp.trampRequstStatus) {
         case 0:
           tramp.trampRequestIcon = "open";
+          tramp.color = '#F3AD1A';
           break;
         case 1:
           tramp.trampRequestIcon = "send";
+          tramp.color = '#BA69C8';
           break;
         case 2:
           tramp.trampRequestIcon = "ok";
+          tramp.color = '#588952';
           break;
       }
     }
