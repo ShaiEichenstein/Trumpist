@@ -81,7 +81,7 @@ async function loadMongo() {
     fs.mkdirSync(dir);
   }
 
-  await spawn(mongoPath + "\\bin\\mongod.exe", [
+  spawn(mongoPath + "\\bin\\mongod.exe", [
     "-dbpath",
     "src/data"
   ], {

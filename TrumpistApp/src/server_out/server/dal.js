@@ -352,27 +352,35 @@ function getAllTramps() {
     });
 }
 exports.getAllTramps = getAllTramps;
-function calcGrades() {
-    this.usersArr.forEach(function (tramp) {
-        var grade = 0;
-        if (tramp.driverDetails.address.city == exports.passanger.driverDetails.address.city) {
-            grade += 40;
-            if (tramp.driverDetails.address.street ==
-                exports.passanger.driverDetails.address.street) {
-                grade += 20;
-            }
-            if (tramp.driverDetails.entranceAvgTime.hour ==
-                exports.passanger.driverDetails.entranceAvgTime.hour) {
-                grade += 30;
-                if (tramp.driverDetails.entranceAvgTime.minute ==
-                    exports.passanger.driverDetails.entranceAvgTime.minute) {
-                    grade += 10;
-                }
-            }
+/*function calcGrades() {
+  this.usersArr.forEach(tramp => {
+    let grade = 0;
+    if (
+      tramp.driverDetails.address.city == passanger.driverDetails.address.city
+    ) {
+      grade += 40;
+      if (
+        tramp.driverDetails.address.street ==
+        passanger.driverDetails.address.street
+      ) {
+        grade += 20;
+      }
+      if (
+        tramp.driverDetails.entranceAvgTime.hour ==
+        passanger.driverDetails.entranceAvgTime.hour
+      ) {
+        grade += 30;
+        if (
+          tramp.driverDetails.entranceAvgTime.minute ==
+          passanger.driverDetails.entranceAvgTime.minute
+        ) {
+          grade += 10;
         }
-        tramp.trampGrade = grade;
-    });
-}
+      }
+    }
+    tramp.trampGrade = grade;
+  });
+}*/
 function promisify(fn) {
     return function () {
         var args = Array.from(arguments);

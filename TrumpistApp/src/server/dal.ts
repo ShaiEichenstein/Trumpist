@@ -294,12 +294,12 @@ export async function getAllTramps() {
     }
     tramp.trampGrade = grade;
   });
-  
+
   return this.usersArr //calcGrades();
   
 }
 
-function calcGrades() {
+/*function calcGrades() {
   this.usersArr.forEach(tramp => {
     let grade = 0;
     if (
@@ -327,7 +327,7 @@ function calcGrades() {
     }
     tramp.trampGrade = grade;
   });
-}
+}*/
 
 function promisify(fn) {
   return function () {
