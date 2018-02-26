@@ -1,5 +1,6 @@
-import { Tramp } from "./../models/tramp";
+import { Tramp, Address } from "./../models/tramp";
 import { Component, OnInit, Input } from "@angular/core";
+import { TrampService } from "../services/tramp.service";
 
 @Component({
   selector: "app-tramp-list",
@@ -8,9 +9,17 @@ import { Component, OnInit, Input } from "@angular/core";
 })
 export class TrampListComponent implements OnInit {
   @Input() trampList: Array<Tramp>;
-  constructor() {}
 
-  ngOnInit() {}
+  activeSortBy: string;
+
+  constructor(private trampService: TrampService) {}
+
+  ngOnInit() {
+    this.activeSortBy = "byRank";
+    if (this.trampList != null) {
+      this.sort("byRank");
+    }
+  }
 
   sort(type: string) {
     switch (type) {
@@ -28,17 +37,27 @@ export class TrampListComponent implements OnInit {
           return 0;
         });
         break;
-        case "byName":
+      case "byName":
         this.trampList.sort((n1, n2) => {
-          if (n1.driverDetails.driverFirstName > n2.driverDetails.driverFirstName) {
+          if (
+            n1.driverDetails.driverFirstName > n2.driverDetails.driverFirstName
+          ) {
             return 1;
           }
-          if (n1.driverDetails.driverFirstName < n2.driverDetails.driverFirstName) {
+          if (
+            n1.driverDetails.driverFirstName < n2.driverDetails.driverFirstName
+          ) {
             return -1;
           }
           return 0;
         });
         break;
     }
+
+    this.activeSortBy = type;
+  }
+
+  sendTrampRequstHandler(tramp: Tramp) {
+    this.trampService.sendTrampRequest(tramp);
   }
 }

@@ -1,30 +1,50 @@
 import * as express from "express";
 
+import * as bodyParser from "body-parser";
+
 import * as dal from "./dal";
 
 const app = express();
 
+app.use(bodyParser.json());
+
+// app.configure(function() {
+// });
+
+
 app.get("/api/tramps", wrap(async function() {
+  console.log("test");
     return await dal.getAllTramps();
 }));
 
-function wrap(fn){
-    return function(req, res) {
-        try {
-            const retVal = fn();
+// app.post('/', function(request, response) {
+//   console.log(request.body);
+// });
 
-            if (retVal && retVal.then) {
-                retVal.then(data => {
-                    res.json(data);
-                }).catch(err => {
-                    res.json({error: err.message});
-                });
-            }
-        }
-        catch(err){
-            res.json({error: err.message});
-        }
+app.post("/api/addTrampRequest", wrap(async function(req, res) {
+  console.log(req.body);
+  return await dal.addTrampRequest(req.body);
+}));
+
+
+function wrap(fn) {
+  return function(req, res) {
+    try {
+      const retVal = fn(req, res);
+
+      if (retVal && retVal.then) {
+        retVal
+          .then(data => {
+            res.json(data);
+          })
+          .catch(err => {
+            res.json({ error: err.message });
+          });
+      }
+    } catch (err) {
+      res.json({ error: err.message });
     }
+  };
 }
 
 app.listen(3000, function(){

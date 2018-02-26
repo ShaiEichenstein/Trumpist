@@ -14,6 +14,8 @@ import { TrampService } from './services/tramp.service';
 import { HomePageComponent } from './home-page/home-page.component';
 import { AlertModule } from 'ngx-bootstrap';
 import { TrampGradeComponent } from './tramp-grade/tramp-grade.component';
+import { TrampRequestListComponent } from './tramp-request-list/tramp-request-list.component';
+import { TrampRequestItemComponent } from './tramp-request-item/tramp-request-item.component';
 import { HttpService } from './services/http.service';
 
 
@@ -25,7 +27,9 @@ import { HttpService } from './services/http.service';
     TrampListComponent,
     TrampItemComponent,
     HomePageComponent,
-    TrampGradeComponent
+    TrampGradeComponent,
+    TrampRequestListComponent,
+    TrampRequestItemComponent
   ],
   imports: [
     BrowserModule,

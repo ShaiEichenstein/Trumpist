@@ -3,8 +3,8 @@
     רשימת טרמפים:
   </h3>
   <span class="sort-button" style="color:black"> מיין לפי:</span>
-  <a class="sort-button" (click)="sort('byRank')">דירוג</a>
-  <a class="sort-button" (click)="sort('byName')">שם</a>
-  <a class="sort-button" (click)="sort('byGender')">מין</a>
-  <app-tramp-item *ngFor="let tramp of trampList" [tramp]=tramp></app-tramp-item>
+  <a class="sort-button" (click)="sort('byRank')" [class.active-sort]="activeSortBy=='byRank'" >דירוג</a>
+  <a class="sort-button" (click)="sort('byName')" [class.active-sort]="activeSortBy=='byName'">שם</a>
+  <a class="sort-button" (click)="sort('byGender')" [class.active-sort]="activeSortBy=='byGender'">מין</a>
+  <app-tramp-item *ngFor="let tramp of trampList" [tramp]=tramp (sendRequest)="sendTrampRequstHandler($event)"></app-tramp-item>
 </div>

@@ -4,9 +4,12 @@ export interface Tramp {
     leavingAvgTime: Time;
     trampGrade: number;
     color: string;
+    trampRequstStatus: number;
+    trampRequestIcon: string;
 }
 
 export interface Driver {
+    driverEmpId: number;
     driverFirstName: string;
     driverLastName: string;
     driverAddress: Address;
