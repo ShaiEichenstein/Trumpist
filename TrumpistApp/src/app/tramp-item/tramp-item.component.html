@@ -14,23 +14,49 @@
   </div>
 </div> -->
 
-<div class="card" [style.border-color]=tramp.color>
-  <div class="row">
-    <div class="tramp-status col-md-2 glyphicon glyphicon-{{tramp.trampRequestIcon}}" (click)="sendTrempRequest()"></div>
-    <div class="col-md-3 tramp-col">
-      <p class="tramp-text tramp-grade" [style.color]=tramp.color> {{tramp.trampGrade}} </p>
-      <!-- <app-tramp-grade [grade]=tramp.trampGrade [color]=tramp.color></app-tramp-grade> -->
+<div class="card-container">
+  <div class="card" [class.card-flip]="isFlip" [style.border-color]=tramp.color>
+    <div class="side">
+      <div class="row">
+        <div *ngIf="tramp.trampRequestStatus === 0" class="tramp-status col-md-2 glyphicon glyphicon-{{tramp.trampRequestIcon}}" (click)="sendTrampRequest()"></div>
+        <div *ngIf="tramp.trampRequestStatus === 1" class="tramp-status col-md-2 glyphicon glyphicon-{{tramp.trampRequestIcon}}" (click)="cancelTrampRequest()"></div>
+        <div *ngIf="tramp.trampRequestStatus === 2" class="tramp-status col-md-2 glyphicon glyphicon-{{tramp.trampRequestIcon}}" (click)="flip()"></div>
+        <div class="col-md-3 tramp-col">
+          <p class="tramp-text tramp-grade" [style.color]=tramp.color> {{tramp.trampGrade}} </p>
+          <!-- <app-tramp-grade [grade]=tramp.trampGrade [color]=tramp.color></app-tramp-grade> -->
+        </div>
+
+
+        <div class="col-md-4 tramp-col">
+          <!-- <p class="tramp-text"> {{tramp.driverDetails.driverFirstName}} {{tramp.driverDetails.driverLastName}} </p> -->
+          <p class="tramp-text"> {{tramp.driverDetails.address.city}}, {{tramp.driverDetails.address.street}} </p>
+          <p class="tramp-text"> {{tramp.driverDetails.entranceAvgTime.hour}}:{{tramp.driverDetails.entranceAvgTime.minute}} </p>
+          <p class="tramp-text"> {{tramp.driverDetails.gender}} </p>
+        </div>
+
+        <!-- <div class="tramp-icon col-md-4 glyphicon glyphicon-user" [style.color]=tramp.color></div> -->
+        <div class="tramp-icon col-md-3 glyphicon glyphicon-user"></div>
+      </div>
     </div>
 
+    <div class="side back">
+      <div class="row">
+        <div  class="tramp-status col-md-2 glyphicon glyphicon-share-alt" (click)="flip()"></div>
+        <div class="col-md-3 tramp-col">
+          <p class="tramp-text tramp-grade" [style.color]=tramp.color> {{tramp.trampGrade}} </p>
+          <!-- <app-tramp-grade [grade]=tramp.trampGrade [color]=tramp.color></app-tramp-grade> -->
+        </div>
 
-    <div class="col-md-4 tramp-col">
-      <p class="tramp-text"> {{tramp.driverDetails.firstName}} {{tramp.driverDetails.lastName}} </p>
-      <p class="tramp-text"> {{tramp.driverDetails.Address.city}}, {{tramp.driverDetails.Address.street}} </p>
-      <p class="tramp-text"> {{tramp.driverDetails.Gender}} </p>
-      <p class="tramp-text"> {{tramp.driverDetails.entranceAvgTime.hour}}:{{tramp.driverDetails.entranceAvgTime.minute}} </p>
+
+        <div class="col-md-4 tramp-col">
+          <p class="tramp-text"> {{tramp.driverDetails.firstName}} {{tramp.driverDetails.lastName}} </p>
+          <p class="tramp-text"> {{tramp.driverDetails.address.city}}, {{tramp.driverDetails.address.street}} </p>
+          <p class="tramp-text"> {{tramp.driverDetails.gender}} </p>
+        </div>
+
+        <!-- <div class="tramp-icon col-md-4 glyphicon glyphicon-user" [style.color]=tramp.color></div> -->
+        <div class="tramp-icon col-md-3 glyphicon glyphicon-user"></div>
+      </div>
     </div>
-
-    <!-- <div class="tramp-icon col-md-4 glyphicon glyphicon-user" [style.color]=tramp.color></div> -->
-    <div class="tramp-icon col-md-3 glyphicon glyphicon-user"></div>
   </div>
 </div>

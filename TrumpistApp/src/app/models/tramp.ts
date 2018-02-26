@@ -11,8 +11,8 @@ export interface User {
     password: string;
     firstName: string;
     lastName: string;
-    Address: Address;
-    Gender: string;
+    address: Address;
+    gender: string;
     entranceAvgTime: Time;
     leavingAvgTime: Time;
 }
