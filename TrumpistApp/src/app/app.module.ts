@@ -33,10 +33,7 @@ import { LoginComponent } from './login/login.component';
     TrampGradeComponent,
     TrampRequestListComponent,
     TrampRequestItemComponent,
-<<<<<<< HEAD
     LoginComponent
-=======
->>>>>>> d545ba9efa931d7812c46e2e86b172f7524890b5
   ],
   imports: [
     BrowserModule,
