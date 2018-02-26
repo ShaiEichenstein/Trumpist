@@ -42,7 +42,6 @@ export class TrampService {
     this.setRequestAdditionalData(new Array<Tramp>(existingUpdatedTramp));
   }
 
-<<<<<<< HEAD
   async updateTrampRequest(tramp: Tramp, requestStatus: number) {
     const trampReq = <TrampRequest>{
         driverUserID: tramp.driverDetails.userId,
@@ -55,18 +54,6 @@ export class TrampService {
     const existingUpdatedTramp = this.trampList.filter(t => t.driverDetails.userId === updatedTrampRequest.driverUserID)[0];
     existingUpdatedTramp.trampRequestStatus = updatedTrampRequest.requestStatus;
     this.setRequestAdditionalData(new Array<Tramp>(existingUpdatedTramp));
-=======
-  sendTrampRequest_old(tramp: Tramp) {
-    TrampsRequestMockUp.push(<TrampRequest>{
-      id:1,
-      driverUserID: tramp.driverDetails.userId,
-      passangerUserID: 37897,
-      trampDate: new Date(),
-      requestStatus: 0
-    });
-    tramp.trampRequestStatus = 1;
-    this.setRequestAdditionalData(new Array<Tramp>(tramp));
->>>>>>> f7f8d4c31e66322ff82f6b4aa8ed48d1694ccefe
   }
 
   // sendTrampRequest_old(tramp: Tramp) {
