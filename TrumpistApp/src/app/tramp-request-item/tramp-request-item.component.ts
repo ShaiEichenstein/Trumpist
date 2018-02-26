@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Tramp, User, Address } from '../models/tramp';
 import { TrampRequest } from '../models/trampRequest';
-import { TrampService } from '../tramp.service';
+import { TrampService } from '../services/tramp.service';
 
 @Component({
   selector: 'app-tramp-request-item',
