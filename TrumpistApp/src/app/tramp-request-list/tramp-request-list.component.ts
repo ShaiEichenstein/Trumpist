@@ -1,4 +1,4 @@
-import { TrampRequest } from "./../models/trampRequst";
+import { TrampRequest } from "./../models/trampRequest";
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({

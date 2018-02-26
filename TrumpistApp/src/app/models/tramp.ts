@@ -1,19 +1,20 @@
 export interface Tramp {
-    driverDetails: Driver;
-    entranceAvgTime: Time;
-    leavingAvgTime: Time;
+    driverDetails: User;
     trampGrade: number;
     color: string;
-    trampRequstStatus: number;
+    trampRequestStatus: number;
     trampRequestIcon: string;
 }
 
-export interface Driver {
-    driverEmpId: number;
-    driverFirstName: string;
-    driverLastName: string;
-    driverAddress: Address;
-    driverGender: string;
+export interface User {
+    userId: number;
+    password: string;
+    firstName: string;
+    lastName: string;
+    Address: Address;
+    Gender: string;
+    entranceAvgTime: Time;
+    leavingAvgTime: Time;
 }
 
 
