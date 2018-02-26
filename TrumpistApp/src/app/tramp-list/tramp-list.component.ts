@@ -63,4 +63,8 @@ export class TrampListComponent implements OnInit {
   sendTrampRequstHandler(tramp: Tramp) {
     this.trampService.sendTrampRequest(tramp);
   }
+
+  cancelTrampRequstHandler(tramp: Tramp) {
+    this.trampService.updateTrampRequest(tramp, 0);
+  }
 }

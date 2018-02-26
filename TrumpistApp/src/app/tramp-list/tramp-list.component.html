@@ -7,6 +7,7 @@
   <a class="sort-button" (click)="sort('byName')" [class.active-sort]="activeSortBy=='byName'">שם</a>
   <a class="sort-button" (click)="sort('byStatus')" [class.active-sort]="activeSortBy=='byStatus'">סטטוס</a>
   <div>
-    <app-tramp-item *ngFor="let tramp of trampList" [tramp]=tramp (sendRequest)="sendTrampRequstHandler($event)"></app-tramp-item>
+    <app-tramp-item *ngFor="let tramp of trampList" [tramp]=tramp (sendRequest)="sendTrampRequstHandler($event)"
+    (cancelRequest)="cancelTrampRequstHandler($event)"></app-tramp-item>
   </div>
 </div>

@@ -49,7 +49,7 @@ function addTrampRequest(trampRequst) {
                 tramp = exports.TrampsMockUp.filter(function (t) { return t.driverDetails.driverEmpId === trampRequst.driverEmpId; })[0];
                 if (tramp != null) {
                     console.log(tramp);
-                    tramp['trampRequstStatus'] = 1;
+                    tramp["trampRequstStatus"] = 1;
                 }
                 else {
                     console.log("tramp is null");
@@ -64,6 +64,38 @@ function addTrampRequest(trampRequst) {
     });
 }
 exports.addTrampRequest = addTrampRequest;
+function updateTrampRequest(trampRequst) {
+    return __awaiter(this, void 0, void 0, function () {
+        var dbTrampreq;
+        return __generator(this, function (_a) {
+            console.log("updateTrampRequest");
+            if (trampRequst != null) {
+                dbTrampreq = exports.TrampsRequestMockUp.filter(function (req) {
+                    return req.driverEmpId === trampRequst.driverEmpId &&
+                        req.passangerEmpId === trampRequst.passangerEmpId;
+                }
+                // &&  req.trampDate === trampRequst.trampDate
+                );
+                // const tramp = TrampsMockUp.filter(
+                //   t => t.driverDetails.driverEmpId === trampRequst.driverEmpId
+                // );
+                if (dbTrampreq != null && dbTrampreq.length > 0) {
+                    console.log(dbTrampreq);
+                    dbTrampreq[0].requestStatus = trampRequst.requestStatus;
+                }
+                else {
+                    console.log("trampRequst is null");
+                }
+                return [2 /*return*/, dbTrampreq[0]];
+            }
+            else {
+                console.log("trampRequst is null");
+            }
+            return [2 /*return*/];
+        });
+    });
+}
+exports.updateTrampRequest = updateTrampRequest;
 exports.TrampsRequestMockUp = new Array();
 exports.passanger = {
     driverDetails: {
@@ -73,10 +105,10 @@ exports.passanger = {
         driverAddress: {
             city: "רמת גן",
             street: "הרצל"
-        },
+        }
     },
     trampGrade: 75,
-    color: '#588952',
+    color: "#588952",
     entranceAvgTime: {
         hour: 8,
         minute: 20
@@ -92,10 +124,10 @@ exports.TrampsMockUp = [
             driverAddress: {
                 city: "רמת גן",
                 street: "הרצל"
-            },
+            }
         },
         trampGrade: 75,
-        color: '#588952',
+        color: "#588952",
         entranceAvgTime: {
             hour: 8,
             minute: 20
@@ -115,10 +147,10 @@ exports.TrampsMockUp = [
             driverAddress: {
                 city: "תל אביב",
                 street: "אלנבי"
-            },
+            }
         },
         trampGrade: 85,
-        color: '#F3AD1A',
+        color: "#F3AD1A",
         entranceAvgTime: {
             hour: 8,
             minute: 40
@@ -138,10 +170,10 @@ exports.TrampsMockUp = [
             driverAddress: {
                 city: "חיפה",
                 street: "הנביאים"
-            },
+            }
         },
         trampGrade: 40,
-        color: '#BA69C8',
+        color: "#BA69C8",
         entranceAvgTime: {
             hour: 9,
             minute: 0
@@ -150,7 +182,7 @@ exports.TrampsMockUp = [
             hour: 18,
             minute: 0
         },
-        trampRequstStatus: 0,
+        trampRequstStatus: 0
     },
     {
         driverDetails: {
@@ -161,10 +193,10 @@ exports.TrampsMockUp = [
             driverAddress: {
                 city: "חיפה",
                 street: "אלנבי"
-            },
+            }
         },
         trampGrade: 60,
-        color: '#F3AD1A',
+        color: "#F3AD1A",
         entranceAvgTime: {
             hour: 7,
             minute: 10
@@ -184,10 +216,10 @@ exports.TrampsMockUp = [
             driverAddress: {
                 city: "אילת",
                 street: "הנביאים"
-            },
+            }
         },
         trampGrade: 67,
-        color: '#BA69C8',
+        color: "#BA69C8",
         entranceAvgTime: {
             hour: 6,
             minute: 20
@@ -207,10 +239,10 @@ exports.TrampsMockUp = [
             driverAddress: {
                 city: "רמת גן",
                 street: "הרצל"
-            },
+            }
         },
         trampGrade: 75,
-        color: '#588952',
+        color: "#588952",
         entranceAvgTime: {
             hour: 8,
             minute: 10
@@ -226,10 +258,10 @@ exports.TrampsMockUp = [
             driverAddress: {
                 city: "רמת גן",
                 street: "הבורסה"
-            },
+            }
         },
         trampGrade: 75,
-        color: '#588952',
+        color: "#588952",
         entranceAvgTime: {
             hour: 7,
             minute: 20
@@ -245,10 +277,10 @@ exports.TrampsMockUp = [
             driverAddress: {
                 city: "רמת גן",
                 street: "אורות"
-            },
+            }
         },
         trampGrade: 75,
-        color: '#588952',
+        color: "#588952",
         entranceAvgTime: {
             hour: 8,
             minute: 20
@@ -268,9 +300,11 @@ exports.getAllTramps = getAllTramps;
 function calcGrades() {
     exports.TrampsMockUp.forEach(function (tramp) {
         var grade = 0;
-        if (tramp.driverDetails.driverAddress.city == exports.passanger.driverDetails.driverAddress.city) {
+        if (tramp.driverDetails.driverAddress.city ==
+            exports.passanger.driverDetails.driverAddress.city) {
             grade += 40;
-            if (tramp.driverDetails.driverAddress.street == exports.passanger.driverDetails.driverAddress.street) {
+            if (tramp.driverDetails.driverAddress.street ==
+                exports.passanger.driverDetails.driverAddress.street) {
                 grade += 20;
             }
             if (tramp.entranceAvgTime.hour == exports.passanger.entranceAvgTime.hour) {

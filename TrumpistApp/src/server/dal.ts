@@ -17,10 +17,38 @@ export async function addTrampRequest(trampRequst: TrampRequest) {
     )[0];
     if (tramp != null) {
       console.log(tramp);
-      tramp['trampRequstStatus'] = 1;
-    } else { console.log("tramp is null"); }
+      tramp["trampRequstStatus"] = 1;
+    } else {
+      console.log("tramp is null");
+    }
     return tramp;
-  } else { console.log("trampRequst is null"); }
+  } else {
+    console.log("trampRequst is null");
+  }
+}
+
+export async function updateTrampRequest(trampRequst: TrampRequest) {
+  console.log("updateTrampRequest");
+  if (trampRequst != null) {
+    const dbTrampreq = TrampsRequestMockUp.filter(
+      req =>
+        req.driverEmpId === trampRequst.driverEmpId &&
+        req.passangerEmpId === trampRequst.passangerEmpId
+      // &&  req.trampDate === trampRequst.trampDate
+    );
+    // const tramp = TrampsMockUp.filter(
+    //   t => t.driverDetails.driverEmpId === trampRequst.driverEmpId
+    // );
+    if (dbTrampreq != null && dbTrampreq.length >) {
+      console.log(dbTrampreq);
+      dbTrampreq[0].requestStatus = trampRequst.requestStatus;
+    } else {
+      console.log("trampRequst is null");
+    }
+    return dbTrampreq[0];
+  } else {
+    console.log("trampRequst is null");
+  }
 }
 
 export let TrampsRequestMockUp: Array<TrampRequest> = new Array<TrampRequest>();
@@ -33,10 +61,10 @@ export const passanger: Tramp = <Tramp>{
     driverAddress: {
       city: "רמת גן",
       street: "הרצל"
-    },
+    }
   },
   trampGrade: 75,
-  color: '#588952',
+  color: "#588952",
   entranceAvgTime: {
     hour: 8,
     minute: 20
@@ -53,10 +81,10 @@ export const TrampsMockUp: Array<Tramp> = [
       driverAddress: {
         city: "רמת גן",
         street: "הרצל"
-      },
+      }
     },
     trampGrade: 75,
-    color: '#588952',
+    color: "#588952",
     entranceAvgTime: {
       hour: 8,
       minute: 20
@@ -76,10 +104,10 @@ export const TrampsMockUp: Array<Tramp> = [
       driverAddress: {
         city: "תל אביב",
         street: "אלנבי"
-      },
+      }
     },
     trampGrade: 85,
-    color: '#F3AD1A',
+    color: "#F3AD1A",
     entranceAvgTime: {
       hour: 8,
       minute: 40
@@ -99,10 +127,10 @@ export const TrampsMockUp: Array<Tramp> = [
       driverAddress: {
         city: "חיפה",
         street: "הנביאים"
-      },
+      }
     },
     trampGrade: 40,
-    color: '#BA69C8',
+    color: "#BA69C8",
     entranceAvgTime: {
       hour: 9,
       minute: 0
@@ -111,7 +139,7 @@ export const TrampsMockUp: Array<Tramp> = [
       hour: 18,
       minute: 0
     },
-    trampRequstStatus: 0,
+    trampRequstStatus: 0
   },
   <Tramp>{
     driverDetails: {
@@ -122,10 +150,10 @@ export const TrampsMockUp: Array<Tramp> = [
       driverAddress: {
         city: "חיפה",
         street: "אלנבי"
-      },
+      }
     },
     trampGrade: 60,
-    color: '#F3AD1A',
+    color: "#F3AD1A",
     entranceAvgTime: {
       hour: 7,
       minute: 10
@@ -145,10 +173,10 @@ export const TrampsMockUp: Array<Tramp> = [
       driverAddress: {
         city: "אילת",
         street: "הנביאים"
-      },
+      }
     },
     trampGrade: 67,
-    color: '#BA69C8',
+    color: "#BA69C8",
     entranceAvgTime: {
       hour: 6,
       minute: 20
@@ -168,10 +196,10 @@ export const TrampsMockUp: Array<Tramp> = [
       driverAddress: {
         city: "רמת גן",
         street: "הרצל"
-      },
+      }
     },
     trampGrade: 75,
-    color: '#588952',
+    color: "#588952",
     entranceAvgTime: {
       hour: 8,
       minute: 10
@@ -187,10 +215,10 @@ export const TrampsMockUp: Array<Tramp> = [
       driverAddress: {
         city: "רמת גן",
         street: "הבורסה"
-      },
+      }
     },
     trampGrade: 75,
-    color: '#588952',
+    color: "#588952",
     entranceAvgTime: {
       hour: 7,
       minute: 20
@@ -206,10 +234,10 @@ export const TrampsMockUp: Array<Tramp> = [
       driverAddress: {
         city: "רמת גן",
         street: "אורות"
-      },
+      }
     },
     trampGrade: 75,
-    color: '#588952',
+    color: "#588952",
     entranceAvgTime: {
       hour: 8,
       minute: 20
@@ -226,9 +254,15 @@ export async function getAllTramps() {
 function calcGrades() {
   TrampsMockUp.forEach(tramp => {
     let grade = 0;
-    if (tramp.driverDetails.driverAddress.city == passanger.driverDetails.driverAddress.city) {
+    if (
+      tramp.driverDetails.driverAddress.city ==
+      passanger.driverDetails.driverAddress.city
+    ) {
       grade += 40;
-      if (tramp.driverDetails.driverAddress.street == passanger.driverDetails.driverAddress.street) {
+      if (
+        tramp.driverDetails.driverAddress.street ==
+        passanger.driverDetails.driverAddress.street
+      ) {
         grade += 20;
       }
       if (tramp.entranceAvgTime.hour == passanger.entranceAvgTime.hour) {
