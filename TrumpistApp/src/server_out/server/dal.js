@@ -35,52 +35,116 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+//import * as mongodb from "mongodb";
+var mongodb_1 = require("mongodb");
 // export async function getAllTramps() {
 //   //await delay(1000);
 //   // throw new Error("DAL");
 //   return TrampsMockUp;
 // }
+var DbClient = /** @class */ (function () {
+    function DbClient() {
+    }
+    DbClient.prototype.connect = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var client, error_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!!this.db) return [3 /*break*/, 4];
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, mongodb_1.MongoClient.connect("mongodb://localhost:27017")];
+                    case 2:
+                        client = _a.sent();
+                        this.db = client.db("trampistdb");
+                        return [2 /*return*/, this.db];
+                    case 3:
+                        error_1 = _a.sent();
+                        console.log("unable to connect to db");
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/, this.db];
+                }
+            });
+        });
+    };
+    return DbClient;
+}());
+var dbClient = new DbClient();
+//DbClient.db.Cursor.prototype.toArrayAsync = promisify(mongodb.Cursor.prototype.toArray);
+var usersArr;
 function addTrampRequest(trampRequst) {
     return __awaiter(this, void 0, void 0, function () {
-        var tramp;
+        var dbTrampreq;
         return __generator(this, function (_a) {
+            console.log("addTrampRequest");
+            dbTrampreq = null;
             if (trampRequst != null) {
-                exports.TrampsRequestMockUp.push(trampRequst);
-                tramp = exports.TrampsMockUp.filter(function (t) { return t.driverDetails.userId === trampRequst.driverUserID; })[0];
-                if (tramp != null) {
-                    console.log(tramp);
-                    tramp["trampRequestStatus"] = 1;
+                // checks if the request alredy exists
+                dbTrampreq = getExistingRequest(trampRequst);
+                if (dbTrampreq === null) {
+                    exports.TrampsRequestMockUp.push(trampRequst);
                 }
                 else {
-                    console.log("tramp is null");
+                    console.log("update existing request");
+                    dbTrampreq.requestStatus = trampRequst.requestStatus;
                 }
-                return [2 /*return*/, tramp];
             }
             else {
                 console.log("trampRequst is null");
             }
-            return [2 /*return*/];
+            // TODO get the new document from db and return it
+            return [2 /*return*/, trampRequst];
         });
     });
 }
 exports.addTrampRequest = addTrampRequest;
+function getExistingRequest(trampRequst) {
+    var dbTrampreq = null;
+    if (trampRequst != null) {
+        if (trampRequst.id != null) {
+            dbTrampreq = exports.TrampsRequestMockUp.filter(function (req) { return req.id === trampRequst.id; });
+        }
+        else {
+            dbTrampreq = exports.TrampsRequestMockUp.filter(function (req) {
+                return req.driverUserID === trampRequst.driverUserID &&
+                    req.passangerUserID === trampRequst.passangerUserID;
+            }
+            // &&  req.trampDate === trampRequst.trampDate
+            );
+        }
+        if (dbTrampreq != null && dbTrampreq.length > 0) {
+            return dbTrampreq[0];
+        }
+        else {
+            return null;
+        }
+    }
+}
 function updateTrampRequest(trampRequst) {
     return __awaiter(this, void 0, void 0, function () {
         var dbTrampreq;
         return __generator(this, function (_a) {
             console.log("updateTrampRequest");
+            dbTrampreq = null;
             if (trampRequst != null) {
-                dbTrampreq = exports.TrampsRequestMockUp.filter(function (req) {
-                    return req.driverUserID === trampRequst.driverUserID &&
-                        req.passangerUserID === trampRequst.passangerUserID;
+                if (trampRequst.id != null) {
+                    dbTrampreq = exports.TrampsRequestMockUp.filter(function (req) { return req.id === trampRequst.id; });
                 }
-                // &&  req.trampDate === trampRequst.trampDate
-                );
+                else {
+                    dbTrampreq = exports.TrampsRequestMockUp.filter(function (req) {
+                        return req.driverUserID === trampRequst.driverUserID &&
+                            req.passangerUserID === trampRequst.passangerUserID;
+                    }
+                    // &&  req.trampDate === trampRequst.trampDate
+                    );
+                }
                 // const tramp = TrampsMockUp.filter(
                 //   t => t.driverDetails.driverEmpId === trampRequst.driverEmpId
                 // );
                 if (dbTrampreq != null && dbTrampreq.length > 0) {
-                    console.log(dbTrampreq);
+                    // console.log(dbTrampreq);
                     dbTrampreq[0].requestStatus = trampRequst.requestStatus;
                 }
                 else {
@@ -281,9 +345,39 @@ exports.TrampsMockUp = [
 ];
 function getAllTramps() {
     return __awaiter(this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            calcGrades();
-            return [2 /*return*/, exports.TrampsMockUp];
+        var db, users1, _a;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0: return [4 /*yield*/, dbClient.connect()];
+                case 1:
+                    db = _b.sent();
+                    users1 = db.collection("users");
+                    _a = this;
+                    return [4 /*yield*/, users1.find().toArray()];
+                case 2:
+                    _a.usersArr = _b.sent();
+                    console.log(this.usersArr);
+                    this.usersArr.forEach(function (tramp) {
+                        var grade = 0;
+                        if (tramp.driverDetails.address.city == exports.passanger.driverDetails.address.city) {
+                            grade += 40;
+                            if (tramp.driverDetails.address.street ==
+                                exports.passanger.driverDetails.address.street) {
+                                grade += 20;
+                            }
+                            if (tramp.driverDetails.entranceAvgTime.hour ==
+                                exports.passanger.driverDetails.entranceAvgTime.hour) {
+                                grade += 30;
+                                if (tramp.driverDetails.entranceAvgTime.minute ==
+                                    exports.passanger.driverDetails.entranceAvgTime.minute) {
+                                    grade += 10;
+                                }
+                            }
+                        }
+                        tramp.trampGrade = grade;
+                    });
+                    return [2 /*return*/, this.usersArr]; //calcGrades();
+            }
         });
     });
 }
@@ -321,7 +415,7 @@ function getUserById(id) {
     }).driverDetails;
 }
 function calcGrades() {
-    exports.TrampsMockUp.forEach(function (tramp) {
+    this.usersArr.forEach(function (tramp) {
         var grade = 0;
         if (tramp.driverDetails.address.city == exports.passanger.driverDetails.address.city) {
             grade += 40;
@@ -340,5 +434,22 @@ function calcGrades() {
         }
         tramp.trampGrade = grade;
     });
+}
+function promisify(fn) {
+    return function () {
+        var args = Array.from(arguments);
+        var me = this;
+        return new Promise(function (resolve, reject) {
+            function callback(err, retVal) {
+                if (err) {
+                    reject(err);
+                    return;
+                }
+                resolve(retVal);
+            }
+            args.push(callback);
+            fn.apply(me, args);
+        });
+    };
 }
 //# sourceMappingURL=dal.js.map

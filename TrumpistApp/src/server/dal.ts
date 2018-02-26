@@ -1,6 +1,8 @@
 import { delay } from "./helpers";
 import { Tramp, User } from "../app/models/tramp";
 import { TrampRequest, TrampRequestForDisplay } from "../app/models/trampRequest";
+//import * as mongodb from "mongodb";
+import { MongoClient, Db, connect, ObjectId } from "mongodb";
 
 // export async function getAllTramps() {
 //   //await delay(1000);
@@ -9,38 +11,86 @@ import { TrampRequest, TrampRequestForDisplay } from "../app/models/trampRequest
 //   return TrampsMockUp;
 // }
 
-export async function addTrampRequest(trampRequst: TrampRequest) {
-  if (trampRequst != null) {
-    TrampsRequestMockUp.push(trampRequst);
-    const tramp = TrampsMockUp.filter(
-      t => t.driverDetails.userId === trampRequst.driverUserID
-    )[0];
-    if (tramp != null) {
-      console.log(tramp);
-      tramp["trampRequestStatus"] = 1;
-    } else {
-      console.log("tramp is null");
+class DbClient{
+  public db :Db;
+
+  async connect(){
+    if (!this.db){
+      try{
+        const client: MongoClient = await MongoClient.connect("mongodb://localhost:27017");
+        this.db = client.db("trampistdb");
+        return this.db;
+      }catch(error){
+        console.log("unable to connect to db");
+      }
     }
-    return tramp;
+    return this.db;
+  }
+}
+
+const dbClient = new DbClient();
+//DbClient.db.Cursor.prototype.toArrayAsync = promisify(mongodb.Cursor.prototype.toArray);
+var usersArr;
+
+export async function addTrampRequest(trampRequst: TrampRequest) {
+  console.log("addTrampRequest");
+  let dbTrampreq = null;
+  if (trampRequst != null) {
+    // checks if the request alredy exists
+    dbTrampreq = getExistingRequest(trampRequst);
+    if (dbTrampreq === null) {
+      TrampsRequestMockUp.push(trampRequst);
+    } else {
+      console.log("update existing request");
+      dbTrampreq.requestStatus = trampRequst.requestStatus;
+    }
   } else {
     console.log("trampRequst is null");
+  }
+  // TODO get the new document from db and return it
+  return trampRequst;
+}
+
+function getExistingRequest(trampRequst: TrampRequest) {
+  let dbTrampreq = null;
+  if (trampRequst != null) {
+    if (trampRequst.id != null) {
+      dbTrampreq = TrampsRequestMockUp.filter(req => req.id === trampRequst.id);
+    } else {
+      dbTrampreq = TrampsRequestMockUp.filter(
+        req =>
+          req.driverUserID === trampRequst.driverUserID &&
+          req.passangerUserID === trampRequst.passangerUserID
+        // &&  req.trampDate === trampRequst.trampDate
+      );
+    }
+    if (dbTrampreq != null && dbTrampreq.length > 0) {
+      return dbTrampreq[0];
+    } else {
+      return null;
+    }
   }
 }
 
 export async function updateTrampRequest(trampRequst: TrampRequest) {
   console.log("updateTrampRequest");
+  let dbTrampreq = null;
   if (trampRequst != null) {
-    const dbTrampreq = TrampsRequestMockUp.filter(
-      req =>
-        req.driverUserID === trampRequst.driverUserID &&
-        req.passangerUserID === trampRequst.passangerUserID
-      // &&  req.trampDate === trampRequst.trampDate
-    );
+    if (trampRequst.id != null) {
+      dbTrampreq = TrampsRequestMockUp.filter(req => req.id === trampRequst.id);
+    } else {
+      dbTrampreq = TrampsRequestMockUp.filter(
+        req =>
+          req.driverUserID === trampRequst.driverUserID &&
+          req.passangerUserID === trampRequst.passangerUserID
+        // &&  req.trampDate === trampRequst.trampDate
+      );
+    }
     // const tramp = TrampsMockUp.filter(
     //   t => t.driverDetails.driverEmpId === trampRequst.driverEmpId
     // );
     if (dbTrampreq != null && dbTrampreq.length > 0) {
-      console.log(dbTrampreq);
+      // console.log(dbTrampreq);
       dbTrampreq[0].requestStatus = trampRequst.requestStatus;
     } else {
       console.log("trampRequst is null");
@@ -239,8 +289,41 @@ export const TrampsMockUp: Array<Tramp> = [
 ];
 
 export async function getAllTramps() {
-  calcGrades();
-  return TrampsMockUp;
+  let db = await dbClient.connect();
+  const users1 = db.collection("users");
+  this.usersArr = await users1.find().toArray();
+  console.log (this.usersArr);
+
+  this.usersArr.forEach(tramp => {
+    let grade = 0;
+    if (
+      tramp.driverDetails.address.city == passanger.driverDetails.address.city
+    ) {
+      grade += 40;
+      if (
+        tramp.driverDetails.address.street ==
+        passanger.driverDetails.address.street
+      ) {
+        grade += 20;
+      }
+      if (
+        tramp.driverDetails.entranceAvgTime.hour ==
+        passanger.driverDetails.entranceAvgTime.hour
+      ) {
+        grade += 30;
+        if (
+          tramp.driverDetails.entranceAvgTime.minute ==
+          passanger.driverDetails.entranceAvgTime.minute
+        ) {
+          grade += 10;
+        }
+      }
+    }
+    tramp.trampGrade = grade;
+  });
+  
+  return this.usersArr //calcGrades();
+  
 }
 
 export async function getAllTrampsRequests() {
@@ -274,7 +357,7 @@ function getUserById (id) {
 }
 
 function calcGrades() {
-  TrampsMockUp.forEach(tramp => {
+  this.usersArr.forEach(tramp => {
     let grade = 0;
     if (
       tramp.driverDetails.address.city == passanger.driverDetails.address.city
@@ -301,4 +384,26 @@ function calcGrades() {
     }
     tramp.trampGrade = grade;
   });
+}
+
+function promisify(fn) {
+  return function () {
+    const args = Array.from(arguments);
+    const me = this;
+
+    return new Promise(function (resolve, reject) {
+      function callback(err, retVal) {
+        if (err) {
+          reject(err);
+          return;
+        }
+
+        resolve(retVal);
+      }
+
+      args.push(callback);
+
+      fn.apply(me, args);
+    });
+  }
 }

@@ -69,10 +69,10 @@ app.post("/api/addTrampRequest", wrap(function (req, res) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0:
-                    console.log(req.body);
-                    return [4 /*yield*/, dal.addTrampRequest(req.body)];
-                case 1: return [2 /*return*/, _a.sent()];
+                case 0: return [4 /*yield*/, dal.addTrampRequest(req.body)];
+                case 1: 
+                // console.log(req.body);
+                return [2 /*return*/, _a.sent()];
             }
         });
     });
@@ -81,10 +81,10 @@ app.post("/api/updateTrampRequest", wrap(function (req, res) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0:
-                    console.log(req.body);
-                    return [4 /*yield*/, dal.updateTrampRequest(req.body)];
-                case 1: return [2 /*return*/, _a.sent()];
+                case 0: return [4 /*yield*/, dal.updateTrampRequest(req.body)];
+                case 1: 
+                // console.log(req.body);
+                return [2 /*return*/, _a.sent()];
             }
         });
     });

@@ -14,7 +14,9 @@ export class TrampItemComponent implements OnInit {
   isFlip: boolean = false;
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.tramp);
+  }
 
   sendTrampRequest() {
     this.sendRequest.emit(this.tramp);
