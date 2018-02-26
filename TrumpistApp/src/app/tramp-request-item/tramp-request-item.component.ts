@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Tramp, Driver, Address } from '../models/tramp';
+import { Tramp, User, Address } from '../models/tramp';
 import { TrampRequest } from '../models/trampRequest';
-import { TrampService } from '../services/tramp.service';
+import { TrampService } from '../tramp.service';
 
 @Component({
   selector: 'app-tramp-request-item',
@@ -12,15 +12,15 @@ export class TrampRequestItemComponent implements OnInit {
 
   @Input() trampRequest: TrampRequest;
 
-  driverDetails: Driver;
-  passangerDetails: Driver;
   isRequestConfirmed: boolean;
+  driverDetails: User;
+  passangerDetails: User;
 
   constructor(private trampService: TrampService) { }
 
   ngOnInit() {
-    this.driverDetails = this.trampService.getUserDetails(this.trampRequest.driverEmpId);
-    this.passangerDetails = this.trampService.getUserDetails(this.trampRequest.passangerEmpId);
+    this.driverDetails = this.trampService.getUserDetails(this.trampRequest.driverUserID);
+    this.passangerDetails = this.trampService.getUserDetails(this.trampRequest.passangerUserID);
 
     if (this.trampRequest.requestStatus == 0)
       this.isRequestConfirmed=false;

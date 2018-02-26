@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-import { Tramp, Driver, Address } from "../models/tramp";
+import { Tramp, User, Address } from "../models/tramp";
 
 @Component({
   selector: "app-tramp-item",

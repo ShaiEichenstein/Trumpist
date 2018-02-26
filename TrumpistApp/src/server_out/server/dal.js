@@ -46,10 +46,10 @@ function addTrampRequest(trampRequst) {
         return __generator(this, function (_a) {
             if (trampRequst != null) {
                 exports.TrampsRequestMockUp.push(trampRequst);
-                tramp = exports.TrampsMockUp.filter(function (t) { return t.driverDetails.driverEmpId === trampRequst.driverEmpId; })[0];
+                tramp = exports.TrampsMockUp.filter(function (t) { return t.driverDetails.userId === trampRequst.driverUserID; })[0];
                 if (tramp != null) {
                     console.log(tramp);
-                    tramp['trampRequstStatus'] = 1;
+                    tramp['trampRequestStatus'] = 1;
                 }
                 else {
                     console.log("tramp is null");
@@ -67,193 +67,193 @@ exports.addTrampRequest = addTrampRequest;
 exports.TrampsRequestMockUp = new Array();
 exports.passanger = {
     driverDetails: {
-        driverLastName: "אייכנשטיין",
-        driverFirstName: "שי",
-        driverGender: "זכר",
-        driverAddress: {
+        lastName: "אייכנשטיין",
+        firstName: "שי",
+        Gender: "זכר",
+        Address: {
             city: "רמת גן",
             street: "הרצל"
+        },
+        entranceAvgTime: {
+            hour: 8,
+            minute: 20
         },
     },
     trampGrade: 75,
     color: '#588952',
-    entranceAvgTime: {
-        hour: 8,
-        minute: 20
-    }
 };
 exports.TrampsMockUp = [
     {
         driverDetails: {
-            driverEmpId: 12345,
-            driverLastName: "אייכנשטיין",
-            driverFirstName: "שי",
-            driverGender: "זכר",
-            driverAddress: {
+            userId: 12345,
+            lastName: "אייכנשטיין",
+            firstName: "שי",
+            Gender: "זכר",
+            Address: {
                 city: "רמת גן",
                 street: "הרצל"
+            },
+            entranceAvgTime: {
+                hour: 8,
+                minute: 20
+            },
+            leavingAvgTime: {
+                hour: 19,
+                minute: 30
             },
         },
         trampGrade: 75,
         color: '#588952',
-        entranceAvgTime: {
-            hour: 8,
-            minute: 20
-        },
-        leavingAvgTime: {
-            hour: 19,
-            minute: 30
-        },
-        trampRequstStatus: 0
+        trampRequestStatus: 0
     },
     {
         driverDetails: {
-            driverEmpId: 222,
-            driverLastName: "אפרגן",
-            driverFirstName: "דרור",
-            driverGender: "זכר",
-            driverAddress: {
+            userId: 222,
+            lastName: "אפרגן",
+            firstName: "דרור",
+            Gender: "זכר",
+            Address: {
                 city: "תל אביב",
                 street: "אלנבי"
+            },
+            entranceAvgTime: {
+                hour: 8,
+                minute: 40
+            },
+            leavingAvgTime: {
+                hour: 16,
+                minute: 30
             },
         },
         trampGrade: 85,
         color: '#F3AD1A',
-        entranceAvgTime: {
-            hour: 8,
-            minute: 40
-        },
-        leavingAvgTime: {
-            hour: 16,
-            minute: 30
-        },
-        trampRequstStatus: 0
+        trampRequestStatus: 0
     },
     {
         driverDetails: {
-            driverEmpId: 4444,
-            driverLastName: "דפנה",
-            driverFirstName: "פאן",
-            driverGender: "נקבה",
-            driverAddress: {
+            userId: 4444,
+            lastName: "דפנה",
+            firstName: "פאן",
+            Gender: "נקבה",
+            Address: {
                 city: "חיפה",
                 street: "הנביאים"
+            },
+            entranceAvgTime: {
+                hour: 9,
+                minute: 0
+            },
+            leavingAvgTime: {
+                hour: 18,
+                minute: 0
             },
         },
         trampGrade: 40,
         color: '#BA69C8',
-        entranceAvgTime: {
-            hour: 9,
-            minute: 0
-        },
-        leavingAvgTime: {
-            hour: 18,
-            minute: 0
-        },
-        trampRequstStatus: 0,
+        trampRequestStatus: 0,
     },
     {
         driverDetails: {
-            driverEmpId: 12312,
-            driverLastName: "אסף",
-            driverFirstName: "גאן",
-            driverGender: "זכר",
-            driverAddress: {
+            userId: 12312,
+            lastName: "אסף",
+            firstName: "גאן",
+            Gender: "זכר",
+            Address: {
                 city: "חיפה",
                 street: "אלנבי"
+            },
+            entranceAvgTime: {
+                hour: 7,
+                minute: 10
+            },
+            leavingAvgTime: {
+                hour: 17,
+                minute: 0
             },
         },
         trampGrade: 60,
         color: '#F3AD1A',
-        entranceAvgTime: {
-            hour: 7,
-            minute: 10
-        },
-        leavingAvgTime: {
-            hour: 17,
-            minute: 0
-        },
-        trampRequstStatus: 0
+        trampRequestStatus: 0
     },
     {
         driverDetails: {
-            driverEmpId: 555,
-            driverLastName: "מירב",
-            driverFirstName: "בוכריס",
-            driverGender: "נקבה",
-            driverAddress: {
+            userId: 555,
+            lastName: "מירב",
+            firstName: "בוכריס",
+            Gender: "נקבה",
+            Address: {
                 city: "אילת",
                 street: "הנביאים"
+            },
+            entranceAvgTime: {
+                hour: 6,
+                minute: 20
+            },
+            leavingAvgTime: {
+                hour: 15,
+                minute: 30
             },
         },
         trampGrade: 67,
         color: '#BA69C8',
-        entranceAvgTime: {
-            hour: 6,
-            minute: 20
-        },
-        leavingAvgTime: {
-            hour: 15,
-            minute: 30
-        },
-        trampRequstStatus: 0
+        trampRequestStatus: 0
     },
     {
         driverDetails: {
-            driverEmpId: 4242,
-            driverLastName: "משה",
-            driverFirstName: "משה",
-            driverGender: "זכר",
-            driverAddress: {
+            userId: 4242,
+            lastName: "משה",
+            firstName: "משה",
+            Gender: "זכר",
+            Address: {
                 city: "רמת גן",
                 street: "הרצל"
             },
+            entranceAvgTime: {
+                hour: 8,
+                minute: 10
+            },
         },
         trampGrade: 75,
         color: '#588952',
-        entranceAvgTime: {
-            hour: 8,
-            minute: 10
-        },
-        trampRequstStatus: 0
+        trampRequestStatus: 0
     },
     {
         driverDetails: {
-            driverEmpId: 123155,
-            driverLastName: "לוי",
-            driverFirstName: "אבי",
-            driverGender: "זכר",
-            driverAddress: {
+            userId: 123155,
+            lastName: "לוי",
+            firstName: "אבי",
+            Gender: "זכר",
+            Address: {
                 city: "רמת גן",
                 street: "הבורסה"
             },
-        },
-        trampGrade: 75,
-        color: '#588952',
-        entranceAvgTime: {
-            hour: 7,
-            minute: 20
-        },
-        trampRequstStatus: 0
-    },
-    {
-        driverDetails: {
-            driverEmpId: 856,
-            driverLastName: "אהרון",
-            driverFirstName: "מאיה",
-            driverGender: "נקבה",
-            driverAddress: {
-                city: "רמת גן",
-                street: "אורות"
+            entranceAvgTime: {
+                hour: 7,
+                minute: 20
             },
         },
         trampGrade: 75,
         color: '#588952',
-        entranceAvgTime: {
-            hour: 8,
-            minute: 20
+        trampRequestStatus: 0
+    },
+    {
+        driverDetails: {
+            userId: 856,
+            lastName: "אהרון",
+            firstName: "מאיה",
+            Gender: "נקבה",
+            Address: {
+                city: "רמת גן",
+                street: "אורות"
+            },
+            entranceAvgTime: {
+                hour: 8,
+                minute: 20
+            },
         },
-        trampRequstStatus: 0
+        trampGrade: 75,
+        color: '#588952',
+        trampRequestStatus: 0
     }
 ];
 function getAllTramps() {
@@ -268,14 +268,14 @@ exports.getAllTramps = getAllTramps;
 function calcGrades() {
     exports.TrampsMockUp.forEach(function (tramp) {
         var grade = 0;
-        if (tramp.driverDetails.driverAddress.city == exports.passanger.driverDetails.driverAddress.city) {
+        if (tramp.driverDetails.Address.city == exports.passanger.driverDetails.Address.city) {
             grade += 40;
-            if (tramp.driverDetails.driverAddress.street == exports.passanger.driverDetails.driverAddress.street) {
+            if (tramp.driverDetails.Address.street == exports.passanger.driverDetails.Address.street) {
                 grade += 20;
             }
-            if (tramp.entranceAvgTime.hour == exports.passanger.entranceAvgTime.hour) {
+            if (tramp.driverDetails.entranceAvgTime.hour == exports.passanger.driverDetails.entranceAvgTime.hour) {
                 grade += 30;
-                if (tramp.entranceAvgTime.minute == exports.passanger.entranceAvgTime.minute) {
+                if (tramp.driverDetails.entranceAvgTime.minute == exports.passanger.driverDetails.entranceAvgTime.minute) {
                     grade += 10;
                 }
             }
