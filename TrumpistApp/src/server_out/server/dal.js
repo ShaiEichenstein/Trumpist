@@ -344,11 +344,19 @@ exports.TrampsMockUp = [
 ];
 function getAllTramps() {
     return __awaiter(this, void 0, void 0, function () {
+        var db, trampRequests, trampsArr;
         return __generator(this, function (_a) {
-            console.log("getAllTramps");
-            console.log(exports.TrampsRequestMockUp.length);
-            calcGrades();
-            return [2 /*return*/, exports.TrampsMockUp];
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, dbClient.connect()];
+                case 1:
+                    db = _a.sent();
+                    trampRequests = db.collection("users");
+                    return [4 /*yield*/, trampRequests.find().toArray()];
+                case 2:
+                    trampsArr = _a.sent();
+                    console.log(trampsArr);
+                    return [2 /*return*/, trampsArr]; //calcGrades(trampsArr);
+            }
         });
     });
 }

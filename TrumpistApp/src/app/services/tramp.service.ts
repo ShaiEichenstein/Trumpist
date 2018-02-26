@@ -24,21 +24,29 @@ export class TrampService {
     // return this.trampList;
   }
 
-  getTrampRequestList(): Array<TrampRequest>{
+  getTrampRequestList(): Array<TrampRequest> {
     return TrampsRequestMockUp;
   }
 
   async sendTrampRequest(trampReq: TrampRequest) {
-    const updatedTrampRequest = await this.httpService.postTrampRequest<TrampRequest>('api/addTrampRequest', trampReq);
-    const existingUpdatedTramp = this.trampList.filter(t => t.driverDetails.userId === updatedTrampRequest.driverUserID)[0];
+    const updatedTrampRequest = await this.httpService.postTrampRequest<
+      TrampRequest
+    >("api/addTrampRequest", trampReq);
+    const existingUpdatedTramp = this.trampList.filter(
+      t => t.driverDetails.userId === updatedTrampRequest.driverUserID
+    )[0];
     existingUpdatedTramp.trampRequestStatus = updatedTrampRequest.requestStatus;
     this.setRequestAdditionalData(new Array<Tramp>(existingUpdatedTramp));
   }
 
   async updateTrampRequestStatus(trampReq: TrampRequest) {
-    const updatedTrampRequest = await this.httpService.postTrampRequest<TrampRequest>('api/updateTrampRequest', trampReq);
+    const updatedTrampRequest = await this.httpService.postTrampRequest<
+      TrampRequest
+    >("api/updateTrampRequest", trampReq);
     // console.log(updatedTrampRequest);
-    const existingUpdatedTramp = this.trampList.filter(t => t.driverDetails.userId === updatedTrampRequest.driverUserID)[0];
+    const existingUpdatedTramp = this.trampList.filter(
+      t => t.driverDetails.userId === updatedTrampRequest.driverUserID
+    )[0];
     existingUpdatedTramp.trampRequestStatus = updatedTrampRequest.requestStatus;
     this.setRequestAdditionalData(new Array<Tramp>(existingUpdatedTramp));
   }
@@ -57,29 +65,32 @@ export class TrampService {
   getRequests(userId: number): Array<TrampRequest> {
     return TrampsRequestMockUp;
   }
-  
-  getUserDetails(id): User{
+
+  getUserDetails(id): User {
     return this.trampList[id].driverDetails;
   }
 
   setRequestAdditionalData(tramps: Array<Tramp>) {
     tramps.forEach(tramp => {
-      if (tramp != null && tramp.trampRequestStatus != null) {
-      switch (tramp.trampRequestStatus) {
-        case 0:
-          tramp.trampRequestIcon = "open";
-          tramp.color = '#F3AD1A';
-          break;
-        case 1:
-          tramp.trampRequestIcon = "send";
-          tramp.color = '#BA69C8';
-          break;
-        case 2:
-          tramp.trampRequestIcon = "ok";
-          tramp.color = '#588952';
-          break;
+      if (tramp != null) {
+        if (tramp.trampRequestStatus == null) {
+          tramp.trampRequestStatus = 0;
+        }
+        switch (tramp.trampRequestStatus) {
+          case 0:
+            tramp.trampRequestIcon = "open";
+            tramp.color = "#F3AD1A";
+            break;
+          case 1:
+            tramp.trampRequestIcon = "send";
+            tramp.color = "#BA69C8";
+            break;
+          case 2:
+            tramp.trampRequestIcon = "ok";
+            tramp.color = "#588952";
+            break;
+        }
       }
-    }
     });
   }
 }
