@@ -96,7 +96,7 @@ async function loadMongo() {
 
   const db = client.db("trampistdb");
 
-  const trampRequests = db.collection("trampRequests");
+  //const trampRequests = db.collection("trampRequests");
   const users = db.collection("users");  
   /*trampRequests.drop(function (err, res) {
     if (err) throw err;
