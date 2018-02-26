@@ -1,6 +1,8 @@
 import { delay } from "./helpers";
 import { Tramp } from "../app/models/tramp";
 import { TrampRequest } from "../app/models/trampRequest";
+//import * as mongodb from "mongodb";
+import { MongoClient, Db, connect, ObjectId } from "mongodb";
 
 // export async function getAllTramps() {
 //   //await delay(1000);
@@ -9,6 +11,25 @@ import { TrampRequest } from "../app/models/trampRequest";
 //   return TrampsMockUp;
 // }
 
+class DbClient{
+  public db :Db;
+
+  async connect(){
+    if (!this.db){
+      try{
+        const client: MongoClient = await MongoClient.connect("mongodb://localhost:27017");
+        this.db = client.db("trampistdb");
+        return this.db;
+      }catch(error){
+        console.log("unable to connect to db");
+      }
+    }
+    return this.db;
+  }
+}
+
+const dbClient = new DbClient();
+//DbClient.db.Cursor.prototype.toArrayAsync = promisify(mongodb.Cursor.prototype.toArray);
 export async function addTrampRequest(trampRequst: TrampRequest) {
   console.log("addTrampRequest");
   let dbTrampreq = null;
@@ -266,14 +287,16 @@ export const TrampsMockUp: Array<Tramp> = [
 ];
 
 export async function getAllTramps() {
-  console.log("getAllTramps");
-  console.log(TrampsRequestMockUp.length);
-  calcGrades();
-  return TrampsMockUp;
+  let db = await dbClient.connect();
+  const trampRequests = db.collection("users");
+  const trampsArr = await trampRequests.find().toArray();
+  console.log (trampsArr);
+  return trampsArr;//calcGrades(trampsArr);
+  
 }
 
-function calcGrades() {
-  TrampsMockUp.forEach(tramp => {
+function calcGrades(trampsArr) {
+  trampsArr.forEach(tramp => {
     let grade = 0;
     if (
       tramp.driverDetails.address.city == passanger.driverDetails.address.city
@@ -300,4 +323,26 @@ function calcGrades() {
     }
     tramp.trampGrade = grade;
   });
+}
+
+function promisify(fn) {
+  return function () {
+    const args = Array.from(arguments);
+    const me = this;
+
+    return new Promise(function (resolve, reject) {
+      function callback(err, retVal) {
+        if (err) {
+          reject(err);
+          return;
+        }
+
+        resolve(retVal);
+      }
+
+      args.push(callback);
+
+      fn.apply(me, args);
+    });
+  }
 }

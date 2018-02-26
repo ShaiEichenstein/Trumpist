@@ -1,6 +1,7 @@
 const child_process = require("child_process");
 const mongodb = require("mongodb");
-var fs = require('fs');
+const fs = require('fs');
+
 
 const connect = promisify(mongodb.MongoClient.connect);
 
@@ -75,6 +76,10 @@ async function loadMongo() {
   const mongoPath = process.env.MONGO_PATH;
   console.log("mongo path: " + mongoPath);
 
+  const dir = 'src/data';
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir);
+  }
 
   await spawn(mongoPath + "\\bin\\mongod.exe", [
     "-dbpath",
@@ -91,29 +96,31 @@ async function loadMongo() {
   const db = client.db("trampistdb");
 
   const trampRequests = db.collection("trampRequests");
-
-  var myobj = {
-    driverLastName: "אייכנשטיין",
-    driverFirstName: "שי",
-    driverGender: "זכר",
-  };
-  trampRequests.insertOne(myobj, function(err, res) {
+  const users = db.collection("users");  
+  /*trampRequests.drop(function (err, res) {
     if (err) throw err;
-    console.log("DONE!!!!");
-  });
+    console.log("DELETE!!!!");
+  });*/
+  const usersArr = await users.find({}).toArrayAsync();
+  console.log("**********************************");
 
-  const trampsArr = await trampRequests.find({}).toArrayAsync();
-
-  for (const tramp of trampsArr) {
-    console.log(tramp);
+  console.log(usersArr.length);
+  if (usersArr.length != 0) {
+    for (const user of usersArr) {
+      console.log(user);
+    }
+  } else {
+    console.log("collection is empty");
+    var jsonDataFile = JSON.parse(fs.readFileSync('src/server/json4UploadDB.json', 'utf8'));
+    //console.log(jsonDataFile);
+    users.insertMany(jsonDataFile, function (err, res) {
+      if (err) throw err;
+      console.log("DONE!!!!");
+    });
   }
 
-
-  
-  //var jsonDataFile = JSON.parse(fs.readFileSync('json4UploadDB', 'utf8'));
-
-  /*console.log("Closing");
-  client.close();*/
+  console.log("Closing");
+  client.close();
 
 }
 
