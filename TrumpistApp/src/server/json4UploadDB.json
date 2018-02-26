@@ -1,5 +1,6 @@
 [
-    {"driverDetails": {
+  {
+    "driverDetails": {
       "userId": 12345,
       "lastName": "אייכנשטיין",
       "firstName": "שי",
@@ -15,9 +16,11 @@
       "leavingAvgTime": {
         "hour": 19,
         "minute": 30
-      },
-    }},
-    {"driverDetails": {
+      }
+    }
+  },
+  {
+    "driverDetails": {
       "userId": 222,
       "lastName": "אפרגן",
       "firstName": "דרור",
@@ -33,9 +36,11 @@
       "leavingAvgTime": {
         "hour": 16,
         "minute": 30
-      },
-    }},
-    {"driverDetails": {
+      }
+    }
+  },
+  {
+    "driverDetails": {
       "userId": 4444,
       "lastName": "דפנה",
       "firstName": "פאן",
@@ -51,9 +56,11 @@
       "leavingAvgTime": {
         "hour": 18,
         "minute": 0
-      },
-    }},
-    {"driverDetails": {
+      }
+    }
+  },
+  {
+    "driverDetails": {
       "userId": 12312,
       "lastName": "אסף",
       "firstName": "גאן",
@@ -69,9 +76,11 @@
       "leavingAvgTime": {
         "hour": 17,
         "minute": 0
-      },
-    }},
-    {"driverDetails": {
+      }
+    }
+  },
+  {
+    "driverDetails": {
       "userId": 555,
       "lastName": "מירב",
       "firstName": "בוכריס",
@@ -87,9 +96,11 @@
       "leavingAvgTime": {
         "hour": 15,
         "minute": 30
-      },
-    }},
-    {"driverDetails": {
+      }
+    }
+  },
+  {
+    "driverDetails": {
       "userId": 4242,
       "lastName": "משה",
       "firstName": "משה",
@@ -101,9 +112,11 @@
       "entranceAvgTime": {
         "hour": 8,
         "minute": 10
-      },
-    }},
-    {"driverDetails": {
+      }
+    }
+  },
+  {
+    "driverDetails": {
       "userId": 123155,
       "lastName": "לוי",
       "firstName": "אבי",
@@ -115,9 +128,11 @@
       "entranceAvgTime": {
         "hour": 7,
         "minute": 20
-      },
-    }},
-    {"driverDetails": {
+      }
+    }
+  },
+  {
+    "driverDetails": {
       "userId": 856,
       "lastName": "אהרון",
       "firstName": "מאיה",
@@ -127,8 +142,9 @@
         "street": "אורות"
       },
       "entranceAvgTime": {
-       "hour": 8,
+        "hour": 8,
         "minute": 20
-      },
-    }}
+      }
+    }
+  }
 ]

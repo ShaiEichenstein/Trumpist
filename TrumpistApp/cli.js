@@ -76,7 +76,7 @@ async function loadMongo() {
   console.log("mongo path: " + mongoPath);
 
   const dir = 'src/data';
-  if(!fs.existsSync(dir)){
+  if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir);
   }
 
@@ -96,27 +96,28 @@ async function loadMongo() {
 
   const trampRequests = db.collection("trampRequests");
 
-  /*var myobj = {
-    driverLastName: "אייכנשטיין",
-    driverFirstName: "שי",
-    driverGender: "זכר",
-  };
-  trampRequests.insertOne(myobj, function(err, res) {
+  /*trampRequests.drop(function (err, res) {
     if (err) throw err;
-    console.log("DONE!!!!");
+    console.log("DELETE!!!!");
   });*/
-  console.log("**********************************");
-  var jsonDataFile = JSON.parse(fs.readFileSync('src/server/dataToLoad.json', 'utf8'));
-  //console.log(jsonDataFile);
-  trampRequests.insertMany(jsonDataFile, function(err, res) {
-    if (err) throw err;
-    console.log("DONE!!!!");
-  });
   const trampsArr = await trampRequests.find({}).toArrayAsync();
+  console.log("**********************************");
 
-  for (const tramp of trampsArr) {
-    console.log(tramp);
+  console.log(trampsArr.length);
+  if (trampsArr.length != 0) {
+    for (const tramp of trampsArr) {
+      console.log(tramp);
+    }
+  } else {  
+    console.log("collection is empty");
+    var jsonDataFile = JSON.parse(fs.readFileSync('src/server/json4UploadDB.json', 'utf8'));
+    //console.log(jsonDataFile);
+    trampRequests.insertMany(jsonDataFile, function (err, res) {
+      if (err) throw err;
+      console.log("DONE!!!!");
+    });
   }
+
 
   /*console.log("Closing");
   client.close();*/
