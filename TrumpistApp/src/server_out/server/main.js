@@ -77,13 +77,14 @@ app.post("/api/addTrampRequest", wrap(function (req, res) {
         });
     });
 }));
-app.post("/api/users", wrap(function (req, res) {
+app.get("/api/users/:userID", wrap(function (req, res) {
     return __awaiter(this, void 0, void 0, function () {
+        var userID;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    console.log(req.body);
-                    return [4 /*yield*/, dal.getUser(req.body)];
+                    userID = req.params.userID;
+                    return [4 /*yield*/, dal.getUser(userID)];
                 case 1: return [2 /*return*/, _a.sent()];
             }
         });

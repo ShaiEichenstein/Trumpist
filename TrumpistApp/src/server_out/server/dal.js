@@ -162,36 +162,19 @@ function updateTrampRequest(trampRequst) {
 exports.updateTrampRequest = updateTrampRequest;
 function getUser(userID) {
     return __awaiter(this, void 0, void 0, function () {
-        var userDetMockup;
+        var db, users1, user;
         return __generator(this, function (_a) {
-            userDetMockup = {
-                userId: 111,
-                password: "111",
-                lastName: "אייכנשטיין",
-                firstName: "שי",
-                gender: "זכר",
-                address: {
-                    city: "רמת גן",
-                    street: "הרצל"
-                },
-                entranceAvgTime: {
-                    hour: 8,
-                    minute: 20
-                },
-                leavingAvgTime: {
-                    hour: 18,
-                    minute: 25
-                }
-            };
-            // userMockUp.push(userID);
-            //   const tramp = TrampsMockUp.filter(
-            //     t => t.driverDetails.userId === trampRequst.driverUserID
-            //   )[0];
-            //   if (tramp != null) {
-            //     console.log(tramp);
-            //     tramp['trampRequestStatus'] = 1;
-            //   } else { console.log("tramp is null"); }
-            return [2 /*return*/, userDetMockup];
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, dbClient.connect()];
+                case 1:
+                    db = _a.sent();
+                    users1 = db.collection("users");
+                    console.log("userID:" + userID);
+                    return [4 /*yield*/, users1.findOne(({ "driverDetails.userId": userID }))];
+                case 2:
+                    user = _a.sent();
+                    return [2 /*return*/, user];
+            }
         });
     });
 }
