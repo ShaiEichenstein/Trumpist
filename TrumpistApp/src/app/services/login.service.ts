@@ -15,7 +15,7 @@ export class LoginService {
 
   async getUser(id:number): Promise<User> {
     // return this.trampList;
-    const usr = await this.httpService.requestGetData<User>('/api/users/' + id);
+    const usr = await this.httpService.requestGetData<User>('/api/users',id);
     console.log(usr);
     localStorage.setItem('currentUser', JSON.stringify(usr));
     return usr;

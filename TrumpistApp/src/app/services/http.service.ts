@@ -15,7 +15,7 @@ export class HttpService {
 
   constructor(private http: HttpClient) {}
 
-  async requestGetData<T>(url: string): Promise<T> {
+  async requestGetData<T>(url: string,userID:number): Promise<T> {
       return await this.http.get<T>(url).toPromise();
   }
 
