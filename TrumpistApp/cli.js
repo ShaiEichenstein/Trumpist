@@ -1,4 +1,10 @@
 const child_process = require("child_process");
+const mongodb = require("mongodb");
+var fs = require('fs');
+
+const connect = promisify(mongodb.MongoClient.connect);
+
+mongodb.Cursor.prototype.toArrayAsync = promisify(mongodb.Cursor.prototype.toArray);
 
 const command = process.argv[2];
 
@@ -7,8 +13,9 @@ if (command == "start") {
 }
 
 async function start() {
+  await loadMongo();
+
   console.log("Compiling server")
-  
   await spawn("node_modules\\.bin\\tsc", [
     "-p",
     "src/server/tsconfig.json"
@@ -45,9 +52,9 @@ async function start() {
       stdio: "inherit",
     });
 
-    console.log("nodemon is running")
-   
-  
+  console.log("nodemon is running")
+
+
 }
 
 function spawn(app, args, options) {
@@ -62,4 +69,73 @@ function spawn(app, args, options) {
       reject(err);
     })
   });
+}
+
+async function loadMongo() {
+  const mongoPath = process.env.MONGO_PATH;
+  console.log("mongo path: " + mongoPath);
+
+
+  await spawn(mongoPath + "\\bin\\mongod.exe", [
+    "-dbpath",
+    "src/data"
+  ], {
+      shell: true,
+      stdio: "inherit",
+    });
+
+  console.log("Connecting to mongo ");
+  const client = await connect("mongodb://localhost:27017");
+  console.log("mongo Connected");
+
+  const db = client.db("trampistdb");
+
+  const trampRequests = db.collection("trampRequests");
+
+  var myobj = {
+    driverLastName: "אייכנשטיין",
+    driverFirstName: "שי",
+    driverGender: "זכר",
+  };
+  trampRequests.insertOne(myobj, function(err, res) {
+    if (err) throw err;
+    console.log("DONE!!!!");
+  });
+
+  const trampsArr = await trampRequests.find({}).toArrayAsync();
+
+  for (const tramp of trampsArr) {
+    console.log(tramp);
+  }
+
+
+  
+  //var jsonDataFile = JSON.parse(fs.readFileSync('json4UploadDB', 'utf8'));
+
+  /*console.log("Closing");
+  client.close();*/
+
+}
+
+
+function promisify(fn) {
+  return function () {
+    const args = Array.from(arguments);
+    const me = this;
+
+    return new Promise(function (resolve, reject) {
+      function callback(err, retVal) {
+        if (err) {
+          reject(err);
+          return;
+        }
+
+        resolve(retVal);
+      }
+
+      args.push(callback);
+
+      fn.apply(me, args);
+    });
+  }
 }
