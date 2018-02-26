@@ -33,37 +33,64 @@ const dbClient = new DbClient();
 var usersArr;
 
 export async function addTrampRequest(trampRequst: TrampRequest) {
+  console.log("addTrampRequest");
+  let dbTrampreq = null;
   if (trampRequst != null) {
-    TrampsRequestMockUp.push(trampRequst);
-    const tramp = TrampsMockUp.filter(
-      t => t.driverDetails.userId === trampRequst.driverUserID
-    )[0];
-    if (tramp != null) {
-      console.log(tramp);
-      tramp["trampRequestStatus"] = 1;
+    // checks if the request alredy exists
+    dbTrampreq = getExistingRequest(trampRequst);
+    if (dbTrampreq === null) {
+      TrampsRequestMockUp.push(trampRequst);
     } else {
-      console.log("tramp is null");
+      console.log("update existing request");
+      dbTrampreq.requestStatus = trampRequst.requestStatus;
     }
-    return tramp;
   } else {
     console.log("trampRequst is null");
+  }
+  // TODO get the new document from db and return it
+  return trampRequst;
+}
+
+function getExistingRequest(trampRequst: TrampRequest) {
+  let dbTrampreq = null;
+  if (trampRequst != null) {
+    if (trampRequst.id != null) {
+      dbTrampreq = TrampsRequestMockUp.filter(req => req.id === trampRequst.id);
+    } else {
+      dbTrampreq = TrampsRequestMockUp.filter(
+        req =>
+          req.driverUserID === trampRequst.driverUserID &&
+          req.passangerUserID === trampRequst.passangerUserID
+        // &&  req.trampDate === trampRequst.trampDate
+      );
+    }
+    if (dbTrampreq != null && dbTrampreq.length > 0) {
+      return dbTrampreq[0];
+    } else {
+      return null;
+    }
   }
 }
 
 export async function updateTrampRequest(trampRequst: TrampRequest) {
   console.log("updateTrampRequest");
+  let dbTrampreq = null;
   if (trampRequst != null) {
-    const dbTrampreq = TrampsRequestMockUp.filter(
-      req =>
-        req.driverUserID === trampRequst.driverUserID &&
-        req.passangerUserID === trampRequst.passangerUserID
-      // &&  req.trampDate === trampRequst.trampDate
-    );
+    if (trampRequst.id != null) {
+      dbTrampreq = TrampsRequestMockUp.filter(req => req.id === trampRequst.id);
+    } else {
+      dbTrampreq = TrampsRequestMockUp.filter(
+        req =>
+          req.driverUserID === trampRequst.driverUserID &&
+          req.passangerUserID === trampRequst.passangerUserID
+        // &&  req.trampDate === trampRequst.trampDate
+      );
+    }
     // const tramp = TrampsMockUp.filter(
     //   t => t.driverDetails.driverEmpId === trampRequst.driverEmpId
     // );
     if (dbTrampreq != null && dbTrampreq.length > 0) {
-      console.log(dbTrampreq);
+      // console.log(dbTrampreq);
       dbTrampreq[0].requestStatus = trampRequst.requestStatus;
     } else {
       console.log("trampRequst is null");

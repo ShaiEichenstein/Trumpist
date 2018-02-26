@@ -1,6 +1,7 @@
 import { Tramp, Address } from "./../models/tramp";
 import { Component, OnInit, Input } from "@angular/core";
 import { TrampService } from "../services/tramp.service";
+import { TrampRequest } from "../models/trampRequest";
 
 @Component({
   selector: "app-tramp-list",
@@ -61,10 +62,22 @@ export class TrampListComponent implements OnInit {
   }
 
   sendTrampRequstHandler(tramp: Tramp) {
-    this.trampService.sendTrampRequest(tramp);
+    const trampReq = <TrampRequest>{
+      driverUserID: tramp.driverDetails.userId,
+      passangerUserID: 37897,
+      trampDate: new Date(),
+      requestStatus: 1
+    };
+    this.trampService.sendTrampRequest(trampReq);
   }
 
   cancelTrampRequstHandler(tramp: Tramp) {
-    this.trampService.updateTrampRequest(tramp, 0);
+    const trampReq = <TrampRequest>{
+      driverUserID: tramp.driverDetails.userId,
+      passangerUserID: 37897,
+      trampDate: new Date(),
+      requestStatus: 0
+    };
+    this.trampService.updateTrampRequestStatus(trampReq);
   }
 }

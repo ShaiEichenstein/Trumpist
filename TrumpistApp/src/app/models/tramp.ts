@@ -25,7 +25,7 @@ export interface Address {
     buldingNumber: number;
 }
 
-export interface Time{
+export interface Time {
     hour: number;
     minute: number;
 }

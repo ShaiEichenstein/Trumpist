@@ -20,7 +20,7 @@ export class HttpService {
   }
 
 
-  async addTrampRequest<T> (url: string, trampRequst: TrampRequest): Promise<T> {
+  async postTrampRequest<T> (url: string, trampRequst: TrampRequest): Promise<T> {
     const tramps = await this.http.post<T>(url, trampRequst).toPromise();
     return tramps;
   }
@@ -54,5 +54,4 @@ export class HttpService {
     //                     .map((res:Response) => res.json());
     // }
 
-  
-}
+  }
