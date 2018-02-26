@@ -37,6 +37,15 @@ async function start() {
       shell: true,
       stdio: "inherit",
     });
+
+    /*console.log("nodemon is running")
+    spawn("node_modules\\.bin\\nodemon", [
+      "src/server_out/server/main.js"
+    ], {
+        shell: true,
+        stdio: "inherit",
+      });
+  */
 }
 
 function spawn(app, args, options) {

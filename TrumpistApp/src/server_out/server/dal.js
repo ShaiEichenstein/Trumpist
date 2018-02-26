@@ -70,6 +70,23 @@ function addTrampRequest(trampRequst) {
 }
 exports.addTrampRequest = addTrampRequest;
 exports.TrampsRequestMockUp = new Array();
+exports.passanger = {
+    driverDetails: {
+        driverLastName: "אייכנשטיין",
+        driverFirstName: "שי",
+        driverGender: "זכר",
+        driverAddress: {
+            city: "רמת גן",
+            street: "הרצל"
+        },
+    },
+    trampGrade: 75,
+    color: '#588952',
+    entranceAvgTime: {
+        hour: 8,
+        minute: 20
+    }
+};
 exports.TrampsMockUp = [
     {
         driverDetails: {

@@ -1,0 +1,17 @@
+<div class="card" [style.border-color]=trampRequest.color>
+  <div class="row">
+    <div class="col-md-4 tramp-request-button-wrapper tramp-request-col">
+      <button class="tramp-request-button btn-primary" (click)=confirmTrampRequest()>אשר בקשה</button>
+    </div> 
+
+    <div class="col-md-5 tramp-request-col">
+      <p class="tramp-request-text"> {{passangerDetails.driverFirstName }} {{passangerDetails.driverLastName}} </p>
+      <p class="tramp-request-text"> {{passangerDetails.driverGender}} </p>
+      <p></p>
+      <p class="tramp-request-text"> {{trampRequest.trampDate | date:'dd-MM-yyyy'}} </p>
+      <p class="tramp-request-text"> {{trampRequest.trampDate | date:'HH:mm'}} </p>
+    </div>
+    
+    <div class="tramp-request-icon col-md-3 glyphicon glyphicon-user"></div>
+  </div>
+</div>
