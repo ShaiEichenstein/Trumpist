@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 
-
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { MainComponent } from './main/main.component';
@@ -33,12 +33,16 @@ import { LoginComponent } from './login/login.component';
     TrampGradeComponent,
     TrampRequestListComponent,
     TrampRequestItemComponent,
+<<<<<<< HEAD
     LoginComponent
+=======
+>>>>>>> d545ba9efa931d7812c46e2e86b172f7524890b5
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule.forRoot()
   ],
   providers: [
     TrampService,
@@ -47,7 +51,7 @@ import { LoginComponent } from './login/login.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { 
+export class AppModule {
 
 /**
      * Allows for retrieving singletons using `AppModule.injector.get(MyService)`

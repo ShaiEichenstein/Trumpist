@@ -1,6 +1,7 @@
 import { Tramp, Address } from "./../models/tramp";
 import { Component, OnInit, Input } from "@angular/core";
 import { TrampService } from "../services/tramp.service";
+import { TrampRequest } from "../models/trampRequest";
 
 @Component({
   selector: "app-tramp-list",
@@ -26,12 +27,15 @@ export class TrampListComponent implements OnInit {
       case "byRank":
         this.trampList.sort((n1, n2) => n2.trampGrade - n1.trampGrade);
         break;
+        case "byStatus":
+        this.trampList.sort((n1, n2) => n2.trampRequestStatus - n1.trampRequestStatus);
+        break;
       case "byGender":
         this.trampList.sort((n1, n2) => {
-          if (n1.driverDetails.Gender > n2.driverDetails.Gender) {
+          if (n1.driverDetails.gender > n2.driverDetails.gender) {
             return 1;
           }
-          if (n1.driverDetails.Gender < n2.driverDetails.Gender) {
+          if (n1.driverDetails.gender < n2.driverDetails.gender) {
             return -1;
           }
           return 0;
@@ -58,6 +62,22 @@ export class TrampListComponent implements OnInit {
   }
 
   sendTrampRequstHandler(tramp: Tramp) {
-    this.trampService.sendTrampRequest(tramp);
+    const trampReq = <TrampRequest>{
+      driverUserID: tramp.driverDetails.userId,
+      passangerUserID: 37897,
+      trampDate: new Date(),
+      requestStatus: 1
+    };
+    this.trampService.sendTrampRequest(trampReq);
+  }
+
+  cancelTrampRequstHandler(tramp: Tramp) {
+    const trampReq = <TrampRequest>{
+      driverUserID: tramp.driverDetails.userId,
+      passangerUserID: 37897,
+      trampDate: new Date(),
+      requestStatus: 0
+    };
+    this.trampService.updateTrampRequestStatus(trampReq);
   }
 }

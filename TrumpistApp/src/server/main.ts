@@ -13,7 +13,6 @@ app.use(bodyParser.json());
 
 
 app.get("/api/tramps", wrap(async function() {
-  console.log("test");
     return await dal.getAllTramps();
 }));
 
@@ -22,14 +21,22 @@ app.get("/api/tramps", wrap(async function() {
 // });
 
 app.post("/api/addTrampRequest", wrap(async function(req, res) {
-  console.log(req.body);
+ // console.log(req.body);
   return await dal.addTrampRequest(req.body);
 }));
 
+<<<<<<< HEAD
 app.post("/api/users", wrap(async function(req,res) {
   console.log(req.body);
     return await dal.getUser(req.body);
 }));
+=======
+app.post("/api/updateTrampRequest", wrap(async function(req, res) {
+ // console.log(req.body);
+  return await dal.updateTrampRequest(req.body);
+}));
+
+>>>>>>> d545ba9efa931d7812c46e2e86b172f7524890b5
 
 function wrap(fn) {
   return function(req, res) {

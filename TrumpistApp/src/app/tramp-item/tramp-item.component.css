@@ -22,10 +22,12 @@
 .tramp-col {
   margin-top: 10px;
   font-weight: bold;
+  text-align: center;
+  padding: 0;
 }
 
 .tramp-grade {
-        font-size: 48px;
+  font-size: 48px;
 }
 
 .vl {
@@ -35,7 +37,50 @@
 
 .tramp-status {
   font-size: 27px;
-  margin-top: 60px;
+  margin-top: 55px;
   padding-right: 10px;
   cursor: pointer;
+  text-align: center;
+}
+
+.tramp-status > p {
+  font-size: 14px;
+}
+
+.card-container {
+  cursor: pointer;
+  height: 100px;
+  perspective: 600;
+  position: relative;
+  width: 380px;
+  margin-top: 5px;
+}
+
+.card {
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: transform 1s ease-in-out;
+  width: 100%;
+}
+
+.card-flip {
+  transform: rotateX(180deg);
+}
+
+.card .side {
+  backface-visibility: hidden;
+  border-radius: 6px;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+}
+
+.card .back {
+  background: white;
+  /*color: #0087cc;
+  line-height: 150px;
+  text-align: center; */
+  transform: rotateX(180deg);
 }

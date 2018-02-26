@@ -1,0 +1,150 @@
+[
+  {
+    "driverDetails": {
+      "userId": 12345,
+      "lastName": "אייכנשטיין",
+      "firstName": "שי",
+      "gender": "זכר",
+      "address": {
+        "city": "רמת גן",
+        "street": "הרצל"
+      },
+      "entranceAvgTime": {
+        "hour": 8,
+        "minute": 20
+      },
+      "leavingAvgTime": {
+        "hour": 19,
+        "minute": 30
+      }
+    }
+  },
+  {
+    "driverDetails": {
+      "userId": 222,
+      "lastName": "אפרגן",
+      "firstName": "דרור",
+      "gender": "זכר",
+      "address": {
+        "city": "תל אביב",
+        "street": "אלנבי"
+      },
+      "entranceAvgTime": {
+        "hour": 8,
+        "minute": 40
+      },
+      "leavingAvgTime": {
+        "hour": 16,
+        "minute": 30
+      }
+    }
+  },
+  {
+    "driverDetails": {
+      "userId": 4444,
+      "lastName": "דפנה",
+      "firstName": "פאן",
+      "gender": "נקבה",
+      "address": {
+        "city": "חיפה",
+        "street": "הנביאים"
+      },
+      "entranceAvgTime": {
+        "hour": 9,
+        "minute": 0
+      },
+      "leavingAvgTime": {
+        "hour": 18,
+        "minute": 0
+      }
+    }
+  },
+  {
+    "driverDetails": {
+      "userId": 12312,
+      "lastName": "אסף",
+      "firstName": "גאן",
+      "gender": "זכר",
+      "address": {
+        "city": "חיפה",
+        "street": "אלנבי"
+      },
+      "entranceAvgTime": {
+        "hour": 7,
+        "minute": 10
+      },
+      "leavingAvgTime": {
+        "hour": 17,
+        "minute": 0
+      }
+    }
+  },
+  {
+    "driverDetails": {
+      "userId": 555,
+      "lastName": "מירב",
+      "firstName": "בוכריס",
+      "gender": "נקבה",
+      "address": {
+        "city": "אילת",
+        "street": "הנביאים"
+      },
+      "entranceAvgTime": {
+        "hour": 6,
+        "minute": 20
+      },
+      "leavingAvgTime": {
+        "hour": 15,
+        "minute": 30
+      }
+    }
+  },
+  {
+    "driverDetails": {
+      "userId": 4242,
+      "lastName": "משה",
+      "firstName": "משה",
+      "gender": "זכר",
+      "address": {
+        "city": "רמת גן",
+        "street": "הרצל"
+      },
+      "entranceAvgTime": {
+        "hour": 8,
+        "minute": 10
+      }
+    }
+  },
+  {
+    "driverDetails": {
+      "userId": 123155,
+      "lastName": "לוי",
+      "firstName": "אבי",
+      "gender": "זכר",
+      "address": {
+        "city": "רמת גן",
+        "street": "הבורסה"
+      },
+      "entranceAvgTime": {
+        "hour": 7,
+        "minute": 20
+      }
+    }
+  },
+  {
+    "driverDetails": {
+      "userId": 856,
+      "lastName": "אהרון",
+      "firstName": "מאיה",
+      "gender": "נקבה",
+      "address": {
+        "city": "רמת גן",
+        "street": "אורות"
+      },
+      "entranceAvgTime": {
+        "hour": 8,
+        "minute": 20
+      }
+    }
+  }
+]

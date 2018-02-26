@@ -9,12 +9,24 @@ import { Tramp, User, Address } from "../models/tramp";
 export class TrampItemComponent implements OnInit {
   @Input() tramp: Tramp;
   @Output() sendRequest: EventEmitter<Tramp> = new EventEmitter<Tramp>();
+  @Output() cancelRequest: EventEmitter<Tramp> = new EventEmitter<Tramp>();
 
+  isFlip: boolean = false;
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.tramp);
+  }
 
-  sendTrempRequest() {
+  sendTrampRequest() {
     this.sendRequest.emit(this.tramp);
+  }
+
+  cancelTrampRequest() {
+    this.cancelRequest.emit(this.tramp);
+  }
+
+  flip() {
+    this.isFlip = !this.isFlip;
   }
 }
