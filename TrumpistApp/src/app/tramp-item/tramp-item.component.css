@@ -39,3 +39,41 @@
   padding-right: 10px;
   cursor: pointer;
 }
+
+.card-container {
+  cursor: pointer;
+  height: 100px;
+  perspective: 600;
+  position: relative;
+  width: 380px;
+  margin-top: 5px;
+}
+
+.card {
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: all 1s ease-in-out;
+  width: 100%;
+}
+
+.card-flip {
+  transform: rotateX(180deg);
+}
+
+.card .side {
+  backface-visibility: hidden;
+  border-radius: 6px;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+}
+
+.card .back {
+   background: white;
+  /*color: #0087cc;
+  line-height: 150px;
+  text-align: center; */
+  transform: rotateX(180deg);
+}

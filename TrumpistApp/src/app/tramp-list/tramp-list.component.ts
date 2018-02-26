@@ -26,6 +26,9 @@ export class TrampListComponent implements OnInit {
       case "byRank":
         this.trampList.sort((n1, n2) => n2.trampGrade - n1.trampGrade);
         break;
+        case "byStatus":
+        this.trampList.sort((n1, n2) => n2.trampRequstStatus - n1.trampRequstStatus);
+        break;
       case "byGender":
         this.trampList.sort((n1, n2) => {
           if (n1.driverDetails.driverGender > n2.driverDetails.driverGender) {

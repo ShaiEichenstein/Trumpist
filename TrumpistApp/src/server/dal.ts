@@ -157,7 +157,7 @@ export const TrampsMockUp: Array<Tramp> = [
       hour: 15,
       minute: 30
     },
-    trampRequstStatus: 0
+    trampRequstStatus: 2
   },
   <Tramp>{
     driverDetails: {
@@ -176,7 +176,7 @@ export const TrampsMockUp: Array<Tramp> = [
       hour: 8,
       minute: 10
     },
-    trampRequstStatus: 0
+    trampRequstStatus: 2
   },
   <Tramp>{
     driverDetails: {

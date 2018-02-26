@@ -196,7 +196,7 @@ exports.TrampsMockUp = [
             hour: 15,
             minute: 30
         },
-        trampRequstStatus: 0
+        trampRequstStatus: 2
     },
     {
         driverDetails: {
@@ -215,7 +215,7 @@ exports.TrampsMockUp = [
             hour: 8,
             minute: 10
         },
-        trampRequstStatus: 0
+        trampRequstStatus: 2
     },
     {
         driverDetails: {
