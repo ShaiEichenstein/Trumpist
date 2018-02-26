@@ -13,7 +13,7 @@ export async function addTrampRequest(trampRequst: TrampRequest) {
   if (trampRequst != null) {
     TrampsRequestMockUp.push(trampRequst);
     const tramp = TrampsMockUp.filter(
-      t => t.driverDetails.driverEmpId === trampRequst.driverEmpId
+      t => t.driverDetails.userId === trampRequst.driverUserID
     )[0];
     if (tramp != null) {
       console.log(tramp);
@@ -32,14 +32,14 @@ export async function updateTrampRequest(trampRequst: TrampRequest) {
   if (trampRequst != null) {
     const dbTrampreq = TrampsRequestMockUp.filter(
       req =>
-        req.driverEmpId === trampRequst.driverEmpId &&
-        req.passangerEmpId === trampRequst.passangerEmpId
+        req.driverUserID === trampRequst.driverUserID &&
+        req.passangerUserID === trampRequst.passangerUserID
       // &&  req.trampDate === trampRequst.trampDate
     );
     // const tramp = TrampsMockUp.filter(
     //   t => t.driverDetails.driverEmpId === trampRequst.driverEmpId
     // );
-    if (dbTrampreq != null && dbTrampreq.length >) {
+    if (dbTrampreq != null && dbTrampreq.length > 0) {
       console.log(dbTrampreq);
       dbTrampreq[0].requestStatus = trampRequst.requestStatus;
     } else {
@@ -55,194 +55,186 @@ export let TrampsRequestMockUp: Array<TrampRequest> = new Array<TrampRequest>();
 
 export const passanger: Tramp = <Tramp>{
   driverDetails: {
-    driverLastName: "אייכנשטיין",
-    driverFirstName: "שי",
-    driverGender: "זכר",
-    driverAddress: {
+    lastName: "אייכנשטיין",
+    firstName: "שי",
+    gender: "זכר",
+    address: {
       city: "רמת גן",
       street: "הרצל"
+    },
+    entranceAvgTime: {
+      hour: 8,
+      minute: 20
     }
   },
-  trampGrade: 75,
-  color: "#588952",
-  entranceAvgTime: {
-    hour: 8,
-    minute: 20
-  }
+  trampGrade: 75
 };
 
 export const TrampsMockUp: Array<Tramp> = [
   <Tramp>{
     driverDetails: {
-      driverEmpId: 12345,
-      driverLastName: "אייכנשטיין",
-      driverFirstName: "שי",
-      driverGender: "זכר",
-      driverAddress: {
+      userId: 12345,
+      lastName: "אייכנשטיין",
+      firstName: "שי",
+      gender: "זכר",
+      address: {
         city: "רמת גן",
         street: "הרצל"
+      },
+      entranceAvgTime: {
+        hour: 8,
+        minute: 20
+      },
+      leavingAvgTime: {
+        hour: 19,
+        minute: 30
       }
     },
-    trampGrade: 75,
-    color: "#588952",
-    entranceAvgTime: {
-      hour: 8,
-      minute: 20
-    },
-    leavingAvgTime: {
-      hour: 19,
-      minute: 30
-    },
-    trampRequstStatus: 0
+    trampGrade: 75
+
+    trampRequestStatus: 0
   },
   <Tramp>{
     driverDetails: {
-      driverEmpId: 222,
-      driverLastName: "אפרגן",
-      driverFirstName: "דרור",
-      driverGender: "זכר",
-      driverAddress: {
+      userId: 222,
+      lastName: "אפרגן",
+      firstName: "דרור",
+      gender: "זכר",
+      address: {
         city: "תל אביב",
         street: "אלנבי"
+      },
+      entranceAvgTime: {
+        hour: 8,
+        minute: 40
+      },
+      leavingAvgTime: {
+        hour: 16,
+        minute: 30
       }
     },
     trampGrade: 85,
-    color: "#F3AD1A",
-    entranceAvgTime: {
-      hour: 8,
-      minute: 40
-    },
-    leavingAvgTime: {
-      hour: 16,
-      minute: 30
-    },
-    trampRequstStatus: 0
+    trampRequestStatus: 0
   },
   <Tramp>{
     driverDetails: {
-      driverEmpId: 4444,
-      driverLastName: "דפנה",
-      driverFirstName: "פאן",
-      driverGender: "נקבה",
-      driverAddress: {
+      userId: 4444,
+      lastName: "דפנה",
+      firstName: "פאן",
+      gender: "נקבה",
+      address: {
         city: "חיפה",
         street: "הנביאים"
+      },
+      entranceAvgTime: {
+        hour: 9,
+        minute: 0
+      },
+      leavingAvgTime: {
+        hour: 18,
+        minute: 0
       }
     },
     trampGrade: 40,
-    color: "#BA69C8",
-    entranceAvgTime: {
-      hour: 9,
-      minute: 0
-    },
-    leavingAvgTime: {
-      hour: 18,
-      minute: 0
-    },
-    trampRequstStatus: 0
+    trampRequestStatus: 0
   },
   <Tramp>{
     driverDetails: {
-      driverEmpId: 12312,
-      driverLastName: "אסף",
-      driverFirstName: "גאן",
-      driverGender: "זכר",
-      driverAddress: {
+      userId: 12312,
+      lastName: "אסף",
+      firstName: "גאן",
+      gender: "זכר",
+      address: {
         city: "חיפה",
         street: "אלנבי"
+      },
+      entranceAvgTime: {
+        hour: 7,
+        minute: 10
+      },
+      leavingAvgTime: {
+        hour: 17,
+        minute: 0
       }
     },
     trampGrade: 60,
-    color: "#F3AD1A",
-    entranceAvgTime: {
-      hour: 7,
-      minute: 10
-    },
-    leavingAvgTime: {
-      hour: 17,
-      minute: 0
-    },
-    trampRequstStatus: 0
+    trampRequestStatus: 0
   },
   <Tramp>{
     driverDetails: {
-      driverEmpId: 555,
-      driverLastName: "מירב",
-      driverFirstName: "בוכריס",
-      driverGender: "נקבה",
-      driverAddress: {
+      userId: 555,
+      lastName: "מירב",
+      firstName: "בוכריס",
+      gender: "נקבה",
+      address: {
         city: "אילת",
         street: "הנביאים"
+      },
+      entranceAvgTime: {
+        hour: 6,
+        minute: 20
+      },
+      leavingAvgTime: {
+        hour: 15,
+        minute: 30
       }
     },
     trampGrade: 67,
-    color: "#BA69C8",
-    entranceAvgTime: {
-      hour: 6,
-      minute: 20
-    },
-    leavingAvgTime: {
-      hour: 15,
-      minute: 30
-    },
-    trampRequstStatus: 2
+    trampRequestStatus: 2
   },
   <Tramp>{
     driverDetails: {
-      driverEmpId: 4242,
-      driverLastName: "משה",
-      driverFirstName: "משה",
-      driverGender: "זכר",
-      driverAddress: {
+      userId: 4242,
+      lastName: "משה",
+      firstName: "משה",
+      gender: "זכר",
+      address: {
         city: "רמת גן",
         street: "הרצל"
+      },
+      entranceAvgTime: {
+        hour: 8,
+        minute: 10
       }
     },
     trampGrade: 75,
-    color: "#588952",
-    entranceAvgTime: {
-      hour: 8,
-      minute: 10
-    },
-    trampRequstStatus: 2
+    trampRequestStatus: 2
   },
   <Tramp>{
     driverDetails: {
-      driverEmpId: 123155,
-      driverLastName: "לוי",
-      driverFirstName: "אבי",
-      driverGender: "זכר",
-      driverAddress: {
+      userId: 123155,
+      lastName: "לוי",
+      firstName: "אבי",
+      gender: "זכר",
+      address: {
         city: "רמת גן",
         street: "הבורסה"
+      },
+      entranceAvgTime: {
+        hour: 7,
+        minute: 20
       }
     },
     trampGrade: 75,
-    color: "#588952",
-    entranceAvgTime: {
-      hour: 7,
-      minute: 20
-    },
-    trampRequstStatus: 0
+    trampRequestStatus: 0
   },
   <Tramp>{
     driverDetails: {
-      driverEmpId: 856,
-      driverLastName: "אהרון",
-      driverFirstName: "מאיה",
-      driverGender: "נקבה",
-      driverAddress: {
+      userId: 856,
+      lastName: "אהרון",
+      firstName: "מאיה",
+      gender: "נקבה",
+      address: {
         city: "רמת גן",
         street: "אורות"
+      },
+      entranceAvgTime: {
+        hour: 8,
+        minute: 20
       }
     },
     trampGrade: 75,
-    color: "#588952",
-    entranceAvgTime: {
-      hour: 8,
-      minute: 20
-    },
-    trampRequstStatus: 0
+    trampRequestStatus: 0
   }
 ];
 
@@ -255,19 +247,24 @@ function calcGrades() {
   TrampsMockUp.forEach(tramp => {
     let grade = 0;
     if (
-      tramp.driverDetails.driverAddress.city ==
-      passanger.driverDetails.driverAddress.city
+      tramp.driverDetails.address.city == passanger.driverDetails.address.city
     ) {
       grade += 40;
       if (
-        tramp.driverDetails.driverAddress.street ==
-        passanger.driverDetails.driverAddress.street
+        tramp.driverDetails.address.street ==
+        passanger.driverDetails.address.street
       ) {
         grade += 20;
       }
-      if (tramp.entranceAvgTime.hour == passanger.entranceAvgTime.hour) {
+      if (
+        tramp.driverDetails.entranceAvgTime.hour ==
+        passanger.driverDetails.entranceAvgTime.hour
+      ) {
         grade += 30;
-        if (tramp.entranceAvgTime.minute == passanger.entranceAvgTime.minute) {
+        if (
+          tramp.driverDetails.entranceAvgTime.minute ==
+          passanger.driverDetails.entranceAvgTime.minute
+        ) {
           grade += 10;
         }
       }

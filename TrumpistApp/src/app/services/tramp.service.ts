@@ -25,29 +25,30 @@ export class TrampService {
 
   async sendTrampRequest(tramp: Tramp) {
     const trampReq = <TrampRequest>{
-        driverEmpId: tramp.driverDetails.driverEmpId,
-        passangerEmpId: 37897,
+        id: 1,
+        driverUserID: tramp.driverDetails.userId,
+        passangerUserID: 37897,
         trampDate: new Date(),
         requestStatus: 1
       };
     const updatedTramp = await this.httpService.addTrampRequest<Tramp>('api/addTrampRequest', trampReq);
     console.log(updatedTramp);
-    const existingUpdatedTramp = this.trampList.filter(t => t.driverDetails.driverEmpId === updatedTramp.driverDetails.driverEmpId)[0];
-    existingUpdatedTramp.trampRequstStatus = updatedTramp.trampRequstStatus;
+    const existingUpdatedTramp = this.trampList.filter(t => t.driverDetails.userId === updatedTramp.driverDetails.userId)[0];
+    existingUpdatedTramp.trampRequestStatus = updatedTramp.trampRequestStatus;
     this.setRequestAdditionalData(new Array<Tramp>(existingUpdatedTramp));
   }
 
   async updateTrampRequest(tramp: Tramp, requestStatus: number) {
     const trampReq = <TrampRequest>{
-        driverEmpId: tramp.driverDetails.driverEmpId,
-        passangerEmpId: 37897,
+        driverUserID: tramp.driverDetails.userId,
+        passangerUserID: 37897,
         trampDate: new Date(),
         requestStatus: requestStatus
       };
     const updatedTrampRequest = await this.httpService.addTrampRequest<TrampRequest>('api/updateTrampRequest', trampReq);
     console.log(updatedTrampRequest);
-    const existingUpdatedTramp = this.trampList.filter(t => t.driverDetails.driverEmpId === updatedTrampRequest.driverEmpId)[0];
-    existingUpdatedTramp.trampRequstStatus = updatedTrampRequest.requestStatus;
+    const existingUpdatedTramp = this.trampList.filter(t => t.driverDetails.userId === updatedTrampRequest.driverUserID)[0];
+    existingUpdatedTramp.trampRequestStatus = updatedTrampRequest.requestStatus;
     this.setRequestAdditionalData(new Array<Tramp>(existingUpdatedTramp));
   }
 
@@ -68,8 +69,8 @@ export class TrampService {
 
   setRequestAdditionalData(tramps: Array<Tramp>) {
     tramps.forEach(tramp => {
-      if (tramp != null && tramp.trampRequstStatus != null) {
-      switch (tramp.trampRequstStatus) {
+      if (tramp != null && tramp.trampRequestStatus != null) {
+      switch (tramp.trampRequestStatus) {
         case 0:
           tramp.trampRequestIcon = "open";
           tramp.color = '#F3AD1A';

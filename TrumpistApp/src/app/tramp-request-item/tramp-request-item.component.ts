@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Tramp, Driver, Address } from '../models/tramp';
-import { TrampRequest } from '../models/trampRequst';
+import { Tramp, User, Address } from '../models/tramp';
+import { TrampRequest } from '../models/trampRequest';
 import { TrampService } from '../tramp.service';
 
 @Component({
@@ -12,14 +12,14 @@ export class TrampRequestItemComponent implements OnInit {
 
   @Input() trampRequest: TrampRequest;
 
-  driverDetails: Driver;
-  passangerDetails: Driver;
+  driverDetails: User;
+  passangerDetails: User;
 
   constructor(private trampService: TrampService) { }
 
   ngOnInit() {
-    this.driverDetails = this.trampService.getUserDetails(this.trampRequest.driverEmpId);
-    this.passangerDetails = this.trampService.getUserDetails(this.trampRequest.passangerEmpId);
+    this.driverDetails = this.trampService.getUserDetails(this.trampRequest.driverUserID);
+    this.passangerDetails = this.trampService.getUserDetails(this.trampRequest.passangerUserID);
   }
 
   confirmTrampRequest(){

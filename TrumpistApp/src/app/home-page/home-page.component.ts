@@ -1,7 +1,7 @@
 import { TrampService } from "./../services/tramp.service";
 import { Component, OnInit } from "@angular/core";
 import { Tramp } from "../models/tramp";
-import { TrampRequest } from "../models/trampRequst";
+import { TrampRequest } from "../models/trampRequest";
 
 @Component({
   selector: "app-home-page",

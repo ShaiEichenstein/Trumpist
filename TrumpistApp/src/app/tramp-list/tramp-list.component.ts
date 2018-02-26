@@ -31,10 +31,10 @@ export class TrampListComponent implements OnInit {
         break;
       case "byGender":
         this.trampList.sort((n1, n2) => {
-          if (n1.driverDetails.driverGender > n2.driverDetails.driverGender) {
+          if (n1.driverDetails.Gender > n2.driverDetails.Gender) {
             return 1;
           }
-          if (n1.driverDetails.driverGender < n2.driverDetails.driverGender) {
+          if (n1.driverDetails.Gender < n2.driverDetails.Gender) {
             return -1;
           }
           return 0;
@@ -43,12 +43,12 @@ export class TrampListComponent implements OnInit {
       case "byName":
         this.trampList.sort((n1, n2) => {
           if (
-            n1.driverDetails.driverFirstName > n2.driverDetails.driverFirstName
+            n1.driverDetails.firstName > n2.driverDetails.firstName
           ) {
             return 1;
           }
           if (
-            n1.driverDetails.driverFirstName < n2.driverDetails.driverFirstName
+            n1.driverDetails.firstName < n2.driverDetails.firstName
           ) {
             return -1;
           }
