@@ -312,6 +312,8 @@ exports.TrampsMockUp = [
 function getAllTramps() {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
+            console.log("getAllTramps");
+            console.log(exports.TrampsRequestMockUp.length);
             calcGrades();
             return [2 /*return*/, exports.TrampsMockUp];
         });

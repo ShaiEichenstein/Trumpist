@@ -22,10 +22,12 @@
 .tramp-col {
   margin-top: 10px;
   font-weight: bold;
+  text-align: center;
+  padding: 0;
 }
 
 .tramp-grade {
-        font-size: 48px;
+  font-size: 48px;
 }
 
 .vl {
@@ -35,9 +37,14 @@
 
 .tramp-status {
   font-size: 27px;
-  margin-top: 60px;
+  margin-top: 55px;
   padding-right: 10px;
   cursor: pointer;
+  text-align: center;
+}
+
+.tramp-status > p {
+  font-size: 14px;
 }
 
 .card-container {
@@ -71,7 +78,7 @@
 }
 
 .card .back {
-   background: white;
+  background: white;
   /*color: #0087cc;
   line-height: 150px;
   text-align: center; */

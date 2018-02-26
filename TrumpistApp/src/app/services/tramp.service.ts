@@ -28,28 +28,16 @@ export class TrampService {
     return TrampsRequestMockUp;
   }
 
-  async sendTrampRequest(tramp: Tramp) {
-    const trampReq = <TrampRequest>{
-        driverUserID: tramp.driverDetails.userId,
-        passangerUserID: 37897,
-        trampDate: new Date(),
-        requestStatus: 1
-      };
+  async sendTrampRequest(trampReq: TrampRequest) {
     const updatedTrampRequest = await this.httpService.postTrampRequest<TrampRequest>('api/addTrampRequest', trampReq);
     const existingUpdatedTramp = this.trampList.filter(t => t.driverDetails.userId === updatedTrampRequest.driverUserID)[0];
     existingUpdatedTramp.trampRequestStatus = updatedTrampRequest.requestStatus;
     this.setRequestAdditionalData(new Array<Tramp>(existingUpdatedTramp));
   }
 
-  async updateTrampRequest(tramp: Tramp, requestStatus: number) {
-    const trampReq = <TrampRequest>{
-        driverUserID: tramp.driverDetails.userId,
-        passangerUserID: 37897,
-        trampDate: new Date(),
-        requestStatus: requestStatus
-      };
+  async updateTrampRequestStatus(trampReq: TrampRequest) {
     const updatedTrampRequest = await this.httpService.postTrampRequest<TrampRequest>('api/updateTrampRequest', trampReq);
-    console.log(updatedTrampRequest);
+    // console.log(updatedTrampRequest);
     const existingUpdatedTramp = this.trampList.filter(t => t.driverDetails.userId === updatedTrampRequest.driverUserID)[0];
     existingUpdatedTramp.trampRequestStatus = updatedTrampRequest.requestStatus;
     this.setRequestAdditionalData(new Array<Tramp>(existingUpdatedTramp));

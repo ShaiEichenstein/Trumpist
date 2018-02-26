@@ -266,6 +266,8 @@ export const TrampsMockUp: Array<Tramp> = [
 ];
 
 export async function getAllTramps() {
+  console.log("getAllTramps");
+  console.log(TrampsRequestMockUp.length);
   calcGrades();
   return TrampsMockUp;
 }
