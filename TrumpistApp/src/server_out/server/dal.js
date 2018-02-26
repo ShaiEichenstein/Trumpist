@@ -90,17 +90,16 @@ exports.passanger = {
 exports.TrampsMockUp = [
     {
         driverDetails: {
-            driverEmpId: 1234,
             driverLastName: "אייכנשטיין",
             driverFirstName: "שי",
             driverGender: "זכר",
             driverAddress: {
                 city: "רמת גן",
                 street: "הרצל"
-            }
+            },
         },
         trampGrade: 75,
-        color: "#588952",
+        color: '#588952',
         entranceAvgTime: {
             hour: 8,
             minute: 20
@@ -113,17 +112,16 @@ exports.TrampsMockUp = [
     },
     {
         driverDetails: {
-            driverEmpId: 4321,
             driverLastName: "אפרגן",
             driverFirstName: "דרור",
             driverGender: "זכר",
             driverAddress: {
                 city: "תל אביב",
                 street: "אלנבי"
-            }
+            },
         },
         trampGrade: 85,
-        color: "#F3AD1A",
+        color: '#F3AD1A',
         entranceAvgTime: {
             hour: 8,
             minute: 40
@@ -136,17 +134,16 @@ exports.TrampsMockUp = [
     },
     {
         driverDetails: {
-            driverEmpId: 323,
             driverLastName: "דפנה",
             driverFirstName: "פאן",
             driverGender: "נקבה",
             driverAddress: {
                 city: "חיפה",
                 street: "הנביאים"
-            }
+            },
         },
         trampGrade: 40,
-        color: "#BA69C8",
+        color: '#BA69C8',
         entranceAvgTime: {
             hour: 9,
             minute: 0
@@ -155,21 +152,62 @@ exports.TrampsMockUp = [
             hour: 18,
             minute: 0
         },
-        trampRequstStatus: 0
+        trampRequstStatus: 0,
     },
     {
         driverDetails: {
-            driverEmpId: 444,
+            driverLastName: "אפרגן",
+            driverFirstName: "דרור",
+            driverGender: "זכר",
+            driverAddress: {
+                city: "תל אביב",
+                street: "אלנבי"
+            },
+        },
+        trampGrade: 85,
+        color: '#F3AD1A',
+        entranceAvgTime: {
+            hour: 8,
+            minute: 40
+        },
+        leavingAvgTime: {
+            hour: 16,
+            minute: 30
+        }
+    },
+    {
+        driverDetails: {
+            driverLastName: "דפנה",
+            driverFirstName: "פאן",
+            driverGender: "נקבה",
+            driverAddress: {
+                city: "חיפה",
+                street: "הנביאים"
+            },
+        },
+        trampGrade: 40,
+        color: '#BA69C8',
+        entranceAvgTime: {
+            hour: 9,
+            minute: 0
+        },
+        leavingAvgTime: {
+            hour: 18,
+            minute: 0
+        }
+    },
+    {
+        driverDetails: {
             driverLastName: "אסף",
             driverFirstName: "גאן",
             driverGender: "זכר",
             driverAddress: {
                 city: "חיפה",
                 street: "אלנבי"
-            }
+            },
         },
         trampGrade: 60,
-        color: "#F3AD1A",
+        color: '#F3AD1A',
         entranceAvgTime: {
             hour: 7,
             minute: 10
@@ -177,22 +215,20 @@ exports.TrampsMockUp = [
         leavingAvgTime: {
             hour: 17,
             minute: 0
-        },
-        trampRequstStatus: 0
+        }
     },
     {
         driverDetails: {
-            driverEmpId: 3232,
             driverLastName: "מירב",
             driverFirstName: "בוכריס",
             driverGender: "נקבה",
             driverAddress: {
                 city: "אילת",
                 street: "הנביאים"
-            }
+            },
         },
         trampGrade: 67,
-        color: "#BA69C8",
+        color: '#BA69C8',
         entranceAvgTime: {
             hour: 6,
             minute: 20
@@ -202,6 +238,84 @@ exports.TrampsMockUp = [
             minute: 30
         },
         trampRequstStatus: 0
+    },
+    {
+        driverDetails: {
+            driverLastName: "משה",
+            driverFirstName: "משה",
+            driverGender: "זכר",
+            driverAddress: {
+                city: "רמת גן",
+                street: "הרצל"
+            },
+        },
+        trampGrade: 75,
+        color: '#588952',
+        entranceAvgTime: {
+            hour: 8,
+            minute: 10
+        }
+    },
+    {
+        driverDetails: {
+            driverLastName: "לוי",
+            driverFirstName: "אבי",
+            driverGender: "זכר",
+            driverAddress: {
+                city: "רמת גן",
+                street: "הבורסה"
+            },
+        },
+        trampGrade: 75,
+        color: '#588952',
+        entranceAvgTime: {
+            hour: 7,
+            minute: 20
+        }
+    },
+    {
+        driverDetails: {
+            driverLastName: "אהרון",
+            driverFirstName: "מאיה",
+            driverGender: "נקבה",
+            driverAddress: {
+                city: "רמת גן",
+                street: "אורות"
+            },
+        },
+        trampGrade: 75,
+        color: '#588952',
+        entranceAvgTime: {
+            hour: 8,
+            minute: 20
+        }
     }
 ];
+function getAllTramps() {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            calcGrades();
+            return [2 /*return*/, exports.TrampsMockUp];
+        });
+    });
+}
+exports.getAllTramps = getAllTramps;
+function calcGrades() {
+    exports.TrampsMockUp.forEach(function (tramp) {
+        var grade = 0;
+        if (tramp.driverDetails.driverAddress.city == exports.passanger.driverDetails.driverAddress.city) {
+            grade += 10;
+            if (tramp.driverDetails.driverAddress.street == exports.passanger.driverDetails.driverAddress.street) {
+                grade += 5;
+            }
+            if (tramp.entranceAvgTime.hour == exports.passanger.entranceAvgTime.hour) {
+                grade += 9;
+                if (tramp.entranceAvgTime.minute == exports.passanger.entranceAvgTime.minute) {
+                    grade += 4;
+                }
+            }
+        }
+        tramp.trampGrade = grade;
+    });
+}
 //# sourceMappingURL=dal.js.map
