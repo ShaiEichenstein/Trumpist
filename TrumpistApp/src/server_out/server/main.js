@@ -69,7 +69,7 @@ app.post("/api/addTrampRequest", wrap(function (req, res) {
         });
     });
 }));
-app.get("/api/users", wrap(function (req, res) {
+app.post("/api/users", wrap(function (req, res) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
