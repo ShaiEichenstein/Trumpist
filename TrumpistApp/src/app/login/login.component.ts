@@ -11,9 +11,7 @@ import { User } from '../models/tramp';
 export class LoginComponent implements OnInit {
     user: User;
     private userid:number;
-    currentUser: User;
     constructor(private loginService: LoginService) {
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 
   ngOnInit() {
