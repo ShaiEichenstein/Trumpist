@@ -320,7 +320,7 @@ function getAllTramps() {
                 case 0: return [4 /*yield*/, dbClient.connect()];
                 case 1:
                     db = _a.sent();
-                    trampRequests = db.collection("trampRequests");
+                    trampRequests = db.collection("users");
                     return [4 /*yield*/, trampRequests.find().toArray()];
                 case 2:
                     trampsArr = _a.sent();

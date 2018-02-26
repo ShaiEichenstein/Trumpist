@@ -96,24 +96,24 @@ async function loadMongo() {
   const db = client.db("trampistdb");
 
   const trampRequests = db.collection("trampRequests");
-
+  const users = db.collection("users");  
   /*trampRequests.drop(function (err, res) {
     if (err) throw err;
     console.log("DELETE!!!!");
   });*/
-  const trampsArr = await trampRequests.find({}).toArrayAsync();
+  const usersArr = await users.find({}).toArrayAsync();
   console.log("**********************************");
 
-  console.log(trampsArr.length);
-  if (trampsArr.length != 0) {
-    for (const tramp of trampsArr) {
-      console.log(tramp);
+  console.log(usersArr.length);
+  if (usersArr.length != 0) {
+    for (const user of usersArr) {
+      console.log(user);
     }
   } else {
     console.log("collection is empty");
     var jsonDataFile = JSON.parse(fs.readFileSync('src/server/json4UploadDB.json', 'utf8'));
     //console.log(jsonDataFile);
-    trampRequests.insertMany(jsonDataFile, function (err, res) {
+    users.insertMany(jsonDataFile, function (err, res) {
       if (err) throw err;
       console.log("DONE!!!!");
     });

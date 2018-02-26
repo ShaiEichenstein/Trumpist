@@ -29,9 +29,9 @@
 
         <div class="col-md-4 tramp-col">
           <!-- <p class="tramp-text"> {{tramp.driverDetails.driverFirstName}} {{tramp.driverDetails.driverLastName}} </p> -->
-          <p class="tramp-text"> {{tramp.driverDetails.address.city}}, {{tramp.driverDetails.address.street}} </p>
-          <p class="tramp-text"> {{tramp.driverDetails.entranceAvgTime.hour}}:{{tramp.driverDetails.entranceAvgTime.minute}} </p>
-          <p class="tramp-text"> {{tramp.driverDetails.gender}} </p>
+          <p class="tramp-text"> {{tramp?.driverDetails?.address?.city}}, {{tramp?.driverDetails?.address?.street}} </p>
+          <p class="tramp-text"> {{tramp?.driverDetails?.entranceAvgTime?.hour}}:{{tramp?.driverDetails?.entranceAvgTime?.minute}} </p>
+          <p class="tramp-text"> {{tramp?.driverDetails?.gender}} </p>
         </div>
 
         <!-- <div class="tramp-icon col-md-4 glyphicon glyphicon-user" [style.color]=tramp.color></div> -->
@@ -49,9 +49,9 @@
 
 
         <div class="col-md-4 tramp-col">
-          <p class="tramp-text"> {{tramp.driverDetails.firstName}} {{tramp.driverDetails.lastName}} </p>
-          <p class="tramp-text"> {{tramp.driverDetails.address.city}}, {{tramp.driverDetails.address.street}} </p>
-          <p class="tramp-text"> {{tramp.driverDetails.gender}} </p>
+          <p class="tramp-text"> {{tramp?.driverDetails?.firstName}} {{tramp?.driverDetails?.lastName}} </p>
+          <p class="tramp-text"> {{tramp?.driverDetails?.address?.city}}, {{tramp?.driverDetails?.address?.street}} </p>
+          <p class="tramp-text"> {{tramp?.driverDetails?.gender}} </p>
         </div>
 
         <!-- <div class="tramp-icon col-md-4 glyphicon glyphicon-user" [style.color]=tramp.color></div> -->

@@ -4,8 +4,8 @@
       "userId": 12345,
       "lastName": "אייכנשטיין",
       "firstName": "שי",
-      "Gender": "זכר",
-      "Address": {
+      "gender": "זכר",
+      "address": {
         "city": "רמת גן",
         "street": "הרצל"
       },
@@ -24,8 +24,8 @@
       "userId": 222,
       "lastName": "אפרגן",
       "firstName": "דרור",
-      "Gender": "זכר",
-      "Address": {
+      "gender": "זכר",
+      "address": {
         "city": "תל אביב",
         "street": "אלנבי"
       },
@@ -44,8 +44,8 @@
       "userId": 4444,
       "lastName": "דפנה",
       "firstName": "פאן",
-      "Gender": "נקבה",
-      "Address": {
+      "gender": "נקבה",
+      "address": {
         "city": "חיפה",
         "street": "הנביאים"
       },
@@ -64,8 +64,8 @@
       "userId": 12312,
       "lastName": "אסף",
       "firstName": "גאן",
-      "Gender": "זכר",
-      "Address": {
+      "gender": "זכר",
+      "address": {
         "city": "חיפה",
         "street": "אלנבי"
       },
@@ -84,8 +84,8 @@
       "userId": 555,
       "lastName": "מירב",
       "firstName": "בוכריס",
-      "Gender": "נקבה",
-      "Address": {
+      "gender": "נקבה",
+      "address": {
         "city": "אילת",
         "street": "הנביאים"
       },
@@ -104,8 +104,8 @@
       "userId": 4242,
       "lastName": "משה",
       "firstName": "משה",
-      "Gender": "זכר",
-      "Address": {
+      "gender": "זכר",
+      "address": {
         "city": "רמת גן",
         "street": "הרצל"
       },
@@ -120,8 +120,8 @@
       "userId": 123155,
       "lastName": "לוי",
       "firstName": "אבי",
-      "Gender": "זכר",
-      "Address": {
+      "gender": "זכר",
+      "address": {
         "city": "רמת גן",
         "street": "הבורסה"
       },
@@ -136,8 +136,8 @@
       "userId": 856,
       "lastName": "אהרון",
       "firstName": "מאיה",
-      "Gender": "נקבה",
-      "Address": {
+      "gender": "נקבה",
+      "address": {
         "city": "רמת גן",
         "street": "אורות"
       },

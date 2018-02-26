@@ -261,7 +261,7 @@ export const TrampsMockUp: Array<Tramp> = [
 
 export async function getAllTramps() {
   let db = await dbClient.connect();
-  const trampRequests = db.collection("trampRequests");
+  const trampRequests = db.collection("users");
   const trampsArr = await trampRequests.find().toArray();
   console.log (trampsArr);
   return trampsArr;//calcGrades(trampsArr);
