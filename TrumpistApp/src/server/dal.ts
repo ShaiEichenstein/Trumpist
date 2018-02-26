@@ -1,5 +1,5 @@
 import { delay } from "./helpers";
-import { Tramp } from "../app/models/tramp";
+import { Tramp, User } from "../app/models/tramp";
 import { TrampRequest } from "../app/models/trampRequest";
 
 // export async function getAllTramps() {
@@ -23,7 +23,36 @@ export async function addTrampRequest(trampRequst: TrampRequest) {
   } else { console.log("trampRequst is null"); }
 }
 
+
+export async function getUser(userID: number) {
+  const userDetMockup: User = <User>{
+      lastName: "אייכנשטיין",
+      firstName: "שי",
+      Gender: "זכר",
+      Address: {
+        city: "רמת גן",
+        street: "הרצל"
+      },
+      entranceAvgTime: {
+        hour: 8,
+        minute: 20
+      }
+  };
+  // userMockUp.push(userID);
+  //   const tramp = TrampsMockUp.filter(
+  //     t => t.driverDetails.userId === trampRequst.driverUserID
+  //   )[0];
+  //   if (tramp != null) {
+  //     console.log(tramp);
+  //     tramp['trampRequestStatus'] = 1;
+  //   } else { console.log("tramp is null"); }
+    return userDetMockup;
+  //} else { console.log("userID is null"); }
+}
+
 export let TrampsRequestMockUp: Array<TrampRequest> = new Array<TrampRequest>();
+
+
 
 export const passanger: Tramp = <Tramp>{
   driverDetails: {

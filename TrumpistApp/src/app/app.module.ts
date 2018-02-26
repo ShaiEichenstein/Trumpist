@@ -17,6 +17,9 @@ import { TrampGradeComponent } from './tramp-grade/tramp-grade.component';
 import { TrampRequestListComponent } from './tramp-request-list/tramp-request-list.component';
 import { TrampRequestItemComponent } from './tramp-request-item/tramp-request-item.component';
 import { HttpService } from './services/http.service';
+import { LoginService } from './services/login.service';
+import { LoginComponent } from './login/login.component';
+
 
 
 @NgModule({
@@ -29,7 +32,8 @@ import { HttpService } from './services/http.service';
     HomePageComponent,
     TrampGradeComponent,
     TrampRequestListComponent,
-    TrampRequestItemComponent
+    TrampRequestItemComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +42,8 @@ import { HttpService } from './services/http.service';
   ],
   providers: [
     TrampService,
-    HttpService
+    HttpService,
+    LoginService
   ],
   bootstrap: [AppComponent]
 })
