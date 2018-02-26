@@ -13,7 +13,6 @@ app.use(bodyParser.json());
 
 
 app.get("/api/tramps", wrap(async function() {
-  console.log("test");
     return await dal.getAllTramps();
 }));
 

@@ -12,6 +12,7 @@ export class TrampRequestItemComponent implements OnInit {
 
   @Input() trampRequest: TrampRequest;
 
+  isRequestConfirmed: boolean;
   driverDetails: User;
   passangerDetails: User;
 
@@ -20,6 +21,11 @@ export class TrampRequestItemComponent implements OnInit {
   ngOnInit() {
     this.driverDetails = this.trampService.getUserDetails(this.trampRequest.driverUserID);
     this.passangerDetails = this.trampService.getUserDetails(this.trampRequest.passangerUserID);
+
+    if (this.trampRequest.requestStatus == 0)
+      this.isRequestConfirmed=false;
+    else if (this.trampRequest.requestStatus == 1)
+      this.isRequestConfirmed=true;
   }
 
   confirmTrampRequest(){

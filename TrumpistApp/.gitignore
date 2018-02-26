@@ -9,6 +9,7 @@
 # dependencies
 /node_modules
 /server_out
+/data
 
 # IDEs and editors
 /.idea
