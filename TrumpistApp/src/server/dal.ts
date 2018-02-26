@@ -104,16 +104,22 @@ export async function updateTrampRequest(trampRequst: TrampRequest) {
 
 export async function getUser(userID: number) {
   const userDetMockup: User = <User>{
+      userId:111,
+      password:"111",
       lastName: "אייכנשטיין",
       firstName: "שי",
-      Gender: "זכר",
-      Address: {
+      gender: "זכר",
+      address: {
         city: "רמת גן",
         street: "הרצל"
       },
       entranceAvgTime: {
         hour: 8,
         minute: 20
+      },
+      leavingAvgTime: {
+        hour: 18,
+        minute: 25
       }
   };
   // userMockUp.push(userID);

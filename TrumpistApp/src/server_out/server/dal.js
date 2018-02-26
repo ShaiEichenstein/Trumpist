@@ -165,16 +165,22 @@ function getUser(userID) {
         var userDetMockup;
         return __generator(this, function (_a) {
             userDetMockup = {
+                userId: 111,
+                password: "111",
                 lastName: "אייכנשטיין",
                 firstName: "שי",
-                Gender: "זכר",
-                Address: {
+                gender: "זכר",
+                address: {
                     city: "רמת גן",
                     street: "הרצל"
                 },
                 entranceAvgTime: {
                     hour: 8,
                     minute: 20
+                },
+                leavingAvgTime: {
+                    hour: 18,
+                    minute: 25
                 }
             };
             // userMockUp.push(userID);
