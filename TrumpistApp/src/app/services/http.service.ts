@@ -25,6 +25,11 @@ export class HttpService {
     return tramps;
   }
 
+  async getUser<T> (url: string, userID:number): Promise<T> {
+    const tramps = await this.http.post<T>(url, userID).toPromise();
+    return tramps;
+  }
+  
 //   async requestPostData<T>(url:string): Promise<T> { 
 //     return await this.http.post<T>(url).toPromise();
 //   }

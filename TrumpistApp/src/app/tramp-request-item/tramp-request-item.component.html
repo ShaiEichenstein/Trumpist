@@ -11,8 +11,8 @@
     </div> 
 
     <div class="col-md-5 tramp-request-col">
-      <p class="tramp-request-text"> {{passangerDetails.driverFirstName }} {{passangerDetails.driverLastName}} </p>
-      <p class="tramp-request-text"> {{passangerDetails.driverGender}} </p>
+      <p class="tramp-request-text"> {{trampRequest.passangerUser.firstName }} {{trampRequest.passangerUser.lastName}} </p>
+      <p class="tramp-request-text"> {{trampRequest.passangerUser.gender}} </p>
       <p></p>
       <p class="tramp-request-text"> {{trampRequest.trampDate | date:'dd-MM-yyyy'}} </p>
       <p class="tramp-request-text"> {{trampRequest.trampDate | date:'HH:mm'}} </p>

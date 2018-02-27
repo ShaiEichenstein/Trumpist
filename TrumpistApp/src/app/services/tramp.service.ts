@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { Tramp } from "./../models/tramp";
 import { HttpService } from "./http.service";
 import { promise } from "protractor";
-import { TrampRequest } from "../models/trampRequest";
+import { TrampRequest, TrampRequestForDisplay } from "../models/trampRequest";
 import { User } from "../models/tramp";
 
 @Injectable()
@@ -24,8 +24,12 @@ export class TrampService {
     // return this.trampList;
   }
 
-  getTrampRequestList(): Array<TrampRequest> {
-    return TrampsRequestMockUp;
+  async getTrampRequestList(): Promise<TrampRequestForDisplay[]>{
+    const trampsRequests = await this.httpService.requestGetData<TrampRequestForDisplay[]>("api/trampsRequests");
+    console.log(trampsRequests);
+    //this.setRequestAdditionalData(tramps);
+    //this.trampList = tramps;
+    return trampsRequests;
   }
 
   async sendTrampRequest(trampReq: TrampRequest) {
