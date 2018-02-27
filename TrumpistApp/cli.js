@@ -76,13 +76,12 @@ async function loadMongo() {
   const mongoPath = process.env.MONGO_PATH;
   console.log("mongo path: " + mongoPath);
 
-  const dir = 'src/data';
+  /*const dir = 'src/data';
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir);
-  }
-  spawn(mongoPath + "\\bin\\mongod.exe", [
-    "-dbpath",
-    "src/data"
+  }*/
+  spawn("md mongo-db & \""+ mongoPath + "\\bin\\mongod.exe\"", [
+    "-dbpath mongo-db"
   ], {
       shell: true,
       stdio: "inherit",
