@@ -325,6 +325,38 @@ function getExistingRequest(trampRequst) {
         });
     });
 }
+function getAllTrampsRequests() {
+    return __awaiter(this, void 0, void 0, function () {
+        var TrampsRequestMockUp2, TrampRequestForDisplayMockUp;
+        return __generator(this, function (_a) {
+            TrampsRequestMockUp2 = [
+                {
+                    id: 1,
+                    driverUserID: 12345,
+                    passangerUserID: 555,
+                    requestStatus: 0,
+                    trampDate: new Date()
+                }
+            ];
+            TrampRequestForDisplayMockUp = [
+                {
+                    id: 1,
+                    driverUser: getUserById(TrampsRequestMockUp2[0].driverUserID),
+                    passangerUser: getUserById(TrampsRequestMockUp2[0].passangerUserID),
+                    requestStatus: 0,
+                    trampDate: new Date()
+                }
+            ];
+            return [2 /*return*/, TrampRequestForDisplayMockUp];
+        });
+    });
+}
+exports.getAllTrampsRequests = getAllTrampsRequests;
+function getUserById(id) {
+    return exports.TrampsMockUp.find(function (element) {
+        return element.driverDetails.userId == id;
+    }).driverDetails;
+}
 function getAllTramps() {
     return __awaiter(this, void 0, void 0, function () {
         var db, users1, _a, trampReq, trampReqArr;

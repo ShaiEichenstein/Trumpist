@@ -8,6 +8,7 @@ export interface TrampRequest {
     requestStatus: number;
 }
 
+
 export interface TrampRequestForDisplay {
     id: number;
     driverUser: User;

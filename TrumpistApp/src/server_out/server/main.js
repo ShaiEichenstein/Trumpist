@@ -55,7 +55,10 @@ app.get("/api/tramps", wrap(function () {
 app.get("/api/trampsRequests", wrap(function () {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            return [2 /*return*/];
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, dal.getAllTrampsRequests()];
+                case 1: return [2 /*return*/, _a.sent()];
+            }
         });
     });
 }));

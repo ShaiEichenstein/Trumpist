@@ -3,5 +3,6 @@
     בקשות טרמפים:
   </h3>
 
-  <app-tramp-request-item *ngFor="let trampRequest of trampRequestList" [trampRequest]=trampRequest></app-tramp-request-item>
+  <app-tramp-request-item *ngFor="let trampRequest of trampRequestList" [trampRequest]=trampRequest
+  (confirmRequest)="confirmTrampRequstHandler($event)"></app-tramp-request-item>
 </div>

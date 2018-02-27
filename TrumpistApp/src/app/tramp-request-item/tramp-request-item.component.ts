@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Tramp, User, Address } from "../models/tramp";
 import { TrampRequest, TrampRequestForDisplay } from "../models/trampRequest";
 import { TrampService } from "../services/tramp.service";
@@ -11,7 +11,8 @@ import { updateTrampRequest } from "../../server/dal";
 })
 export class TrampRequestItemComponent implements OnInit {
   @Input() trampRequest: TrampRequestForDisplay;
-
+  @Output() confirmRequest: EventEmitter<TrampRequestForDisplay> = new EventEmitter<TrampRequestForDisplay>();
+  
   isRequestConfirmed: boolean;
   driverDetails: User;
   passangerDetails: User;
@@ -30,10 +31,15 @@ export class TrampRequestItemComponent implements OnInit {
     else if (this.trampRequest.requestStatus === 1) { this.isRequestConfirmed = true; }
   }
 
-  confirmTrampRequest() {
+  confirmTrampRequest2() {
     console.log("request confirmed: " + this.trampRequest.id);
     //this.trampService.updateTrampRequest(this.getTrampRequestFromTrampRequestForDisplay(this.trampRequest), 2);
   }
+
+  confirmTrampRequest() {
+    this.confirmRequest.emit(this.trampRequest);
+  }
+
 
   // getTrampRequestFromTrampRequestForDisplay(trampRequestForDisplay: TrampRequestForDisplay){
   //   let trampRequest: TrampRequest;
