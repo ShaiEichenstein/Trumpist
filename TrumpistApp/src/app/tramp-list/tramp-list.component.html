@@ -1,4 +1,4 @@
-<div class="container tramp-list-div">
+<div *ngIf="trampList != null" class="container tramp-list-div">
   <h3>
     רשימת טרמפים מומלצים עבורך:
   </h3>
@@ -11,3 +11,10 @@
     (cancelRequest)="cancelTrampRequstHandler($event)"></app-tramp-item>
   </div>
 </div>
+
+<div  *ngIf="trampList == null" class="container tramp-list-div">
+    <h3 style="color:gold">
+      התחבר להצגת רשימת הטרמפים עבורך
+    </h3>
+    
+  </div>

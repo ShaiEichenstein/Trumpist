@@ -1,4 +1,4 @@
-<div class="container tramp-list-div">
+<div *ngIf="trampRequestList != null" class="container tramp-list-div">
   <h3>
     בקשות טרמפים:
   </h3>
@@ -6,3 +6,10 @@
   <app-tramp-request-item *ngFor="let trampRequest of trampRequestList" [trampRequest]=trampRequest
   (confirmRequest)="confirmTrampRequstHandler($event)"></app-tramp-request-item>
 </div>
+
+<div  *ngIf="trampRequestList == null" class="container tramp-list-div">
+    <h3 style="color:gold">
+      התחבר להצגת רשימת הבקשות עבורך 
+    </h3>
+    
+  </div>
