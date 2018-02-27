@@ -42,11 +42,16 @@ var app = express();
 app.use(bodyParser.json());
 // app.configure(function() {
 // });
-app.get("/api/tramps", wrap(function () {
+app.get("/api/tramps/:userID", wrap(function (req, res) {
     return __awaiter(this, void 0, void 0, function () {
+        var user;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, dal.getAllTramps()];
+                case 0:
+                    user = req.params.userID;
+                    console.log("!!!!!!!!!!!!!!!!!!!!!user");
+                    console.log(user);
+                    return [4 /*yield*/, dal.getAllTramps(user)];
                 case 1: return [2 /*return*/, _a.sent()];
             }
         });
@@ -85,7 +90,10 @@ app.get("/api/users/:userID", wrap(function (req, res) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    userID = req.params.userID;
+                    userID = parseInt(req.params.userID);
+                    if (isNaN(userID)) {
+                        throw new Error("Invalid userID parameter: " + userID);
+                    }
                     return [4 /*yield*/, dal.getUser(userID)];
                 case 1: return [2 /*return*/, _a.sent()];
             }

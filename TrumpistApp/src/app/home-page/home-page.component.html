@@ -2,11 +2,11 @@
 
   <div class="pull-right" style="direction: rtl; width: 100%; padding:20px;">
     <div class="row">
-      <app-tramp-request-list class="col-md-4" [trampRequestList]=trampRequestList></app-tramp-request-list>
+      <app-tramp-request-list class="col-md-4" [trampRequestList]=trampService.trampRequestList></app-tramp-request-list>
 
-      <app-tramp-list class="col-md-4" [trampList]=trampList></app-tramp-list>
+      <app-tramp-list class="col-md-4" [trampList]=trampService.trampList></app-tramp-list>
 
-      <login-user class="col-md-4"></login-user>
+      <login-user class="col-md-4"  (getUserReq)="getUserReqHandler($event)"></login-user>
     </div>
     <!-- <button class="btn btn-primary pull-left" (click)="showRequests()">הצג בקשות</button> -->
 

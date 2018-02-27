@@ -1,23 +1,33 @@
-<div class="card" [style.border-color]=trampRequest.color>
+<div class="card" [style.border-color]="trampRequest.color">
   <div class="row">
-    <div class="col-md-4 tramp-request-button-wrapper tramp-request-col">
-      <!-- <button class="tramp-request-button btn-primary" (click)="confirmTrampRequest()" ng-style="{'visibility': isRequestConfirmed ? 'hidden' : 'visible'}"> -->
+    <!-- <div class="col-md-4 tramp-request-button-wrapper tramp-request-col">      
       <button class="tramp-request-button btn-primary" (click)="confirmTrampRequest()">
         אשר בקשה
       </button>
       <div class="glyphicon glyphicon-ok" style="visibility: collapse"></div>
-      <!-- <div class="glyphicon glyphicon-ok" [style.visibility]=isRequestConfirmed></div> -->
-      <!-- <div class="glyphicon glyphicon-ok" ng-style="{'visibility': isRequestConfirmed ? 'visible' : 'hidden'}"></div> -->
-    </div> 
+    </div>  -->
 
-    <div class="col-md-5 tramp-request-col">
+    <div class="col-md-2 tramp-col" style="font-size: 30px; margin-top: 13px; padding-right: 0px;">
+        <!-- <button class="tramp-request-button btn btn-success" (click)="confirmTrampRequest()">
+            אשר בקשה
+          </button>
+          <button class="tramp-request-button btn btn-danger" (click)="confirmTrampRequest()">
+              אשר בקשה
+            </button> -->
+        <div class="glyphicon glyphicon-ok" (click)="confirmTrampRequest()" style="color: green; cursor: pointer;"></div>
+        <div class="glyphicon glyphicon-remove" (click)="confirmTrampRequest()" style="color: #ea2f2f;cursor: pointer;"></div>
+    </div>
+
+    <div class="col-md-10 tramp-request-col" style="padding-right: 40px;">
       <p class="tramp-request-text"> {{trampRequest?.passangerUser?.firstName }} {{trampRequest?.passangerUser?.lastName}} </p>
-      <p class="tramp-request-text"> {{trampRequest?.passangerUser?.gender}} </p>
+      <p class="tramp-request-text"> מעוניין להצטרף אליך לנסיעה</p>
+      <p class="tramp-request-text"> האם מעוניין?</p>
       <p></p>
-      <p class="tramp-request-text"> {{trampRequest?.trampDate | date:'dd-MM-yyyy'}} </p>
-      <p class="tramp-request-text"> {{trampRequest?.trampDate | date:'HH:mm'}} </p>
+      <!-- <p class="tramp-request-text"> {{trampRequest?.trampDate | date:'dd-MM-yyyy'}} {{trampRequest?.trampDate | date:'HH:mm'}}</p> -->
+      <!-- <p class="tramp-request-text">  </p> -->
     </div>
     
-    <div class="tramp-request-icon col-md-3 glyphicon glyphicon-user"></div>
+    
+    <!-- <div class="tramp-request-icon col-md-3 glyphicon glyphicon-user"></div> -->
   </div>
 </div>

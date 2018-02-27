@@ -9,17 +9,26 @@ import { User } from "../models/tramp";
 @Injectable()
 export class TrampService {
   trampList: Array<Tramp>;
+  trampRequestList: Array<TrampRequestForDisplay>;
 
   constructor(private httpService: HttpService) {
     // this.trampList = TrampsMockUp;
   }
 
-  async getTramps(userId:number): Promise<Tramp[]> {
+  async getTramps(userId: number): Promise<Tramp[]> {
     // return this.trampList;
-    const tramps = await this.httpService.requestGetData<Tramp[]>("api/tramps/"+ userId);
+    const tramps = await this.httpService.requestGetData<Tramp[]>(
+      "api/tramps/" + userId
+    );
     console.log(tramps);
     this.setRequestAdditionalData(tramps);
     this.trampList = tramps;
+
+    if (this.trampList != null) {
+      this.trampList.sort((n1, n2) => n2.trampGrade - n1.trampGrade);
+      this.trampList = this.trampList.filter(n1 => n1.trampGrade !== 0 && n1.driverDetails.userId != userId);
+    }
+
     return tramps;
     // return this.trampList;
   }
@@ -43,7 +52,7 @@ export class TrampService {
     // existingUpdatedTramp.trampRequestStatus = updatedTrampRequest.requestStatus;
 
     // this.setRequestAdditionalData(new Array<Tramp>(existingUpdatedTramp));
-
+    this.trampRequestList = trampsRequests;
     return trampsRequests;
   }
 

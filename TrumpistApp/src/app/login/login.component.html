@@ -1,13 +1,15 @@
 <div class="login-div">
+    <div *ngIf="!loginService?.currentUser">
     <h3 *ngIf="!isAuthenticated" style="color: gold;">שלום</h3>
     <input *ngIf="!isAuthenticated" [(ngModel)]="userid" id="ex1" type="text" placeholder="נא הזן מ.ע להתחברות">
     <span *ngIf="!isAuthenticated" class="glyphicon glyphicon-chevron-left" style="color: gold; font-size: 22px; cursor:pointer; position: relative; top: 4px; right: 6px;"
-        (click)="getUser()"></span>
+        (click)="getUserClick()"></span>
+    </div>
 
-    <div style="color: gold;">
-      <h3>{{user?.lastName}} {{user?.lastName}}</h3>      
+    <div style="color: gold;" *ngIf="loginService?.currentUser">
+      <h3>{{loginService?.currentUser?.firstName}} {{loginService?.currentUser?.lastName}}</h3>      
       <h3 style="color: white;">ברוך הבא לטרמפיסט</h3>
-      <h4 style="color: white;">הפרופיל שלך:</h4>      
+      <h4 style="color: white; text-decoration: underline">הפרופיל שלך:</h4>      
       <h4 style="color: white;">גר ברמת גן</h4>
       <h4 style="color: white;">מגיע בשעה 08:50  למטה</h4>
     </div>

@@ -112,7 +112,7 @@ function addTrampRequest(trampRequst) {
                             passangerUserID: trampRequst.passangerUserID
                         };
                         // if the request already exists in the db update the request status back to sent
-                        trampReq.findAndModify(query, // query
+                        trampReq["findAndModify"](query, // query
                         [["_id", "asc"]], // sort order
                         { $set: { requestStatus: trampRequst.requestStatus } }, // replacement, replaces only the field "hi"
                         {}, // options
@@ -164,7 +164,7 @@ function updateTrampRequest(trampRequst) {
                         };
                     }
                     try {
-                        trampReq.findAndModify(query, // query
+                        trampReq["findAndModify"](query, // query
                         [["_id", "asc"]], // sort order
                         { $set: { requestStatus: trampRequst.requestStatus } }, // replacement, replaces only the field "hi"
                         {}, // options
@@ -391,41 +391,51 @@ function getUserById(id) {
         return element.driverDetails.userId == id;
     }).driverDetails;
 }
-function getAllTramps() {
+function getAllTramps(userID) {
     return __awaiter(this, void 0, void 0, function () {
-        var db, users1, _a, trampReq, trampReqArr;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
+        var db, users1, loggedUser, currentUser, usersArr, trampReq, trampReqArr;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
                 case 0: return [4 /*yield*/, dbClient.connect()];
                 case 1:
-                    db = _b.sent();
+                    db = _a.sent();
                     users1 = db.collection("users");
-                    _a = this;
-                    return [4 /*yield*/, users1.find().toArray()];
+                    return [4 /*yield*/, users1.findOne({
+                            "driverDetails.userId": +userID
+                        })];
                 case 2:
-                    _a.usersArr = _b.sent();
+                    loggedUser = _a.sent();
+                    console.log("+++++++++++++loggedUser: " + userID);
+                    return [4 /*yield*/, users1.find({ "driverDetails.userId": +userID }).toArray()];
+                case 3:
+                    currentUser = _a.sent();
+                    console.log("+++++++++++++loggedUser: " + loggedUser);
+                    console.log("+++++++++++++currentUser: " + currentUser[0].driverDetails.userId);
+                    return [4 /*yield*/, users1.find().toArray()];
+                case 4:
+                    usersArr = _a.sent();
                     trampReq = db.collection("tramp_request");
                     return [4 /*yield*/, trampReq
                             .find({
-                            passangerUserID: 222
+                            passangerUserID: loggedUser.driverDetails.userId
                         })
                             .toArray()];
-                case 3:
-                    trampReqArr = _b.sent();
+                case 5:
+                    trampReqArr = _a.sent();
                     console.log(trampReqArr);
-                    this.usersArr.forEach(function (tramp) {
+                    usersArr.forEach(function (tramp) {
                         var grade = 0;
-                        if (tramp.driverDetails.address.city == exports.passanger.driverDetails.address.city) {
+                        if (tramp.driverDetails.address.city == loggedUser.driverDetails.address.city) {
                             grade += 40;
                             if (tramp.driverDetails.address.street ==
-                                exports.passanger.driverDetails.address.street) {
+                                loggedUser.driverDetails.address.street) {
                                 grade += 20;
                             }
                             if (tramp.driverDetails.entranceAvgTime.hour ==
-                                exports.passanger.driverDetails.entranceAvgTime.hour) {
+                                loggedUser.driverDetails.entranceAvgTime.hour) {
                                 grade += 30;
                                 if (tramp.driverDetails.entranceAvgTime.minute ==
-                                    exports.passanger.driverDetails.entranceAvgTime.minute) {
+                                    loggedUser.driverDetails.entranceAvgTime.minute) {
                                     grade += 10;
                                 }
                             }
@@ -442,7 +452,7 @@ function getAllTramps() {
                             }
                         });
                     });
-                    return [2 /*return*/, this.usersArr]; //calcGrades();
+                    return [2 /*return*/, usersArr]; //calcGrades();
             }
         });
     });
@@ -457,11 +467,10 @@ function getUser(userID) {
                 case 1:
                     db = _a.sent();
                     users1 = db.collection("users");
-                    console.log("userID:" + userID);
                     return [4 /*yield*/, users1.findOne({ "driverDetails.userId": userID })];
                 case 2:
                     user = _a.sent();
-                    return [2 /*return*/, user];
+                    return [2 /*return*/, user.driverDetails];
             }
         });
     });

@@ -337,12 +337,20 @@ export async function getAllTramps(userID:string) {
   let db = await dbClient.connect();
   const users1 = db.collection("users");
   const loggedUser = await users1.findOne({
-    "driverDetails.userId": userID
-  })
+    "driverDetails.userId": +userID
+  });
   
+  
+  console.log("+++++++++++++loggedUser: "+ userID);
+  const currentUser = await users1.find(
+    { "driverDetails.userId": +userID }
+  ).toArray();
+
   console.log("+++++++++++++loggedUser: "+ loggedUser);
   
-  this.usersArr = await users1.find().toArray();
+  console.log("+++++++++++++currentUser: "+ currentUser[0].driverDetails.userId);
+  
+  let usersArr = await users1.find().toArray();
 
 
 
@@ -350,32 +358,32 @@ export async function getAllTramps(userID:string) {
   const trampReq = db.collection("tramp_request");
   const trampReqArr = await trampReq
     .find({
-      passangerUserID: loggedUser
+      passangerUserID: loggedUser.driverDetails.userId
     })
     .toArray();
 
   console.log(trampReqArr);
 
-  this.usersArr.forEach(tramp => {
+  usersArr.forEach(tramp => {
     let grade = 0;
     if (
-      tramp.driverDetails.address.city == passanger.driverDetails.address.city
+      tramp.driverDetails.address.city == loggedUser.driverDetails.address.city
     ) {
       grade += 40;
       if (
         tramp.driverDetails.address.street ==
-        passanger.driverDetails.address.street
+        loggedUser.driverDetails.address.street
       ) {
         grade += 20;
       }
       if (
         tramp.driverDetails.entranceAvgTime.hour ==
-        passanger.driverDetails.entranceAvgTime.hour
+        loggedUser.driverDetails.entranceAvgTime.hour
       ) {
         grade += 30;
         if (
           tramp.driverDetails.entranceAvgTime.minute ==
-          passanger.driverDetails.entranceAvgTime.minute
+          loggedUser.driverDetails.entranceAvgTime.minute
         ) {
           grade += 10;
         }
@@ -395,7 +403,7 @@ export async function getAllTramps(userID:string) {
     });
   });
 
-  return this.usersArr; //calcGrades();
+  return usersArr; //calcGrades();
 }
 
 export async function getUser(userID: number) {

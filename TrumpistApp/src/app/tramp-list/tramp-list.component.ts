@@ -3,6 +3,7 @@ import { Component, OnInit, Input } from "@angular/core";
 import { TrampService } from "../services/tramp.service";
 import { TrampRequest } from "../models/trampRequest";
 import { User } from '../models/tramp';
+import { LoginService } from "../services/login.service";
 
 @Component({
   selector: "app-tramp-list",
@@ -14,8 +15,8 @@ export class TrampListComponent implements OnInit {
 
   activeSortBy: string;
   currentUser: User;
-  constructor(private trampService: TrampService) {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  constructor(private trampService: TrampService, private loginService: LoginService) {
+   // this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   ngOnInit() {
@@ -67,7 +68,7 @@ export class TrampListComponent implements OnInit {
   sendTrampRequstHandler(tramp: Tramp) {
     const trampReq = <TrampRequest>{
       driverUserID: tramp.driverDetails.userId,
-      passangerUserID: 222,
+      passangerUserID: this.loginService.currentUser.userId,
       trampDate: new Date(),
       requestStatus: 1
     };
@@ -77,7 +78,7 @@ export class TrampListComponent implements OnInit {
   cancelTrampRequstHandler(tramp: Tramp) {
     const trampReq = <TrampRequest>{
       driverUserID: tramp.driverDetails.userId,
-      passangerUserID: 222,
+      passangerUserID: this.loginService.currentUser.userId,
       trampDate: new Date(),
       requestStatus: 0
     };

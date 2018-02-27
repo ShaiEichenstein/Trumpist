@@ -14,6 +14,8 @@ app.use(bodyParser.json());
 
 app.get("/api/tramps/:userID", wrap(async function(req,res) {
   let user = req.params.userID;
+  console.log("!!!!!!!!!!!!!!!!!!!!!user");
+  console.log(user);
     return await dal.getAllTramps(user);
 }));
 

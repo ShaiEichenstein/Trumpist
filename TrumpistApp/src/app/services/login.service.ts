@@ -1,3 +1,4 @@
+import { TrampService } from './tramp.service';
 import { Injectable } from '@angular/core';
 import { element } from "protractor";
 import { User } from "./../models/tramp";
@@ -8,35 +9,20 @@ import { promise } from "protractor";
 @Injectable()
 export class LoginService {
 
-  user: User;
+  currentUser: User;
 
-  constructor(private httpService: HttpService) {
+  constructor(private httpService: HttpService, private trampService: TrampService) {
   }
 
   async getUser(id:number): Promise<User> {
     console.log("userid:" + id);
-    // const userDet: User = <User>{
-    //       userId:id,
-    //       password:"",
-    //       lastName: "",
-    //       firstName: "",
-    //       gender: "",
-    //       address: {
-    //         city: "",
-    //         street: ""
-    //       },
-    //       entranceAvgTime: {
-    //         hour: 8,
-    //         minute: 20
-    //       },
-    //       leavingAvgTime: {
-    //         hour: 18,
-    //         minute: 25
-    //       }
-    //   };
     const usr = await this.httpService.requestGetData<User>("/api/users/" + id);
     console.log(usr);
-    localStorage.setItem('currentUser', JSON.stringify(usr));
+    this.currentUser = usr;
+    //localStorage.setItem('currentUser', JSON.stringify(usr));
+    await this.trampService.getTramps(this.currentUser.userId);
+    await this.trampService.getTrampRequestList(this.currentUser);
+
     return usr;
   }
 }
