@@ -18,6 +18,14 @@ export class HomePageComponent implements OnInit {
   }
   
   async ngOnInit() {
+    setInterval(this.refresh(), 3000);
+  }
+
+  showRequests() {
+    console.log(this.trampService.getRequests(1234));
+  }
+
+  async refresh(){
     this.trampList = await this.trampService.getTramps();
     this.trampRequestList = await this.trampService.getTrampRequestList();
     if(this.trampRequestList != null){
@@ -29,9 +37,5 @@ export class HomePageComponent implements OnInit {
       this.trampList.sort((n1, n2) => n2.trampGrade - n1.trampGrade);
       this.trampList = this.trampList.filter(n1 => n1.trampGrade !== 0);
     }
-  }
-
-  showRequests() {
-    console.log(this.trampService.getRequests(1234));
   }
 }
