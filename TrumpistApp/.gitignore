@@ -11,9 +11,9 @@
 /server_out
 /data
 /mongo-db
-src/server_out
-src/server_out/server
-src/data
+/src/server_out
+/src/server_out/server
+/src/data
 
 # IDEs and editors
 /.idea
