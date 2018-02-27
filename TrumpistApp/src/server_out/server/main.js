@@ -83,7 +83,10 @@ app.get("/api/users/:userID", wrap(function (req, res) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    userID = req.params.userID;
+                    userID = parseInt(req.params.userID);
+                    if (isNaN(userID)) {
+                        throw new Error("Invalid userID parameter: " + userID);
+                    }
                     return [4 /*yield*/, dal.getUser(userID)];
                 case 1: return [2 /*return*/, _a.sent()];
             }

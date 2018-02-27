@@ -30,7 +30,10 @@ app.post("/api/addTrampRequest", wrap(async function(req, res) {
 }));
 
 app.get("/api/users/:userID", wrap(async function(req,res) {
-  let userID = req.params.userID;
+  let userID = parseInt(req.params.userID);
+  if(isNaN(userID)){
+    throw new Error("Invalid userID parameter: " + userID)
+  }
     return await dal.getUser(userID);
 }));
 
