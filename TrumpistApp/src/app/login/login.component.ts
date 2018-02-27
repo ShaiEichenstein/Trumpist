@@ -20,9 +20,8 @@ export class LoginComponent implements OnInit {
 
   async getUser()
   {
-    console.log("userid:" + this.userid);
     this.user = await this.loginService.getUser(this.userid);
-    //console.log("4444:" + this.user.lastName );
+    console.log("4444:" + this.user.lastName );
   }
 
     // constructor(
