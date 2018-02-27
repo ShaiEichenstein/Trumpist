@@ -1,6 +1,6 @@
 import { delay } from "./helpers";
-import { Tramp, User } from "../app/models/tramp";
-import { TrampRequest, TrampRequestForDisplay } from "../app/models/trampRequest";
+import { Tramp } from "../app/models/tramp";
+import { TrampRequest } from "../app/models/trampRequest";
 //import * as mongodb from "mongodb";
 import { MongoClient, Db, connect, ObjectId } from "mongodb";
 
@@ -13,9 +13,7 @@ import { MongoClient, Db, connect, ObjectId } from "mongodb";
 //   return TrampsMockUp;
 // }
 
-// mongodb.Cursor.prototype.findAndModifyAsync = promisify(
-//   mongodb.Cursor.prototype.findAndModify
-// );
+// mongodb.Cursor.prototype.findAndModifyAsync = promisify(mongodb.Cursor.prototype.findAndModify);
 
 class DbClient {
   public db: Db;
@@ -343,42 +341,7 @@ function promisify(fn) {
   };
 }
 
-
-export async function getUser(userID: number) {
-  const userDetMockup: User = <User>{
-      userId:111,
-      password:"111",
-      lastName: "אייכנשטיין",
-      firstName: "שי",
-      gender: "זכר",
-      address: {
-        city: "רמת גן",
-        street: "הרצל"
-      },
-      entranceAvgTime: {
-        hour: 8,
-        minute: 20
-      },
-      leavingAvgTime: {
-        hour: 18,
-        minute: 25
-      }
-  };
-  // userMockUp.push(userID);
-  //   const tramp = TrampsMockUp.filter(
-  //     t => t.driverDetails.userId === trampRequst.driverUserID
-  //   )[0];
-  //   if (tramp != null) {
-  //     console.log(tramp);
-  //     tramp['trampRequestStatus'] = 1;
-  //   } else { console.log("tramp is null"); }
-    return userDetMockup;
-  //} else { console.log("userID is null"); }
-}
-
 export let TrampsRequestMockUp: Array<TrampRequest> = new Array<TrampRequest>();
-
-
 
 export const passanger: Tramp = <Tramp>{
   driverDetails: {
@@ -564,126 +527,3 @@ export const TrampsMockUp: Array<Tramp> = [
     trampRequestStatus: 0
   }
 ];
-<<<<<<< HEAD
-=======
-
-export async function getAllTramps() {
-  let db = await dbClient.connect();
-  const users1 = db.collection("users");
-  this.usersArr = await users1.find().toArray();
-  console.log (this.usersArr);
-
-  this.usersArr.forEach(tramp => {
-    let grade = 0;
-    if (
-      tramp.driverDetails.address.city == passanger.driverDetails.address.city
-    ) {
-      grade += 40;
-      if (
-        tramp.driverDetails.address.street ==
-        passanger.driverDetails.address.street
-      ) {
-        grade += 20;
-      }
-      if (
-        tramp.driverDetails.entranceAvgTime.hour ==
-        passanger.driverDetails.entranceAvgTime.hour
-      ) {
-        grade += 30;
-        if (
-          tramp.driverDetails.entranceAvgTime.minute ==
-          passanger.driverDetails.entranceAvgTime.minute
-        ) {
-          grade += 10;
-        }
-      }
-    }
-    tramp.trampGrade = grade;
-  });
-
-  return this.usersArr //calcGrades();
-  
-}
-
-export async function getAllTrampsRequests() {
-  const TrampsRequestMockUp2: Array<TrampRequest> = [
-    <TrampRequest>{
-      id: 1,
-      driverUserID: 12345,
-      passangerUserID: 555,
-      requestStatus:0,
-      trampDate: new Date()
-    }
-  ]
-
-  const TrampRequestForDisplayMockUp: Array<TrampRequestForDisplay> = [
-    <TrampRequestForDisplay>{
-      id: 1,
-      driverUser: getUserById(TrampsRequestMockUp2[0].driverUserID),
-      passangerUser: getUserById(TrampsRequestMockUp2[0].passangerUserID),
-      requestStatus:0,
-      trampDate: new Date()
-    }
-  ]
-
-  return TrampRequestForDisplayMockUp;
-}
-
-function getUserById (id) {
-  return TrampsMockUp.find(function(element) {
-    return element.driverDetails.userId == id;
-  }).driverDetails;
-}
-
-/*function calcGrades() {
-  this.usersArr.forEach(tramp => {
-    let grade = 0;
-    if (
-      tramp.driverDetails.address.city == passanger.driverDetails.address.city
-    ) {
-      grade += 40;
-      if (
-        tramp.driverDetails.address.street ==
-        passanger.driverDetails.address.street
-      ) {
-        grade += 20;
-      }
-      if (
-        tramp.driverDetails.entranceAvgTime.hour ==
-        passanger.driverDetails.entranceAvgTime.hour
-      ) {
-        grade += 30;
-        if (
-          tramp.driverDetails.entranceAvgTime.minute ==
-          passanger.driverDetails.entranceAvgTime.minute
-        ) {
-          grade += 10;
-        }
-      }
-    }
-    tramp.trampGrade = grade;
-  });
-}*/
-
-function promisify(fn) {
-  return function () {
-    const args = Array.from(arguments);
-    const me = this;
-
-    return new Promise(function (resolve, reject) {
-      function callback(err, retVal) {
-        if (err) {
-          reject(err);
-          return;
-        }
-
-        resolve(retVal);
-      }
-
-      args.push(callback);
-
-      fn.apply(me, args);
-    });
-  }
-}
->>>>>>> f2926f24b743db92e7edf0615484fb3d377b8bdc

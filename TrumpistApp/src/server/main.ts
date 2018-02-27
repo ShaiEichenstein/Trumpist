@@ -17,7 +17,7 @@ app.get("/api/tramps", wrap(async function() {
 }));
 
 app.get("/api/trampsRequests", wrap(async function() {
-  return await dal.getAllTrampsRequests();
+   return await dal.getAllTrampsRequests();
 }));
 
 // app.post('/', function(request, response) {
@@ -31,7 +31,7 @@ app.post("/api/addTrampRequest", wrap(async function(req, res) {
 
 app.post("/api/users", wrap(async function(req,res) {
   console.log(req.body);
-    return await dal.getUser(req.body);
+     return await dal.getUser(req.body);
 }));
 app.post("/api/updateTrampRequest", wrap(async function(req, res) {
  // console.log(req.body);
