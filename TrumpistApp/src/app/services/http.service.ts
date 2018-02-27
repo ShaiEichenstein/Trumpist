@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Tramp } from "../models/tramp";
+import { Tramp, User } from "../models/tramp";
 import { TrampRequest } from "../models/trampRequest";
 
 const httpOptions = {
@@ -25,9 +25,10 @@ export class HttpService {
     return tramps;
   }
 
-  async getUser<T> (url: string, userID:number): Promise<T> {
-    const tramps = await this.http.post<T>(url, userID).toPromise();
-    return tramps;
+  async getUser<T> (url: string, usr:User): Promise<T> {
+    console.log("userID11111111:" + usr.userId);
+    const user = await this.http.post<T>(url, usr).toPromise();
+    return user;
   }
   
 //   async requestPostData<T>(url:string): Promise<T> { 

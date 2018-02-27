@@ -32,6 +32,7 @@ const dbClient = new DbClient();
 //DbClient.db.Cursor.prototype.toArrayAsync = promisify(mongodb.Cursor.prototype.toArray);
 var usersArr;
 
+
 export async function addTrampRequest(trampRequst: TrampRequest) {
   console.log("addTrampRequest");
   let dbTrampreq = null;
@@ -103,26 +104,37 @@ export async function updateTrampRequest(trampRequst: TrampRequest) {
 
 
 export async function getUser(userID: number) {
-  const userDetMockup: User = <User>{
-      userId:111,
-      password:"111",
-      lastName: "אייכנשטיין",
-      firstName: "שי",
-      gender: "זכר",
-      address: {
-        city: "רמת גן",
-        street: "הרצל"
-      },
-      entranceAvgTime: {
-        hour: 8,
-        minute: 20
-      },
-      leavingAvgTime: {
-        hour: 18,
-        minute: 25
-      }
-  };
-  // userMockUp.push(userID);
+
+
+  let db = await dbClient.connect();
+  const users1 = db.collection("users");
+  console.log("userID:" + userID);
+  const user = 
+   await users1.findOne(({"driverDetails.userId": userID})); 
+   return user;
+
+
+  //
+  // const userDetMockup: User = <User>{
+  //     userId:111,
+  //     password:"111",
+  //     lastName: "אייכנשטיין",
+  //     firstName: "שי",
+  //     gender: "זכר",
+  //     address: {
+  //       city: "רמת גן",
+  //       street: "הרצל"
+  //     },
+  //     entranceAvgTime: {
+  //       hour: 8,
+  //       minute: 20
+  //     },
+  //     leavingAvgTime: {
+  //       hour: 18,
+  //       minute: 25
+  //     }
+  // };
+  // // userMockUp.push(userID);
   //   const tramp = TrampsMockUp.filter(
   //     t => t.driverDetails.userId === trampRequst.driverUserID
   //   )[0];
@@ -130,7 +142,7 @@ export async function getUser(userID: number) {
   //     console.log(tramp);
   //     tramp['trampRequestStatus'] = 1;
   //   } else { console.log("tramp is null"); }
-    return userDetMockup;
+    //return userDetMockup;
   //} else { console.log("userID is null"); }
 }
 
