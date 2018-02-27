@@ -234,7 +234,6 @@ async function getExistingRequest(trampRequst: TrampRequest) {
   }
 }
 
-<<<<<<< HEAD
 export async function getAllTramps() {
   let db = await dbClient.connect();
   const users1 = db.collection("users");
@@ -289,7 +288,6 @@ export async function getAllTramps() {
   });
 
   return this.usersArr; //calcGrades();
-=======
 export async function getUser(userID: number) {
 
 
@@ -331,7 +329,6 @@ export async function getUser(userID: number) {
   //   } else { console.log("tramp is null"); }
     //return userDetMockup;
   //} else { console.log("userID is null"); }
->>>>>>> 90052973eeb1d04d00afe73f27c9c04994ca0388
 }
 
 function calcGrades() {
