@@ -1,7 +1,7 @@
 <div class="login-div">
-    <h3 *ngIf="true" style="color: gold;">שלום</h3>
-    <input *ngIf="true" [(ngModel)]="userid" id="ex1" type="text" placeholder="נא הזן מ.ע להתחברות">
-    <span *ngIf="true" class="glyphicon glyphicon-chevron-left" style="color: gold; font-size: 22px; cursor:pointer; position: relative; top: 4px; right: 6px;"
+    <h3 *ngIf="!isAuthenticated" style="color: gold;">שלום</h3>
+    <input *ngIf="!isAuthenticated" [(ngModel)]="userid" id="ex1" type="text" placeholder="נא הזן מ.ע להתחברות">
+    <span *ngIf="!isAuthenticated" class="glyphicon glyphicon-chevron-left" style="color: gold; font-size: 22px; cursor:pointer; position: relative; top: 4px; right: 6px;"
         (click)="getUser()"></span>
 
     <div style="color: gold;">

@@ -424,10 +424,10 @@ function getUser(userID) {
                     db = _a.sent();
                     users1 = db.collection("users");
                     console.log("userID222:" + userID);
-                    return [4 /*yield*/, users1.findOne({ "driverDetails.userId": 856 })];
+                    return [4 /*yield*/, users1.findOne({ "driverDetails.userId": userID })];
                 case 2:
                     user = _a.sent();
-                    console.log("user111:" + user.driverDetails);
+                    console.log("user111:" + user.driverDetails.firstName);
                     return [2 /*return*/, user.driverDetails];
             }
         });

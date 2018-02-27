@@ -323,8 +323,8 @@ export async function getUser(userID: number) {
   let db = await dbClient.connect();
   const users1 = db.collection("users");
   console.log("userID222:" + userID);
-  const user = await users1.findOne({ "driverDetails.userId": 856 });
-  console.log("user111:" + user.driverDetails);
+  const user = await users1.findOne({ "driverDetails.userId": userID });
+  console.log("user111:" + user.driverDetails.firstName);
   return user.driverDetails;
 
   //
