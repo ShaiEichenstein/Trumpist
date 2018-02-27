@@ -146,5 +146,117 @@
         "minute": 20
       }
     }
+  },
+  {
+    "driverDetails": {
+      "userId": 111,
+      "lastName": "פרי",
+      "firstName": "יניב",
+      "gender": "זכר",
+      "address": {
+        "city": "רמת גן",
+        "street": "ארלוזורוב"
+      },
+      "entranceAvgTime": {
+        "hour": 8,
+        "minute": 20
+      }
+    }
+  },
+  {
+    "driverDetails": {
+      "userId": 333,
+      "lastName": "כספי",
+      "firstName": "ליאור",
+      "gender": "זכר",
+      "address": {
+        "city": "רמת גן",
+        "street": "הירדן"
+      },
+      "entranceAvgTime": {
+        "hour": 8,
+        "minute": 20
+      }
+    }
+  },
+  {
+    "driverDetails": {
+      "userId": 444,
+      "lastName": "פלד",
+      "firstName": "אורן",
+      "gender": "זכר",
+      "address": {
+        "city": "תל אביב",
+        "street": "ההגנה"
+      },
+      "entranceAvgTime": {
+        "hour": 8,
+        "minute": 20
+      }
+    }
+  },
+  {
+    "driverDetails": {
+      "userId": 555,
+      "lastName": "שלייפר",
+      "firstName": "גל",
+      "gender": "זכר",
+      "address": {
+        "city": "ראשון לציון",
+        "street": "הנבל"
+      },
+      "entranceAvgTime": {
+        "hour": 8,
+        "minute": 20
+      }
+    }
+  },
+  {
+    "driverDetails": {
+      "userId": 666,
+      "lastName": "גאן",
+      "firstName": "אסף",
+      "gender": "זכר",
+      "address": {
+        "city": "רמת גן",
+        "street": "ספארי"
+      },
+      "entranceAvgTime": {
+        "hour": 8,
+        "minute": 20
+      }
+    }
+  },
+  {
+    "driverDetails": {
+      "userId": 777,
+      "lastName": "אהרון",
+      "firstName": "נועה",
+      "gender": "נקבה",
+      "address": {
+        "city": "רמת גן",
+        "street": "נגבה"
+      },
+      "entranceAvgTime": {
+        "hour": 8,
+        "minute": 20
+      }
+    }
+  },
+  {
+    "driverDetails": {
+      "userId": 888,
+      "lastName": "אור",
+      "firstName": "מור",
+      "gender": "זכר",
+      "address": {
+        "city": "רמת גן",
+        "street": "אורות"
+      },
+      "entranceAvgTime": {
+        "hour": 8,
+        "minute": 20
+      }
+    }
   }
 ]

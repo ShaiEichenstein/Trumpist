@@ -95,10 +95,10 @@ async function loadMongo() {
 
   //const trampRequests = db.collection("trampRequests");
   const users = db.collection("users");  
-  /*trampRequests.drop(function (err, res) {
+  users.drop(function (err, res) {
     if (err) throw err;
     console.log("DELETE!!!!");
-  });*/
+  });
   const usersArr = await users.find({}).toArrayAsync();
   console.log("**********************************");
 
