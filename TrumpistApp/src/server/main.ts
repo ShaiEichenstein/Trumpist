@@ -29,10 +29,17 @@ app.post("/api/addTrampRequest", wrap(async function(req, res) {
   return await dal.addTrampRequest(req.body);
 }));
 
+<<<<<<< HEAD
 app.post("/api/users", wrap(async function(req,res) {
   console.log(req.body);
      return await dal.getUser(req.body);
+=======
+app.get("/api/users/:userID", wrap(async function(req,res) {
+  let userID = req.params.userID;
+    return await dal.getUser(userID);
+>>>>>>> 90052973eeb1d04d00afe73f27c9c04994ca0388
 }));
+
 app.post("/api/updateTrampRequest", wrap(async function(req, res) {
  // console.log(req.body);
   return await dal.updateTrampRequest(req.body);

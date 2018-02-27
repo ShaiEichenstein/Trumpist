@@ -282,6 +282,7 @@ function updateTrampRequest_OLD(trampRequst) {
 exports.updateTrampRequest_OLD = updateTrampRequest_OLD;
 function getExistingRequest(trampRequst) {
     return __awaiter(this, void 0, void 0, function () {
+<<<<<<< HEAD
         var dbTrampreq, db, trampReq, _a;
         return __generator(this, function (_b) {
             switch (_b.label) {
@@ -377,6 +378,20 @@ function getAllTramps() {
                         });
                     });
                     return [2 /*return*/, this.usersArr]; //calcGrades();
+=======
+        var db, users1, user;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, dbClient.connect()];
+                case 1:
+                    db = _a.sent();
+                    users1 = db.collection("users");
+                    console.log("userID:" + userID);
+                    return [4 /*yield*/, users1.findOne(({ "driverDetails.userId": userID }))];
+                case 2:
+                    user = _a.sent();
+                    return [2 /*return*/, user];
+>>>>>>> 90052973eeb1d04d00afe73f27c9c04994ca0388
             }
         });
     });

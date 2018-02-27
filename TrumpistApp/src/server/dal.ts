@@ -38,6 +38,7 @@ const dbClient = new DbClient();
 //DbClient.db.Cursor.prototype.toArrayAsync = promisify(mongodb.Cursor.prototype.toArray);
 var usersArr;
 
+
 export async function addTrampRequest(trampRequst: TrampRequest) {
   console.log("addTrampRequest");
 
@@ -233,6 +234,7 @@ async function getExistingRequest(trampRequst: TrampRequest) {
   }
 }
 
+<<<<<<< HEAD
 export async function getAllTramps() {
   let db = await dbClient.connect();
   const users1 = db.collection("users");
@@ -287,6 +289,49 @@ export async function getAllTramps() {
   });
 
   return this.usersArr; //calcGrades();
+=======
+export async function getUser(userID: number) {
+
+
+  let db = await dbClient.connect();
+  const users1 = db.collection("users");
+  console.log("userID:" + userID);
+  const user = 
+   await users1.findOne(({"driverDetails.userId": userID})); 
+   return user;
+
+
+  //
+  // const userDetMockup: User = <User>{
+  //     userId:111,
+  //     password:"111",
+  //     lastName: "אייכנשטיין",
+  //     firstName: "שי",
+  //     gender: "זכר",
+  //     address: {
+  //       city: "רמת גן",
+  //       street: "הרצל"
+  //     },
+  //     entranceAvgTime: {
+  //       hour: 8,
+  //       minute: 20
+  //     },
+  //     leavingAvgTime: {
+  //       hour: 18,
+  //       minute: 25
+  //     }
+  // };
+  // // userMockUp.push(userID);
+  //   const tramp = TrampsMockUp.filter(
+  //     t => t.driverDetails.userId === trampRequst.driverUserID
+  //   )[0];
+  //   if (tramp != null) {
+  //     console.log(tramp);
+  //     tramp['trampRequestStatus'] = 1;
+  //   } else { console.log("tramp is null"); }
+    //return userDetMockup;
+  //} else { console.log("userID is null"); }
+>>>>>>> 90052973eeb1d04d00afe73f27c9c04994ca0388
 }
 
 function calcGrades() {
