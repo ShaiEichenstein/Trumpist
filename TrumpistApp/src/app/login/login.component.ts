@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
   {
     console.log("userid:" + this.userid);
     this.user = await this.loginService.getUser(this.userid);
+    //console.log("4444:" + this.user.lastName );
   }
 
     // constructor(
