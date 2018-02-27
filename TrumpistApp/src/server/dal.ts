@@ -266,12 +266,21 @@ function getUserById (id) {
 export async function getAllTramps(userID:string) {
   let db = await dbClient.connect();
   const users1 = db.collection("users");
+  const loggedUser = await users1.findOne({
+    "driverDetails.userId": userID
+  })
+  
+  console.log("+++++++++++++loggedUser: "+ loggedUser);
+  
   this.usersArr = await users1.find().toArray();
+
+
+
 
   const trampReq = db.collection("tramp_request");
   const trampReqArr = await trampReq
     .find({
-      passangerUserID: userID
+      passangerUserID: loggedUser
     })
     .toArray();
 

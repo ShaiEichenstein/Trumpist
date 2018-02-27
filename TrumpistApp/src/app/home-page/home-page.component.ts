@@ -19,14 +19,6 @@ export class HomePageComponent implements OnInit {
   
   async ngOnInit() {
     //setInterval(this.refresh(), 3000);
-  }
-
-  showRequests() {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(this.trampService.getRequests(this.currentUser.userId));
-  }
-
-  async refresh(){
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.trampList = await this.trampService.getTramps(this.currentUser.userId);
     this.trampRequestList = await this.trampService.getTrampRequestList();
@@ -39,5 +31,14 @@ export class HomePageComponent implements OnInit {
       this.trampList.sort((n1, n2) => n2.trampGrade - n1.trampGrade);
       this.trampList = this.trampList.filter(n1 => n1.trampGrade !== 0);
     }
+  }
+
+  showRequests() {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    console.log(this.trampService.getRequests(this.currentUser.userId));
+  }
+
+  async refresh(){
+   
   }
 }
