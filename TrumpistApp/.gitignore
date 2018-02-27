@@ -10,6 +10,9 @@
 /node_modules
 /server_out
 /data
+/mongo-db
+src/server_out
+src/data
 
 # IDEs and editors
 /.idea
