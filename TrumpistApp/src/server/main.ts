@@ -12,8 +12,9 @@ app.use(bodyParser.json());
 // });
 
 
-app.get("/api/tramps", wrap(async function() {
-    return await dal.getAllTramps();
+app.get("/api/tramps/:userID", wrap(async function(req,res) {
+  let user = req.params.userID;
+    return await dal.getAllTramps(user);
 }));
 
 app.get("/api/trampsRequests", wrap(async function() {

@@ -18,15 +18,17 @@ export class HomePageComponent implements OnInit {
   }
   
   async ngOnInit() {
-    setInterval(this.refresh(), 3000);
+    //setInterval(this.refresh(), 3000);
   }
 
   showRequests() {
-    console.log(this.trampService.getRequests(1234));
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    console.log(this.trampService.getRequests(this.currentUser.userId));
   }
 
   async refresh(){
-    this.trampList = await this.trampService.getTramps();
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.trampList = await this.trampService.getTramps(this.currentUser.userId);
     this.trampRequestList = await this.trampService.getTrampRequestList();
     if(this.trampRequestList != null){
       console.log("trampRequestList: ");
