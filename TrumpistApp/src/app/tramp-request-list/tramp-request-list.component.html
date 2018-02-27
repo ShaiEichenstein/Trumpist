@@ -4,7 +4,7 @@
   </h3>
 
   <app-tramp-request-item *ngFor="let trampRequest of trampRequestList" [trampRequest]=trampRequest
-  (confirmRequest)="confirmTrampRequstHandler($event)"></app-tramp-request-item>
+  (confirmRequest)="confirmTrampRequstHandler($event)" (cancelRequest)="cancelTrampRequstHandler($event)"></app-tramp-request-item>
 </div>
 
 <div  *ngIf="trampRequestList == null" class="container tramp-list-div">

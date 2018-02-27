@@ -12,6 +12,7 @@ import { updateTrampRequest } from "../../server/dal";
 export class TrampRequestItemComponent implements OnInit {
   @Input() trampRequest: TrampRequestForDisplay;
   @Output() confirmRequest: EventEmitter<TrampRequestForDisplay> = new EventEmitter<TrampRequestForDisplay>();
+  @Output() cancelRequest: EventEmitter<TrampRequestForDisplay> = new EventEmitter<TrampRequestForDisplay>();
   
   isRequestConfirmed: boolean;
   driverDetails: User;
@@ -40,6 +41,9 @@ export class TrampRequestItemComponent implements OnInit {
     this.confirmRequest.emit(this.trampRequest);
   }
 
+  cancelTrampRequest() {
+    this.confirmRequest.emit(this.trampRequest);
+  }
 
   // getTrampRequestFromTrampRequestForDisplay(trampRequestForDisplay: TrampRequestForDisplay){
   //   let trampRequest: TrampRequest;
