@@ -112,7 +112,7 @@ function addTrampRequest(trampRequst) {
                             passangerUserID: trampRequst.passangerUserID
                         };
                         // if the request already exists in the db update the request status back to sent
-                        trampReq.findAndModify(query, // query
+                        trampReq["findAndModify"](query, // query
                         [["_id", "asc"]], // sort order
                         { $set: { requestStatus: trampRequst.requestStatus } }, // replacement, replaces only the field "hi"
                         {}, // options
@@ -164,7 +164,7 @@ function updateTrampRequest(trampRequst) {
                         };
                     }
                     try {
-                        trampReq.findAndModify(query, // query
+                        trampReq["findAndModify"](query, // query
                         [["_id", "asc"]], // sort order
                         { $set: { requestStatus: trampRequst.requestStatus } }, // replacement, replaces only the field "hi"
                         {}, // options
