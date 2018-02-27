@@ -331,10 +331,7 @@ export async function getAllTramps(userID:string) {
 export async function getUser(userID: number) {
   let db = await dbClient.connect();
   const users1 = db.collection("users");
-  console.log("userID222:" + userID);
-  console.log(typeof userID);
   const user = await users1.findOne({ "driverDetails.userId": userID });
-  console.log("user111:", user);
   return user.driverDetails;
 
   //
