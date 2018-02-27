@@ -160,6 +160,42 @@ function updateTrampRequest(trampRequst) {
     });
 }
 exports.updateTrampRequest = updateTrampRequest;
+function getUser(userID) {
+    return __awaiter(this, void 0, void 0, function () {
+        var userDetMockup;
+        return __generator(this, function (_a) {
+            userDetMockup = {
+                userId: 111,
+                password: "111",
+                lastName: "אייכנשטיין",
+                firstName: "שי",
+                gender: "זכר",
+                address: {
+                    city: "רמת גן",
+                    street: "הרצל"
+                },
+                entranceAvgTime: {
+                    hour: 8,
+                    minute: 20
+                },
+                leavingAvgTime: {
+                    hour: 18,
+                    minute: 25
+                }
+            };
+            // userMockUp.push(userID);
+            //   const tramp = TrampsMockUp.filter(
+            //     t => t.driverDetails.userId === trampRequst.driverUserID
+            //   )[0];
+            //   if (tramp != null) {
+            //     console.log(tramp);
+            //     tramp['trampRequestStatus'] = 1;
+            //   } else { console.log("tramp is null"); }
+            return [2 /*return*/, userDetMockup];
+        });
+    });
+}
+exports.getUser = getUser;
 exports.TrampsRequestMockUp = new Array();
 exports.passanger = {
     driverDetails: {

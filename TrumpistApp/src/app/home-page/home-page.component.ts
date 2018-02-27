@@ -1,6 +1,7 @@
 import { TrampService } from "./../services/tramp.service";
 import { Component, OnInit } from "@angular/core";
 import { Tramp } from "../models/tramp";
+import { User } from "../models/tramp";
 import { TrampRequest, TrampRequestForDisplay } from "../models/trampRequest";
 
 @Component({
@@ -9,9 +10,12 @@ import { TrampRequest, TrampRequestForDisplay } from "../models/trampRequest";
   styleUrls: ["./home-page.component.css"]
 })
 export class HomePageComponent implements OnInit {
+  currentUser: User;
   trampList: Array<Tramp>;
   trampRequestList: Array<TrampRequestForDisplay>;
-  constructor(private trampService: TrampService) {}
+  constructor(private trampService: TrampService) {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  }
   
   async ngOnInit() {
     this.trampList = await this.trampService.getTramps();

@@ -101,7 +101,42 @@ export async function updateTrampRequest(trampRequst: TrampRequest) {
   }
 }
 
+
+export async function getUser(userID: number) {
+  const userDetMockup: User = <User>{
+      userId:111,
+      password:"111",
+      lastName: "אייכנשטיין",
+      firstName: "שי",
+      gender: "זכר",
+      address: {
+        city: "רמת גן",
+        street: "הרצל"
+      },
+      entranceAvgTime: {
+        hour: 8,
+        minute: 20
+      },
+      leavingAvgTime: {
+        hour: 18,
+        minute: 25
+      }
+  };
+  // userMockUp.push(userID);
+  //   const tramp = TrampsMockUp.filter(
+  //     t => t.driverDetails.userId === trampRequst.driverUserID
+  //   )[0];
+  //   if (tramp != null) {
+  //     console.log(tramp);
+  //     tramp['trampRequestStatus'] = 1;
+  //   } else { console.log("tramp is null"); }
+    return userDetMockup;
+  //} else { console.log("userID is null"); }
+}
+
 export let TrampsRequestMockUp: Array<TrampRequest> = new Array<TrampRequest>();
+
+
 
 export const passanger: Tramp = <Tramp>{
   driverDetails: {
