@@ -2,6 +2,7 @@ import { Tramp, Address } from "./../models/tramp";
 import { Component, OnInit, Input } from "@angular/core";
 import { TrampService } from "../services/tramp.service";
 import { TrampRequest } from "../models/trampRequest";
+import { User } from '../models/tramp';
 
 @Component({
   selector: "app-tramp-list",
@@ -12,8 +13,10 @@ export class TrampListComponent implements OnInit {
   @Input() trampList: Array<Tramp>;
 
   activeSortBy: string;
-
-  constructor(private trampService: TrampService) {}
+  currentUser: User;
+  constructor(private trampService: TrampService) {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  }
 
   ngOnInit() {
     this.activeSortBy = "byRank";

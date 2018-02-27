@@ -12,6 +12,7 @@ import { User } from '../models/tramp';
 export class LoginComponent implements OnInit {
     user: User;
     private userid: number;
+    isAuthenticated:boolean=false;
     constructor(private loginService: LoginService) {
     }
 
@@ -20,8 +21,16 @@ export class LoginComponent implements OnInit {
 
   async getUser()
   {
-    console.log("userid:" + this.userid);
-    this.user = await this.loginService.getUser(this.userid);
+    try{
+      this.user = await this.loginService.getUser(this.userid);
+       localStorage.setItem('currentUser', JSON.stringify(this.user));
+       this.isAuthenticated=true;
+    }
+    catch
+    {
+      this.isAuthenticated=false;
+      console.log("no such User:" + this.userid );
+    }
   }
 
     // constructor(

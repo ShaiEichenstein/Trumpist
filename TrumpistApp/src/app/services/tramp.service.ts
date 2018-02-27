@@ -14,9 +14,9 @@ export class TrampService {
     // this.trampList = TrampsMockUp;
   }
 
-  async getTramps(): Promise<Tramp[]> {
+  async getTramps(userId:number): Promise<Tramp[]> {
     // return this.trampList;
-    const tramps = await this.httpService.requestGetData<Tramp[]>("api/tramps");
+    const tramps = await this.httpService.requestGetData<Tramp[]>("api/tramps/"+ userId);
     console.log(tramps);
     this.setRequestAdditionalData(tramps);
     this.trampList = tramps;

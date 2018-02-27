@@ -70,7 +70,7 @@ export async function addTrampRequest(trampRequst: TrampRequest) {
         passangerUserID: trampRequst.passangerUserID
       };
       // if the request already exists in the db update the request status back to sent
-      trampReq.findAndModify(
+      trampReq["findAndModify"](
         query, // query
         [["_id", "asc"]], // sort order
         { $set: { requestStatus: trampRequst.requestStatus } }, // replacement, replaces only the field "hi"
@@ -113,7 +113,7 @@ export async function updateTrampRequest(trampRequst: TrampRequest) {
       };
     }
     try {
-      trampReq.findAndModify(
+      trampReq["findAndModify"](
         query, // query
         [["_id", "asc"]], // sort order
         { $set: { requestStatus: trampRequst.requestStatus } }, // replacement, replaces only the field "hi"
@@ -333,15 +333,24 @@ function getUserById(id) {
   }).driverDetails;
 }
 
-export async function getAllTramps() {
+export async function getAllTramps(userID:string) {
   let db = await dbClient.connect();
   const users1 = db.collection("users");
+  const loggedUser = await users1.findOne({
+    "driverDetails.userId": userID
+  })
+  
+  console.log("+++++++++++++loggedUser: "+ loggedUser);
+  
   this.usersArr = await users1.find().toArray();
+
+
+
 
   const trampReq = db.collection("tramp_request");
   const trampReqArr = await trampReq
     .find({
-      passangerUserID: 222
+      passangerUserID: loggedUser
     })
     .toArray();
 
@@ -392,9 +401,8 @@ export async function getAllTramps() {
 export async function getUser(userID: number) {
   let db = await dbClient.connect();
   const users1 = db.collection("users");
-  console.log("userID:" + userID);
   const user = await users1.findOne({ "driverDetails.userId": userID });
-  return user;
+  return user.driverDetails;
 
   //
   // const userDetMockup: User = <User>{

@@ -12,8 +12,9 @@ app.use(bodyParser.json());
 // });
 
 
-app.get("/api/tramps", wrap(async function() {
-    return await dal.getAllTramps();
+app.get("/api/tramps/:userID", wrap(async function(req,res) {
+  let user = req.params.userID;
+    return await dal.getAllTramps(user);
 }));
 
 app.post("/api/getTrampsRequests", wrap(async function(req, res) {
@@ -31,9 +32,13 @@ app.post("/api/addTrampRequest", wrap(async function(req, res) {
 }));
 
 app.get("/api/users/:userID", wrap(async function(req,res) {
-  let userID = req.params.userID;
+  let userID = parseInt(req.params.userID);
+  if(isNaN(userID)){
+    throw new Error("Invalid userID parameter: " + userID)
+  }
     return await dal.getUser(userID);
 }));
+
 
 app.post("/api/updateTrampRequest", wrap(async function(req, res) {
  // console.log(req.body);
