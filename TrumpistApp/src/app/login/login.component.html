@@ -1,11 +1,11 @@
 <div class="login-div">
-    <h3 *ngIf="false" style="color: gold;">שלום</h3>
-    <input *ngIf="false" [(ngModel)]="userid" id="ex1" type="text" placeholder="נא הזן מ.ע להתחברות">
-    <span *ngIf="false" class="glyphicon glyphicon-chevron-left" style="color: gold; font-size: 22px; cursor:pointer; position: relative; top: 4px; right: 6px;"
+    <h3 *ngIf="true" style="color: gold;">שלום</h3>
+    <input *ngIf="true" [(ngModel)]="userid" id="ex1" type="text" placeholder="נא הזן מ.ע להתחברות">
+    <span *ngIf="true" class="glyphicon glyphicon-chevron-left" style="color: gold; font-size: 22px; cursor:pointer; position: relative; top: 4px; right: 6px;"
         (click)="getUser()"></span>
 
     <div style="color: gold;">
-      <h3>שלום דרור</h3>      
+      <h3>{{user.lastName}}}</h3>      
       <h3 style="color: white;">ברוך הבא לטרמפיסט</h3>
       <h4 style="color: white;">הפרופיל שלך:</h4>      
       <h4 style="color: white;">גר ברמת גן,  מגיע בשעה 08:50  למטה</h4>
