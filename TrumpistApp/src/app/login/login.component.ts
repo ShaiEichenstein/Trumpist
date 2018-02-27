@@ -6,11 +6,12 @@ import { User } from '../models/tramp';
 
 @Component({
     selector: 'login-user',
-    templateUrl: 'login.component.html'
+    templateUrl: '/login.component.html',
+    styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
     user: User;
-    private userid:number;
+    private userid: number;
     constructor(private loginService: LoginService) {
     }
 

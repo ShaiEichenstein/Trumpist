@@ -38,7 +38,6 @@ const dbClient = new DbClient();
 //DbClient.db.Cursor.prototype.toArrayAsync = promisify(mongodb.Cursor.prototype.toArray);
 var usersArr;
 
-
 export async function addTrampRequest(trampRequst: TrampRequest) {
   console.log("addTrampRequest");
 
@@ -288,16 +287,14 @@ export async function getAllTramps() {
   });
 
   return this.usersArr; //calcGrades();
+}
+
 export async function getUser(userID: number) {
-
-
   let db = await dbClient.connect();
   const users1 = db.collection("users");
   console.log("userID:" + userID);
-  const user = 
-   await users1.findOne(({"driverDetails.userId": userID})); 
-   return user;
-
+  const user = await users1.findOne({ "driverDetails.userId": userID });
+  return user;
 
   //
   // const userDetMockup: User = <User>{
@@ -327,7 +324,7 @@ export async function getUser(userID: number) {
   //     console.log(tramp);
   //     tramp['trampRequestStatus'] = 1;
   //   } else { console.log("tramp is null"); }
-    //return userDetMockup;
+  //return userDetMockup;
   //} else { console.log("userID is null"); }
 }
 

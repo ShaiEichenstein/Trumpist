@@ -27,6 +27,7 @@ export class HomePageComponent implements OnInit {
     
     if (this.trampList != null) {
       this.trampList.sort((n1, n2) => n2.trampGrade - n1.trampGrade);
+      this.trampList = this.trampList.filter(n1 => n1.trampGrade !== 0);
     }
   }
 

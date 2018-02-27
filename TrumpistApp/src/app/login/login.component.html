@@ -1,6 +1,10 @@
-<div >
-    <h5 >Login User</h5>
-    <input  [(ngModel)]="userid" id="ex1" type="text">
-    <button type="button" (click)="getUser()" class="btn btn-primary">Login</button>
+<div class="login-div">
+    <h3 style="color: gold;">שלום</h3>
+    <input [(ngModel)]="userid" id="ex1" type="text" placeholder="נא הזן מ.ע להתחברות">
+    <span class="glyphicon glyphicon-chevron-left" style="color: gold; font-size: 22px; cursor:pointer; position: relative; top: 4px; right: 6px;"
+        (click)="getUser()"></span>
+
+    <!-- <div class="col-md-6 col-md-offset-3">
+      <h1>ברוך הבא {{currentUser?.firstName}} {{currentUser?.lastName}}!</h1>
+    </div> -->
 </div>
-  

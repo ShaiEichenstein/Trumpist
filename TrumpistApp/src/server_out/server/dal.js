@@ -282,7 +282,6 @@ function updateTrampRequest_OLD(trampRequst) {
 exports.updateTrampRequest_OLD = updateTrampRequest_OLD;
 function getExistingRequest(trampRequst) {
     return __awaiter(this, void 0, void 0, function () {
-<<<<<<< HEAD
         var dbTrampreq, db, trampReq, _a;
         return __generator(this, function (_b) {
             switch (_b.label) {
@@ -378,7 +377,13 @@ function getAllTramps() {
                         });
                     });
                     return [2 /*return*/, this.usersArr]; //calcGrades();
-=======
+            }
+        });
+    });
+}
+exports.getAllTramps = getAllTramps;
+function getUser(userID) {
+    return __awaiter(this, void 0, void 0, function () {
         var db, users1, user;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -387,16 +392,15 @@ function getAllTramps() {
                     db = _a.sent();
                     users1 = db.collection("users");
                     console.log("userID:" + userID);
-                    return [4 /*yield*/, users1.findOne(({ "driverDetails.userId": userID }))];
+                    return [4 /*yield*/, users1.findOne({ "driverDetails.userId": userID })];
                 case 2:
                     user = _a.sent();
                     return [2 /*return*/, user];
->>>>>>> 90052973eeb1d04d00afe73f27c9c04994ca0388
             }
         });
     });
 }
-exports.getAllTramps = getAllTramps;
+exports.getUser = getUser;
 function calcGrades() {
     this.usersArr.forEach(function (tramp) {
         var grade = 0;

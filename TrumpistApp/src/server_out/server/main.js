@@ -78,17 +78,12 @@ app.get("/api/users/:userID", wrap(function (req, res) {
     return __awaiter(this, void 0, void 0, function () {
         var userID;
         return __generator(this, function (_a) {
-<<<<<<< HEAD
-            console.log(req.body);
-            return [2 /*return*/];
-=======
             switch (_a.label) {
                 case 0:
                     userID = req.params.userID;
                     return [4 /*yield*/, dal.getUser(userID)];
                 case 1: return [2 /*return*/, _a.sent()];
             }
->>>>>>> 90052973eeb1d04d00afe73f27c9c04994ca0388
         });
     });
 }));

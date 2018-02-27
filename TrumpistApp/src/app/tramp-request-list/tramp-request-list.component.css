@@ -1,7 +1,10 @@
 .tramp-list-div {    
     background: #F35A74;
+    border: 1px solid black;
+    box-shadow: 0 0 20px;
     width: 100%;
-    padding: 20px;
+    padding: 30px;
+    height:80vh;
 }
 
 .tramp-list-div > h3{    

@@ -1,15 +1,15 @@
 <div class="container home-page-div">
 
   <div class="pull-right" style="direction: rtl; width: 100%; padding:20px;">
-    <div class="col-md-6 col-md-offset-3">
-      <h1>ברוך הבא {{currentUser?.firstName}}  {{currentUser?.lastName}}!</h1>
-      </div>
+ 
     <div class="row">
-      <app-tramp-request-list class="col-md-6" [trampRequestList]=trampRequestList></app-tramp-request-list>
-      <app-tramp-list class="col-md-6" [trampList]=trampList></app-tramp-list>
-    </div>
+      <app-tramp-request-list class="col-md-4" [trampRequestList]=trampRequestList></app-tramp-request-list>
 
-    <button class="btn btn-primary pull-left" (click)="showRequests()">הצג בקשות</button>
+      <app-tramp-list class="col-md-4" [trampList]=trampList></app-tramp-list>
+
+      <login-user class="col-md-4"></login-user>
+    </div>
+    <!-- <button class="btn btn-primary pull-left" (click)="showRequests()">הצג בקשות</button> -->
 
   </div>
 </div>
