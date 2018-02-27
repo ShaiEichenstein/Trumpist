@@ -64,7 +64,7 @@ export class TrampListComponent implements OnInit {
   sendTrampRequstHandler(tramp: Tramp) {
     const trampReq = <TrampRequest>{
       driverUserID: tramp.driverDetails.userId,
-      passangerUserID: 37897,
+      passangerUserID: 222,
       trampDate: new Date(),
       requestStatus: 1
     };
@@ -74,7 +74,7 @@ export class TrampListComponent implements OnInit {
   cancelTrampRequstHandler(tramp: Tramp) {
     const trampReq = <TrampRequest>{
       driverUserID: tramp.driverDetails.userId,
-      passangerUserID: 37897,
+      passangerUserID: 222,
       trampDate: new Date(),
       requestStatus: 0
     };

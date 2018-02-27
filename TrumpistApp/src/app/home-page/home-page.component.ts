@@ -14,17 +14,23 @@ export class HomePageComponent implements OnInit {
   trampList: Array<Tramp>;
   trampRequestList: Array<TrampRequestForDisplay>;
   constructor(private trampService: TrampService) {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
   }
-  
+
   async ngOnInit() {
     this.trampList = await this.trampService.getTramps();
-    this.trampRequestList = await this.trampService.getTrampRequestList();
-    if(this.trampRequestList != null){
+
+    const user = <User>{
+      userId: 12345
+    };
+
+    this.trampRequestList = await this.trampService.getTrampRequestList(user);
+
+    if (this.trampRequestList != null) {
       console.log("trampRequestList: ");
       console.log(this.trampRequestList[0]);
     }
-    
+
     if (this.trampList != null) {
       this.trampList.sort((n1, n2) => n2.trampGrade - n1.trampGrade);
       this.trampList = this.trampList.filter(n1 => n1.trampGrade !== 0);

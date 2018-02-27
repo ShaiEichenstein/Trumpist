@@ -11,11 +11,11 @@
     </div> 
 
     <div class="col-md-5 tramp-request-col">
-      <p class="tramp-request-text"> {{trampRequest.passangerUser.firstName }} {{trampRequest.passangerUser.lastName}} </p>
-      <p class="tramp-request-text"> {{trampRequest.passangerUser.gender}} </p>
+      <p class="tramp-request-text"> {{trampRequest?.passangerUser?.firstName }} {{trampRequest?.passangerUser?.lastName}} </p>
+      <p class="tramp-request-text"> {{trampRequest?.passangerUser?.gender}} </p>
       <p></p>
-      <p class="tramp-request-text"> {{trampRequest.trampDate | date:'dd-MM-yyyy'}} </p>
-      <p class="tramp-request-text"> {{trampRequest.trampDate | date:'HH:mm'}} </p>
+      <p class="tramp-request-text"> {{trampRequest?.trampDate | date:'dd-MM-yyyy'}} </p>
+      <p class="tramp-request-text"> {{trampRequest?.trampDate | date:'HH:mm'}} </p>
     </div>
     
     <div class="tramp-request-icon col-md-3 glyphicon glyphicon-user"></div>

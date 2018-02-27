@@ -325,29 +325,63 @@ function getExistingRequest(trampRequst) {
         });
     });
 }
-function getAllTrampsRequests() {
+function getAllTrampsRequests(user) {
     return __awaiter(this, void 0, void 0, function () {
-        var TrampsRequestMockUp2, TrampRequestForDisplayMockUp;
+        var db, trampReq, trampReqArr, users1, usersArrForReq_1, trampRequestForDisplayArray_1;
         return __generator(this, function (_a) {
-            TrampsRequestMockUp2 = [
-                {
-                    id: 1,
-                    driverUserID: 12345,
-                    passangerUserID: 555,
-                    requestStatus: 0,
-                    trampDate: new Date()
-                }
-            ];
-            TrampRequestForDisplayMockUp = [
-                {
-                    id: 1,
-                    driverUser: getUserById(TrampsRequestMockUp2[0].driverUserID),
-                    passangerUser: getUserById(TrampsRequestMockUp2[0].passangerUserID),
-                    requestStatus: 0,
-                    trampDate: new Date()
-                }
-            ];
-            return [2 /*return*/, TrampRequestForDisplayMockUp];
+            switch (_a.label) {
+                case 0:
+                    console.log("getAllTrampsRequests : " + user.userId);
+                    if (!(user != null)) return [3 /*break*/, 4];
+                    return [4 /*yield*/, dbClient.connect()];
+                case 1:
+                    db = _a.sent();
+                    trampReq = db.collection("tramp_request");
+                    return [4 /*yield*/, trampReq
+                            .find({
+                            driverUserID: user.userId,
+                            requestStatus: 1
+                        })
+                            .toArray()];
+                case 2:
+                    trampReqArr = _a.sent();
+                    users1 = db.collection("users");
+                    return [4 /*yield*/, users1.find().toArray()];
+                case 3:
+                    usersArrForReq_1 = _a.sent();
+                    // console.log("usersArrForReq");
+                    // console.log(usersArrForReq);
+                    try {
+                        trampRequestForDisplayArray_1 = new Array();
+                        trampReqArr.forEach(function (req) {
+                            console.log(req);
+                            var trampRequestForDisplay = {
+                                driverUserId: req.driverUserID,
+                                requestStatus: req.requestStatus,
+                                trampDate: req.trampDate,
+                                id: req.id
+                            };
+                            console.log("trampRequestForDisplay: " + trampRequestForDisplay.driverUserId);
+                            // set the tramp status according to the users requests
+                            usersArrForReq_1.forEach(function (user) {
+                                if (user != null) {
+                                    if (req.passangerUserID === user.driverDetails.userId) {
+                                        console.log("user found: " + user.driverDetails.userId);
+                                        trampRequestForDisplay.passangerUser = user.driverDetails;
+                                    }
+                                }
+                            });
+                            trampRequestForDisplayArray_1.push(trampRequestForDisplay);
+                        });
+                        console.log(trampRequestForDisplayArray_1);
+                        return [2 /*return*/, trampRequestForDisplayArray_1];
+                    }
+                    catch (e) {
+                        console.log(e);
+                    }
+                    _a.label = 4;
+                case 4: return [2 /*return*/];
+            }
         });
     });
 }
@@ -373,7 +407,7 @@ function getAllTramps() {
                     trampReq = db.collection("tramp_request");
                     return [4 /*yield*/, trampReq
                             .find({
-                            passangerUserID: 37897
+                            passangerUserID: 222
                         })
                             .toArray()];
                 case 3:

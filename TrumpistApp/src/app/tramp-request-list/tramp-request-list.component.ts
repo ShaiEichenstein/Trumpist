@@ -17,8 +17,9 @@ export class TrampRequestListComponent implements OnInit {
 
   confirmTrampRequstHandler(tramp: TrampRequestForDisplay) {
     const trampReq = <TrampRequest>{
-      driverUserID: 12345,
-      passangerUserID: 37897,
+      // id: tramp.id,
+      driverUserID: tramp.driverUserId,
+      passangerUserID: tramp.passangerUser.userId,
       requestStatus: 2
     };
     this.trampService.updateTrampRequestStatus(trampReq);

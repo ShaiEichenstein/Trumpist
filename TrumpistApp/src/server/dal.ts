@@ -1,6 +1,10 @@
+// import { passanger2 } from './dal';
 import { delay } from "./helpers";
-import { Tramp } from "../app/models/tramp";
-import { TrampRequest, TrampRequestForDisplay } from "../app/models/trampRequest";
+import { Tramp, User } from "../app/models/tramp";
+import {
+  TrampRequest,
+  TrampRequestForDisplay
+} from "../app/models/trampRequest";
 //import * as mongodb from "mongodb";
 import { MongoClient, Db, connect, ObjectId } from "mongodb";
 
@@ -233,31 +237,97 @@ async function getExistingRequest(trampRequst: TrampRequest) {
   }
 }
 
-export async function getAllTrampsRequests() {
-  const TrampsRequestMockUp2: Array<TrampRequest> = [
-    <TrampRequest>{
-      id: 1,
-      driverUserID: 12345,
-      passangerUserID: 555,
-      requestStatus:0,
-      trampDate: new Date()
-    }
-  ]
+export async function getAllTrampsRequests(user: User) {
+  console.log("getAllTrampsRequests : " + user.userId);
 
-  const TrampRequestForDisplayMockUp: Array<TrampRequestForDisplay> = [
-    <TrampRequestForDisplay>{
-      id: 1,
-      driverUser: getUserById(TrampsRequestMockUp2[0].driverUserID),
-      passangerUser: getUserById(TrampsRequestMockUp2[0].passangerUserID),
-      requestStatus:0,
-      trampDate: new Date()
-    }
-  ]
+  if (user != null) {
+    const db = await dbClient.connect();
+    const trampReq = db.collection("tramp_request");
+    const trampReqArr = await trampReq
+      .find({
+        driverUserID: user.userId,
+        requestStatus: 1        
+      })
+      .toArray();
+    //console.log(trampReqArr);
 
-  return TrampRequestForDisplayMockUp;
+    //  let passangerIds: Array<any> = new Array<any>();
+
+    // trampReqArr.forEach(req => {
+    //   passangerIds.push( {'driverDetails.userId': (<TrampRequest>req).passangerUserID} );
+    // });
+    // console.log(passangerIds);
+
+    // let queryStr: string = "$or: [";
+    // passangerIds.forEach(p => {
+    //   queryStr += p +',';
+    // });
+    // queryStr += '];';
+    // console.log(queryStr);
+
+    // const query = {
+    //   $or: [
+    //     { "driverDetails.userId": 37897 },
+    //     { "driverDetails.userId": 12345 }
+    //   ]
+    // };
+
+    const users1 = db.collection("users");
+    const usersArrForReq = await users1.find().toArray();
+    // console.log("usersArrForReq");
+    // console.log(usersArrForReq);
+
+    try {
+    const trampRequestForDisplayArray: Array<TrampRequestForDisplay> = new Array<TrampRequestForDisplay>();
+    trampReqArr.forEach(req => {
+      console.log(req);
+      const trampRequestForDisplay = <TrampRequestForDisplay>{
+        driverUserId:(<TrampRequest>req).driverUserID,
+        requestStatus: (<TrampRequest>req).requestStatus,
+        trampDate: (<TrampRequest>req).trampDate,
+        id: (<TrampRequest>req).id
+      };
+
+      console.log("trampRequestForDisplay: " + trampRequestForDisplay.driverUserId);
+      // set the tramp status according to the users requests
+      usersArrForReq.forEach(user => {
+        if (user != null) {
+          if ((<TrampRequest>req).passangerUserID === user.driverDetails.userId) {
+            console.log("user found: " + user.driverDetails.userId);
+            trampRequestForDisplay.passangerUser = user.driverDetails;
+          }
+        }
+      });
+      trampRequestForDisplayArray.push(trampRequestForDisplay);
+    });
+    console.log(trampRequestForDisplayArray);
+    return trampRequestForDisplayArray;
+  }
+  catch (e) {console.log(e);}
+    // const TrampsRequestMockUp2: Array<TrampRequest> = [
+    //   <TrampRequest>{
+    //     id: 1,
+    //     driverUserID: 12345,
+    //     passangerUserID: 555,
+    //     requestStatus: 0,
+    //     trampDate: new Date()
+    //   }
+    // ];
+
+    // const TrampRequestForDisplayMockUp: Array<TrampRequestForDisplay> = [
+    //   <TrampRequestForDisplay>{
+    //     id: 1,
+    //     driverUserId: TrampsRequestMockUp2[0].driverUserID,
+    //     passangerUser: getUserById(TrampsRequestMockUp2[0].passangerUserID),
+    //     requestStatus: 0,
+    //     trampDate: new Date()
+    //   }
+    // ];
+
+  }
 }
 
-function getUserById (id) {
+function getUserById(id) {
   return TrampsMockUp.find(function(element) {
     return element.driverDetails.userId == id;
   }).driverDetails;
@@ -271,7 +341,7 @@ export async function getAllTramps() {
   const trampReq = db.collection("tramp_request");
   const trampReqArr = await trampReq
     .find({
-      passangerUserID: 37897
+      passangerUserID: 222
     })
     .toArray();
 

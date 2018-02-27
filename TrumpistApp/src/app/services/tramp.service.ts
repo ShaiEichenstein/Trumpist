@@ -24,11 +24,26 @@ export class TrampService {
     // return this.trampList;
   }
 
-  async getTrampRequestList(): Promise<TrampRequestForDisplay[]>{
-    const trampsRequests = await this.httpService.requestGetData<TrampRequestForDisplay[]>("api/trampsRequests");
+  async getTrampRequestList(user: User): Promise<TrampRequestForDisplay[]> {
+    // const trampsRequests = await this.httpService.requestGetData<TrampRequestForDisplay[]>("api/getTrampsRequests");
+    // console.log(trampsRequests);
+    // //this.setRequestAdditionalData(tramps);
+    // //this.trampList = tramps;
+    // return trampsRequests;
+    console.log(user);
+    const trampsRequests = await this.httpService.postTrampRequestList<
+      TrampRequestForDisplay[]
+    >("api/getTrampsRequests", user);
     console.log(trampsRequests);
-    //this.setRequestAdditionalData(tramps);
-    //this.trampList = tramps;
+
+    // const existingUpdatedTramp = this.trampList.filter(
+    //   t => t.driverDetails.userId === updatedTrampRequest.driverUserID
+    // )[0];
+
+    // existingUpdatedTramp.trampRequestStatus = updatedTrampRequest.requestStatus;
+
+    // this.setRequestAdditionalData(new Array<Tramp>(existingUpdatedTramp));
+
     return trampsRequests;
   }
 

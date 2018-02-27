@@ -5,59 +5,63 @@ import { TrampRequest } from "../models/trampRequest";
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'content': 'application/json',
-    'content-type': 'application/x-www-form-urlencoded'
+    content: "application/json",
+    "content-type": "application/x-www-form-urlencoded"
   })
 };
 
 @Injectable()
 export class HttpService {
-
   constructor(private http: HttpClient) {}
 
   async requestGetData<T>(url: string): Promise<T> {
-      return await this.http.get<T>(url).toPromise();
+    return await this.http.get<T>(url).toPromise();
   }
 
-
-  async postTrampRequest<T> (url: string, trampRequst: TrampRequest): Promise<T> {
+  async postTrampRequest<T>(
+    url: string,
+    trampRequst: TrampRequest
+  ): Promise<T> {
     const tramps = await this.http.post<T>(url, trampRequst).toPromise();
     return tramps;
   }
 
-  async getUser<T> (url: string, usr:User): Promise<T> {
+  async postTrampRequestList<T>(url: string, user: User): Promise<T> {
+    const tramps = await this.http.post<T>(url, user).toPromise();
+    return tramps;
+  }
+
+  async getUser<T>(url: string, usr: User): Promise<T> {
     console.log("userID11111111:" + usr.userId);
     const user = await this.http.post<T>(url, usr).toPromise();
     return user;
   }
-  
-//   async requestPostData<T>(url:string): Promise<T> { 
-//     return await this.http.post<T>(url).toPromise();
-//   }
 
+  //   async requestPostData<T>(url:string): Promise<T> {
+  //     return await this.http.post<T>(url).toPromise();
+  //   }
 
-  // async requestPostData<T>(url:string): Promise<T> { 
+  // async requestPostData<T>(url:string): Promise<T> {
   //   const data = await this.http.post<T>(url).toPromise();
   //   return data;
   // }
-    //   getHeader = () => {
-    //     let headers = new Headers();
-    //     headers.append("Content-Type", 'application/json');
+  //   getHeader = () => {
+  //     let headers = new Headers();
+  //     headers.append("Content-Type", 'application/json');
 
-    //     return headers;
-    // };
+  //     return headers;
+  // };
 
-    // request = (req) => {
-    //     let baseUrl = ApiUrl,
-    //         requestOptions = new RequestOptions({
-    //         method: req.method,
-    //         url: baseUrl+req.url,
-    //         headers: req.header ? req.header : this.getHeader(),
-    //         body: JSON.stringify(req.params)
-    //     });
+  // request = (req) => {
+  //     let baseUrl = ApiUrl,
+  //         requestOptions = new RequestOptions({
+  //         method: req.method,
+  //         url: baseUrl+req.url,
+  //         headers: req.header ? req.header : this.getHeader(),
+  //         body: JSON.stringify(req.params)
+  //     });
 
-    //     return this.http.request(new Request(requestOptions))
-    //                     .map((res:Response) => res.json());
-    // }
-
-  }
+  //     return this.http.request(new Request(requestOptions))
+  //                     .map((res:Response) => res.json());
+  // }
+}
